@@ -1,0 +1,7 @@
+{
+  "name": "Bigoodee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

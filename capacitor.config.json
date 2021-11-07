@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Bigoodee",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
