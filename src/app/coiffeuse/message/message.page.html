@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Messages</h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+  <hr class="border-primary" />
+</ion-header>
+<ion-content>
+  <div class="px-2 pt-5 flex flex-col gap-3 h-ful overflow-scrol">
+    <ion-card
+      class="p-0 m-0 rounded-lg shadow-sm border-gray-400"
+      button="true"
+      *ngFor="let item of users"
+      (click)="goToMessages(item.uid, item.displayName.split('#$')[0])"
+    >
+      <div
+        class="
+          rounded-lg
+          flex flex-row
+          justify-between
+          px-2
+          py-
+          border-l-8 border-secondary
+          bg-primary-opp
+        "
+      >
+        <div class="flex flex-row gap-3 py-1 items-center">
+          <div class="">
+            <img
+              class="w-14 h-14 rounded-full"
+              src="assets/profil.png"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <h1 class="font-semibold text-lg">
+              {{item.displayName.split('#$')[0]}}
+            </h1>
+            <p>Salut Miss</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 items-center justify-center">
+          <p>16:30</p>
+          <div class="py- px-2 min-w-min text-white rounded-full bg-primary">
+            2
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

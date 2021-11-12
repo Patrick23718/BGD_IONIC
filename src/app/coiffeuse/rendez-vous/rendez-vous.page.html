@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Mes rendez-vous</h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+</ion-header>
+<ion-content>
+  <div class="flex flex-col gap-4 px-5 pt-5">
+    <div
+      class="
+        flex flex-col
+        w-full
+        border border-gray-200
+        rounded-lg
+        p-4
+        gap-4
+        shadow-md
+      "
+      *ngFor="item of items"
+    >
+      <div class="flex flex-row justify-between">
+        <ion-card class="p-0 m-0 shadow-none flex flex-row">
+          <div class="p-0 m-0 flex flex-row">
+            <img
+              src="assets/unsplash.png"
+              class="w-14 rounded-full"
+              alt=""
+              srcset=""
+            />
+            <div class="flex flex-col pl-2">
+              <div class="flex flex-row justify-between">
+                <div class="font-semibold text-md">clarisse</div>
+                <div class="font-medium text-xl text-secondary">40£</div>
+              </div>
+              <div class="text-sm">Vanilles (twists) effet</div>
+            </div>
+          </div>
+        </ion-card>
+        <div
+          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
+        >
+          <img src="assets/icon/chat.svg" alt="" srcset="" />
+        </div>
+      </div>
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col gap-1 text-gray-500">
+          <div class="flex flex-row gap-2">
+            <img src="assets/icon/calendar.svg" alt="" srcset="" />
+            <p>Mardi 11/02/20</p>
+          </div>
+          <div class="flex flex-row gap-2">
+            <img src="assets/icon/timer.svg" alt="" srcset="" />
+            <p>08h-10h</p>
+          </div>
+        </div>
+        <div class="flex flex-row gap-8">
+          <img src="assets/icon/accept.svg" alt="" srcset="" />
+          <img src="assets/icon/refuse.svg" alt="" srcset="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

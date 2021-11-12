@@ -1,0 +1,30 @@
+<ion-content>
+  <div class="text-gray-600">
+    <div class="flex flex-row justify-between items-center py-5 text-gray-600">
+      <ion-button (click)="myBackButton()" color="danger" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold whitespace-nowrap">
+        Je veux être coiffeuse
+      </h1>
+      <ion-button disabled="true" fill="clear"></ion-button>
+    </div>
+
+    <div class="px-5 py-3 flex flex-col space-y-14 justify-center items-center">
+      <div>
+        avant de compléter votre profil, l’équipe Bigoodee vous informe que
+        votre profil sera vérifié par nos soins avant d’être visible auprès deS
+        clientes.
+      </div>
+      <div><img src="assets/icon/etre-coiffeuse.svg" alt="" srcset="" /></div>
+      <div class="w-10/12 pb-10">
+        <button
+          class="text-white bg-primary py-3 w-full rounded-lg text-md uppercase"
+          routerLink="/plussurvous"
+        >
+          ok c’est parti
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,96 @@
+<ion-header class="ion-no-border">
+  <div
+    class="flex flex-row justify-between items-center px- py-2 text-gray-600"
+  >
+    <div (click)="myBackButton()" class="flex flex-row gap-2 items-center pl-5">
+      <div>
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </div>
+      <div>
+        <img
+          class="w-10 h-10 rounded-full"
+          src="assets/profil.png"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="text-lg font-medium">{{user}}</div>
+    </div>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+  <hr class="border-primary" />
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="text-gray-600">
+    <div class="flex flex-col gap-5 py-1 px-3" *ngFor="let msg of messages">
+      <div
+        class="flex justify-start"
+        *ngIf="msg.toId === uid && msg.fromId === otherId"
+      >
+        <div class="min-w-min py-2 px-3 rounded-lg recieve whitespace-pre-wrap">
+          {{msg.message}}
+        </div>
+      </div>
+
+      <div
+        class="flex justify-end"
+        *ngIf="msg.fromId === uid && msg.toId === otherId"
+      >
+        <div class="min-w-min py-2 px-3 rounded-lg send whitespace-pre-wrap">
+          {{msg.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="px-2 ion-no-border">
+  <div
+    class="
+      border border-primary
+      rounded-lg
+      overflow-hidden
+      grid grid-cols-4
+      gap-2
+      items-center
+      justify-between
+    "
+  >
+    <ion-textarea
+      autoGrow="true"
+      rows="1"
+      maxLength="500"
+      class="col-span-3 bg-gray-100 rounded-lg m-0"
+      [(ngModel)]="msg"
+    ></ion-textarea>
+    <div class="col-span-1 flex flex-row justify-end gap-2 mr-2">
+      <img src="assets/icon/sendImg.svg" alt="" srcset="" />
+      <img (click)="onClick()" src="assets/icon/send.svg" alt="" srcset="" />
+    </div>
+  </div>
+</ion-footer>
+
+<!-- <ion-footer>
+  <ion-toolbar color="light">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea
+          autoGrow="true"
+          class="message-input"
+          rows="1"
+          maxLength="500"
+        >
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" class="msg-btn">
+          <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer> -->

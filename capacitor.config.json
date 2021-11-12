@@ -1,6 +1,9 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "Bigoodee",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "com.bigoodee.app",
+  "appName": "Bigoodee",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true
+  }
 }

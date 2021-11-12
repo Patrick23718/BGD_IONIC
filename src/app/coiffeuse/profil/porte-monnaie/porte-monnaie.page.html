@@ -1,0 +1,85 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Mon Porte-monnaie</h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+
+  <div class="text-gray-600 flex flex-col space-y-5 px-5">
+    <div class="text-xl">Cette Semaine</div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-lg
+        py-3
+        text-xl
+        mt-10
+        font-bold
+        whitespace-nowrap
+        bg-primary
+      "
+    >
+      {{'65'|uppercase}}€
+    </button>
+    <div class="text-xl">Ce mois-ci</div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-lg
+        py-3
+        text-xl
+        mt-10
+        font-bold
+        whitespace-nowrap
+        bg-primary
+      "
+    >
+      {{'450'|uppercase}}€
+    </button>
+    <div class="text-xl">Cette année</div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-xl
+        py-3
+        text-lg
+        mt-10
+        font-bold
+        whitespace-nowrap
+        bg-primary
+      "
+    >
+      {{'1500'|uppercase}}€
+    </button>
+    <div class="text-xl">En attente de virement</div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-lg
+        py-3
+        text-xl
+        mt-10
+        font-bold
+        whitespace-nowrap
+        bg-primary
+      "
+    >
+      {{'35'|uppercase}}€
+    </button>
+  </div>
+</ion-content>

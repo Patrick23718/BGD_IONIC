@@ -1,0 +1,62 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Mes prestations</h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+
+  <div class="text-gray-600 px-5">
+    <div>Vous pouvez ajouter une nouvelle prestation à tout moment.</div>
+    <div class="flex flex-col gap-4 pt-5">
+      <div class="flex flex-row" *ngFor="let item of items">
+        <div class="border rounded-lg border-gray-200 w-10/12">
+          <div
+            class="
+              flex flex-row
+              w-full
+              h-full
+              border-secondary border-l-8
+              rounded-lg
+              items-center
+              justify-between
+            "
+          >
+            <div class="text-primary text-lg font-medium pl-5">
+              {{item.title|uppercase}}
+            </div>
+            <div class="flex flex-row text-secondary text-xl font-semibold">
+              <div class="rounded-lg bg-secondary-op pl-5">{{item.prix}}</div>
+              €
+            </div>
+          </div>
+        </div>
+        <ion-button fill="clear">
+          <img src="assets/icon/trash.svg" alt="" srcset="" />
+        </ion-button>
+      </div>
+    </div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-lg
+        py-3
+        text-md
+        mt-10
+        font-semibold
+        whitespace-nowrap
+        bg-primary
+      "
+    >
+      {{'ajouter une prestation'|uppercase}}
+    </button>
+  </div>
+</ion-content>

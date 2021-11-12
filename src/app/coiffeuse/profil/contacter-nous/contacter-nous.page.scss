@@ -1,0 +1,10 @@
+:host {
+  ion-item {
+    --border-color: orange; // default underline color
+    --highlight-color-invalid: red; // invalid underline color
+    --highlight-color-valid: green; // valid underline color
+  }
+  ion-input {
+    --placeholder-color: green;
+  }
+}

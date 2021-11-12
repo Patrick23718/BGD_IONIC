@@ -1,0 +1,54 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Ma galerie</h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+
+  <div class="text-gray-600 px-5">
+    <div>
+      Vous pouvez ajouter ou supprimer une image de votre galerie à tout
+      moment.{{test}}
+    </div>
+    <div class="grid grid-cols-2 gap-4 pt-5" *ngIf="items.length !== 0">
+      <div class="rounded-lg relative" *ngFor="let item of items">
+        <img [src]="item.src" class="rounded-lg" alt="" srcset="" />
+        <ion-button
+          fill="clear"
+          class="p-0 m-0 absolute rounded-full -top-2 -right-5"
+          (click)="presentAlert()"
+          ><img src="assets/icon/corbeil.svg" alt="" srcset=""
+        /></ion-button>
+      </div>
+    </div>
+    <div *ngIf="items.length === 0" class="grid grid-cols-1 pt-5">
+      <div class="justify-center items-center flex">
+        <img src="assets/icon/image404.svg" alt="" srcset="" />
+      </div>
+    </div>
+    <button
+      class="
+        text-white
+        w-full
+        text-center
+        rounded-lg
+        py-3
+        text-md
+        mt-10
+        font-semibold
+        whitespace-nowrap
+        bg-primary
+      "
+      (click)="presentActionSheet()"
+    >
+      {{'ajouter une image'|uppercase}}
+    </button>
+  </div>
+</ion-content>

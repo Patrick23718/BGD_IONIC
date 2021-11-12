@@ -1,0 +1,329 @@
+<ion-content>
+  <div
+    class="
+      h-28
+      border-b
+      flex
+      justify-end
+      items-center
+      px-5
+      relative
+      bg-primary-op
+    "
+  >
+    <ion-button fill="clear" (click)="presentModal()">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <div
+      class="
+        bg-white
+        absolute
+        -bottom-2/4
+        rounded-xl
+        p-1
+        border-dashed border-primary border-2
+        center
+      "
+    >
+      <img class="rounded-xl h-32 w-32" [src]="img" alt="" srcset="" />
+      <div
+        class="absolute bg-primary p-3 rounded-full -right-3 -bottom-3"
+        (click)="presentActionSheet()"
+      >
+        <img class="w-7w" src="assets/icon/photo.svg" alt="" srcset="" />
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col justify-center items-cente pt-16 text-gray-600 px-2"
+  >
+    <!-- <app-input label="Password"></app-input> -->
+    <h1 class="font-bold text-2xl pt-3 pb-6 text-center">
+      Bonjour {{prenom}},
+    </h1>
+    <div class="grid grid-cols-3 gap-2">
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../profil/porte-monnaie"
+      >
+        <div align="center">
+          <img src="assets/icon/porte-monnaie.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mon<br />porte-monnaie
+        </div>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../planning/rendez-vous"
+      >
+        <div align="center">
+          <img src="assets/icon/rendez-vous.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mes<br />rendez-vous
+        </div>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../message"
+      >
+        <div align="center">
+          <img src="assets/icon/discussion.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mes<br />discussions
+        </div>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../profil/prestation"
+      >
+        <div align="center">
+          <img src="assets/icon/prestation.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mon<br />prestations
+        </div>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../planning"
+      >
+        <div align="center">
+          <img src="assets/icon/calendrier.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mon<br />planning
+        </div>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        class="
+          w-full
+          p-0
+          m-0
+          flex flex-col
+          gap-
+          items-center
+          justify-center
+          border border-gray-300
+          px-2
+          py-4
+          rounded-lg
+        "
+        routerLink="../profil"
+      >
+        <div align="center">
+          <img src="assets/icon/profilIcon.svg" alt="" srcset="" />
+        </div>
+        <div
+          class="text-center pt-2 whitespace-nowrap"
+          style="line-height: 1rem"
+        >
+          Mon<br />profil
+        </div>
+      </ion-card>
+    </div>
+    <div class="flex flex-row py-7 justify-start">
+      <div>
+        <img src="assets/icon/cloche.svg" alt="" srcset="" />
+      </div>
+      <div class="pl-2 font-semibold text-xl">tu as une une réservation</div>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div
+        class="
+          w-full
+          border border-gray-200
+          rounded-lg
+          p-2
+          flex flex-row
+          justify-between
+          shadow-md
+        "
+      >
+        <ion-card
+          button="true"
+          class="p-0 m-0 shadow-none flex flex-row"
+          (click)="openReservationModal()"
+        >
+          <div class="p-0 m-0 flex flex-row">
+            <img
+              src="assets/unsplash.png"
+              class="w-14 rounded-full"
+              alt=""
+              srcset=""
+            />
+            <div class="flex flex-col pl-2">
+              <div class="flex flex-row justify-between">
+                <div class="font-semibold text-md">clarisse</div>
+                <div class="font-medium text-xl text-secondary">40€</div>
+              </div>
+              <div class="text-sm">Vanilles (twists) effet</div>
+            </div>
+          </div>
+        </ion-card>
+        <div
+          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
+        >
+          <img src="assets/icon/chat.svg" alt="" srcset="" />
+        </div>
+      </div>
+      <div
+        class="
+          w-full
+          border border-gray-200
+          rounded-lg
+          p-2
+          flex flex-row
+          justify-between
+        "
+      >
+        <ion-card
+          button="true"
+          class="p-0 m-0 shadow-none flex flex-row"
+          (click)="openReservationModal()"
+        >
+          <div class="flex flex-row">
+            <img
+              src="assets/unsplash.png"
+              class="w-14 rounded-full"
+              alt=""
+              srcset=""
+            />
+            <div class="flex flex-col pl-2">
+              <div class="flex flex-row justify-between">
+                <div class="font-semibold text-md">clarisse</div>
+                <div class="font-medium text-xl text-secondary">40€</div>
+              </div>
+              <div class="text-sm">Vanilles (twists) effet</div>
+            </div>
+          </div>
+        </ion-card>
+        <div
+          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
+        >
+          <img src="assets/icon/chat.svg" alt="" srcset="" />
+        </div>
+      </div>
+      <div
+        class="
+          w-full
+          border border-gray-200
+          rounded-lg
+          p-2
+          flex flex-row
+          justify-between
+        "
+      >
+        <div class="flex flex-row">
+          <img
+            src="assets/unsplash.png"
+            class="w-14 rounded-full"
+            alt=""
+            srcset=""
+          />
+          <div class="flex flex-col pl-2">
+            <div class="flex flex-row justify-between">
+              <div class="font-semibold text-md">clarisse</div>
+              <div class="font-medium text-xl text-secondary">40€</div>
+            </div>
+            <div class="text-sm">Vanilles (twists) effet</div>
+          </div>
+        </div>
+        <div
+          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
+        >
+          <img src="assets/icon/chat.svg" alt="" srcset="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
