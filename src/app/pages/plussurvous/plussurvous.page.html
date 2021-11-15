@@ -14,7 +14,7 @@
       <div class="w-full flex justify-end pb-5"><span>étape 1/2</span></div>
       <div class="pb-5">
         Afin de compléter votre compte, merci de renseigner les informations
-        suivantes :{{user.email}}
+        suivantes :
       </div>
       <div class="form-field">
         <label [ngClass]="focused ? 'label-focused' : ''">Nom</label>
@@ -74,7 +74,7 @@
         >
         <input
           type="text"
-          [(ngModel)]="user.password"
+          [(ngModel)]="password"
           [ngModelOptions]="{standalone: true}"
           (focus)="focused = true"
           (blur)="onBlur($event)"

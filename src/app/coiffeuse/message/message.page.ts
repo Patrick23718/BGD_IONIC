@@ -21,21 +21,35 @@ export class MessagePage implements OnInit {
     private chatService: ChatService,
     private userService: UtilisateurService,
     private navCtrl: NavController
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.fbAuth.authState.subscribe(async (authState) => {
       this.user = authState;
-      this.userService.getAllUser().subscribe((res: any[]) => {
-        res.forEach((element) => {
-          // eslint-disable-next-line eqeqeq
-          if (element.uid != authState.uid) {
-            this.users.push(element);
-          }
+      this.userService
+        .getAllUser()
+        .get()
+        .then((querySnapshot) => {
+          this.users = [];
+          querySnapshot.forEach((doc) => {
+            this.users.push({
+              id: doc.id,
+              data: doc.data(),
+            });
+            console.log(this.users);
+          });
         });
-      });
+      // .subscribe((res: any) => {
+      //   console.log(res);
+      //   // res.forEach((element) => {
+      //   //   // eslint-disable-next-line eqeqeq
+      //   //   if (element.uid != authState.uid) {
+      //   //     this.users.push(element);
+      //   //   }
+      //   // });
+      // });
     });
   }
-
-  ngOnInit() {}
   myBackButton() {
     this.location.back();
   }

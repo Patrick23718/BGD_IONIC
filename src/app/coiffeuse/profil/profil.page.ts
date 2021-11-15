@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-profil',
@@ -22,7 +25,30 @@ export class ProfilPage implements OnInit {
       to: 'contacter-nous',
     },
   ];
-  constructor() {}
+  constructor(
+    private userService: UtilisateurService,
+    private router: Router,
+    public loadingController: LoadingController
+  ) {}
+
+  async presentLoading(): Promise<any> {
+    return await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Déconnection...',
+      backdropDismiss: false,
+      mode: 'ios',
+    });
+  }
+
+  async signout() {
+    const loading = await this.presentLoading();
+    await loading.present();
+    this.userService.signOut().then(() => {
+      localStorage.removeItem('user');
+      loading.dismiss();
+      this.router.navigate(['/connexion-coiffeuse']);
+    });
+  }
 
   ngOnInit() {}
 }

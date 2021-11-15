@@ -26,7 +26,10 @@
 
 <ion-content class="ion-padding">
   <div class="text-gray-600">
-    <div class="flex flex-col gap-5 py-1 px-3" *ngFor="let msg of messages">
+    <div
+      class="flex flex-col gap-5 py-1 px-3"
+      *ngFor="let msg of messages; let last = last"
+    >
       <div
         class="flex justify-start"
         *ngIf="msg.toId === uid && msg.fromId === otherId"
@@ -44,6 +47,7 @@
           {{msg.message}}
         </div>
       </div>
+      {{last ? ScrollToBottom() : ''}}
     </div>
   </div>
 </ion-content>
@@ -73,24 +77,3 @@
     </div>
   </div>
 </ion-footer>
-
-<!-- <ion-footer>
-  <ion-toolbar color="light">
-    <ion-row class="ion-align-items-center">
-      <ion-col size="10">
-        <ion-textarea
-          autoGrow="true"
-          class="message-input"
-          rows="1"
-          maxLength="500"
-        >
-        </ion-textarea>
-      </ion-col>
-      <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="primary" class="msg-btn">
-          <ion-icon name="send" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer> -->

@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { IonContent } from '@ionic/angular';
 import { Message } from 'src/app/interfaces/message';
 import { ChatService } from 'src/app/services/chat.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
@@ -39,6 +41,9 @@ export class MessageDetailsPage implements OnInit {
   }
   ngOnInit() {}
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @ViewChild(IonContent, { static: false }) content: IonContent;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   myBackButton() {
     this.location.back();
   }
@@ -56,4 +61,12 @@ export class MessageDetailsPage implements OnInit {
     console.log(message.fromId);
     console.log(message.toId);
   }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  ScrollToBottom() {
+    this.content.scrollToBottom(0);
+  }
+  // callFunction() {
+  //   this.content.scrollToBottom(0);
+  // }
 }

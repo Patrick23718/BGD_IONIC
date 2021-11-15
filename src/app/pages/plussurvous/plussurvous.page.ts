@@ -21,13 +21,13 @@ export class PlussurvousPage implements OnInit {
   user: Utilisateur = {
     nom: '',
     email: '',
-    password: '',
     prenom: '',
     role: 'coiffeuse',
     telephone: '',
     ville: '',
     biographie: '',
   };
+  password: '';
   focused: boolean;
   constructor(
     private formBuilder: FormBuilder,
@@ -73,9 +73,13 @@ export class PlussurvousPage implements OnInit {
   async onSubmit() {
     const loading = await this.presentLoading();
     // await loading.present();
+    const userData = {
+      user: this.user,
+      password: this.password,
+    };
 
     this.navCtrl.navigateForward('biographie', {
-      state: this.user,
+      state: userData,
     });
     // this.userServices.registerUser(this.user).subscribe(
     //   (res: any) => {

@@ -19,7 +19,7 @@
       class="p-0 m-0 rounded-lg shadow-sm border-gray-400"
       button="true"
       *ngFor="let item of users"
-      (click)="goToMessages(item.uid, item.displayName.split('#$')[0])"
+      (click)="goToMessages(item.id, item.data.prenom)"
     >
       <div
         class="
@@ -42,9 +42,7 @@
             />
           </div>
           <div class="flex flex-col gap-1">
-            <h1 class="font-semibold text-lg">
-              {{item.displayName.split('#$')[0]}}
-            </h1>
+            <h1 class="font-semibold text-lg">{{item.data.prenom}}</h1>
             <p>Salut Miss</p>
           </div>
         </div>

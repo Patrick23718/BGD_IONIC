@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { InitGuard } from './guard/init.guard';
 
 const routes: Routes = [
   // {
@@ -45,6 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'creermoncompte',
+    canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/creermoncompte/creermoncompte.module').then(
         (m) => m.CreermoncomptePageModule
@@ -83,6 +85,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/bienvenue/bienvenue.module').then(
         (m) => m.BienvenuePageModule
+      ),
+  },
+  {
+    path: 'connexion-coiffeuse',
+    loadChildren: () =>
+      import('./pages/connexion-coiffeuse/connexion-coiffeuse.module').then(
+        (m) => m.ConnexionCoiffeusePageModule
       ),
   },
 ];
