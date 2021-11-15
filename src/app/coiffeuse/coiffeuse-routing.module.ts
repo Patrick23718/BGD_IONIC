@@ -59,8 +59,6 @@ const routes: Routes = [
       },
       {
         path: 'profil',
-        // loadChildren: () =>
-        //   import('./profil/profil.module').then((m) => m.ProfilPageModule),
         children: [
           {
             path: '',
@@ -118,14 +116,6 @@ const routes: Routes = [
     redirectTo: '/coiffeuse/home',
     pathMatch: 'full',
   },
-
-  // {
-  //   path: 'notifications',
-  //   loadChildren: () =>
-  //     import('./modals/notifications/notifications.module').then(
-  //       (m) => m.NotificationsPageModule
-  //     ),
-  // },
 ];
 
 @NgModule({

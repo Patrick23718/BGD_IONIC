@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="px-5 space-y-5">
+    <div class="text-center text-2xl font-bold my-10">reinitialiser le mot de passe</div>
+    <div class="text-center">rentres ton email, et tu recevras un lien pour réinitialiser ton mot de passe.</div>
+    <div class="">
+      <form action="">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">email</label>
+          <input
+            type="email"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/email.svg" alt="">
+          </div>
+        </div>
+        <div class="flex justify-center bg-primary rounded-md h-12 cursor-pointer">
+          <button class="w-full h-full text-white text-md uppercase" routerLink="/nouveau-mot-de-passe">reinitialiser le mot de passe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
