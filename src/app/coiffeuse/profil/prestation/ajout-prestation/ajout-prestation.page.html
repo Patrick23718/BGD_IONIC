@@ -1,0 +1,71 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">
+      Ajouter des prestations
+    </h1>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+
+  <div class="flex flex-col gap-4 p-5">
+    <div>
+      selectionnez une prestation et ajoutez le tarif que vous voulez proposer.
+    </div>
+    <ion-card
+      button="true"
+      class="rounded-lg m-0 p-0 border border-gray-300 shadow-sm"
+      (click)="openReservationModal()"
+    >
+      <div
+        class="flex flex-row justify-between items-center px-4 py-3 rounded-lg"
+      >
+        <div class="flex flex-row gap-4 items-center">
+          <img src="assets/icon/prestations.svg" alt="" />
+          <div class="text-lg">
+            {{prestation ==='' ? 'Type de prestation': prestation| uppercase}}
+          </div>
+        </div>
+        <div>
+          <img src="assets/icon/arrow_down.svg" alt="" srcset="" />
+        </div>
+      </div>
+    </ion-card>
+    <div class="form-field pr-5">
+      <label [ngClass]="focused ? 'label-focused ml-3' : ' ml-10'" class=""
+        >Tarif</label
+      >
+      <img class="absolute top-3 left-4" src="assets/icon/tarif.svg" />
+      <input
+        type="number"
+        [(ngModel)]="tarif"
+        [ngModelOptions]="{standalone: true}"
+        (focus)="focused = true"
+        (blur)="onBlur($event)"
+        class="pl-6"
+      />
+    </div>
+    <div class="flex justify-center px-10">
+      <button
+        class="
+          uppercase
+          text-white
+          bg-primary
+          rounded-lg
+          w-full
+          py-3
+          font-semibold
+        "
+        (click)="addPrestation()"
+      >
+        valider
+      </button>
+    </div>
+  </div>
+</ion-content>

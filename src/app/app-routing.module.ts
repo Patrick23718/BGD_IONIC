@@ -94,6 +94,10 @@ const routes: Routes = [
         (m) => m.ConnexionCoiffeusePageModule
       ),
   },
+  {
+    path: 'prestation',
+    loadChildren: () => import('./components/prestation/prestation.module').then( m => m.PrestationPageModule)
+  },
 ];
 @NgModule({
   imports: [

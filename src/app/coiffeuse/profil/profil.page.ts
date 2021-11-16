@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -25,11 +26,18 @@ export class ProfilPage implements OnInit {
       to: 'contacter-nous',
     },
   ];
+  user: any;
   constructor(
     private userService: UtilisateurService,
     private router: Router,
-    public loadingController: LoadingController
-  ) {}
+    public loadingController: LoadingController,
+    private localstorage: LocalStorageService
+  ) {
+    if (this.localstorage.get('utilisateur') !== null) {
+      this.user = JSON.parse(this.localstorage.get('utilisateur'));
+    }
+    console.log(this.user);
+  }
 
   async presentLoading(): Promise<any> {
     return await this.loadingController.create({
@@ -44,7 +52,7 @@ export class ProfilPage implements OnInit {
     const loading = await this.presentLoading();
     await loading.present();
     this.userService.signOut().then(() => {
-      localStorage.removeItem('user');
+      this.localstorage.remove('utilisateur');
       loading.dismiss();
       this.router.navigate(['/connexion-coiffeuse']);
     });

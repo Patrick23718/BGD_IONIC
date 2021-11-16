@@ -13,6 +13,7 @@ import { ReservationModalComponent } from 'src/app/coiffeuse/modals/reservation-
 import { ReservationPage } from 'src/app/components/reservation/reservation.page';
 import { PorteMonnaiePage } from '../profil/porte-monnaie/porte-monnaie.page';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -45,11 +46,22 @@ export class HomePage implements OnInit {
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public navCtrl: NavController,
-    private afDB: AngularFireDatabase
+    private afDB: AngularFireDatabase,
+    private localstorage: LocalStorageService
   ) {
     this.fbAuth.authState.subscribe(async (authState) => {
       this.prenom = authState.displayName.split('#$')[0];
-      console.log(authState);
+      const user = {
+        uid: authState.uid,
+        prenom: authState.displayName,
+        email: authState.email,
+        photoURL: authState.photoURL,
+      };
+      // this.localstorage.remove('utilisateur');
+      this.localstorage.set('utilisateur', JSON.stringify(user));
+      console.log(
+        `${authState.displayName}, ${authState.email}, ${authState.uid}, ${authState.photoURL}, `
+      );
     });
   }
 

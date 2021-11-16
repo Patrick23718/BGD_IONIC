@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: PrestationPage
-  },
-  {
-    path: 'ajout-prestation',
-    loadChildren: () => import('./ajout-prestation/ajout-prestation.module').then( m => m.AjoutPrestationPageModule)
   }
 ];
 

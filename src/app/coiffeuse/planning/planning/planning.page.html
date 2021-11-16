@@ -18,7 +18,7 @@
     <ion-segment
       (ionChange)="segmentChanged($event)"
       color="danger"
-      value="reservations"
+      [value]="segment"
       mode="ios"
       class=""
     >
@@ -45,6 +45,7 @@
         [locale]="calendar.locale"
         [currentDate]="calendar.currentDate"
         (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onChange($event)"
       ></calendar>
 
       <!-- <ion-calendar [(ngModel)]="startDate" [format]="'YYYY-MM-DD'" [options]="optionsRange">
@@ -63,14 +64,20 @@
       </ion-item>
       <ion-item>
         <ion-label>08h - 12h</ion-label>
-        <ion-toggle mode="ios" color="success"></ion-toggle>
+        <ion-toggle
+          [checked]="plage1"
+          (ionChange)="plage1($event)"
+          mode="ios"
+          color="success"
+        ></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>12h - 18h</ion-label>
         <ion-toggle
           mode="ios"
-          checked
+          [checked]="plage2"
+          (ionChange)="plage2($event)"
           color="success"
           disabled="true"
         ></ion-toggle>
@@ -78,7 +85,12 @@
 
       <ion-item>
         <ion-label>18h - 22h</ion-label>
-        <ion-toggle mode="ios" color="success"></ion-toggle>
+        <ion-toggle
+          [checked]="plage3"
+          (ionChange)="plage3($event)"
+          mode="ios"
+          color="success"
+        ></ion-toggle>
       </ion-item>
     </ion-list>
   </div>

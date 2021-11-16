@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>prestation-modal</ion-title>
+    <ion-tab-button slot="end" (click)="dismiss()">
+      <img src="assets/icon/close.svg" alt="" srcset="" />
+    </ion-tab-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flex flex-col gap-4 p-5" *ngIf="prestations.length !== 0">
+    <div *ngFor="let item of prestations">
+      <ion-card
+        button="true"
+        class="rounded-lg m-0 p-0 border border-gray-300 shadow-sm"
+      >
+        <div
+          class="
+            flex flex-row
+            justify-between
+            items-center
+            px-4
+            py-3
+            rounded-lg
+          "
+        >
+          <div class="flex flex-row gap-4 items-center">
+            <img src="assets/icon/prestations.svg" alt="" />
+            <div class="text-lg">{{item.title}}</div>
+          </div>
+          <div>
+            <img
+              [src]="item.checked ? 'assets/icon/check.svg' : 'assets/icon/uncheck.svg'"
+              alt=""
+              srcset=""
+            />
+          </div>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

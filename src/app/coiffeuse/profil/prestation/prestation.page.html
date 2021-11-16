@@ -29,15 +29,17 @@
             "
           >
             <div class="text-primary text-lg font-medium pl-5">
-              {{item.title|uppercase}}
+              {{item.data.prestation|uppercase}}
             </div>
             <div class="flex flex-row text-secondary text-xl font-semibold">
-              <div class="rounded-lg bg-secondary-op pl-5">{{item.prix}}</div>
+              <div class="rounded-lg bg-secondary-op pl-5">
+                {{item.data.tarif}}
+              </div>
               €
             </div>
           </div>
         </div>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="deletePrestation(item.id)">
           <img src="assets/icon/trash.svg" alt="" srcset="" />
         </ion-button>
       </div>
@@ -55,6 +57,7 @@
         whitespace-nowrap
         bg-primary
       "
+      [routerLink]="['ajout-prestation']"
     >
       {{'ajouter une prestation'|uppercase}}
     </button>
