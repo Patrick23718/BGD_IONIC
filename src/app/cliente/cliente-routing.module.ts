@@ -24,7 +24,11 @@ const routes: Routes = [
           {
             path: 'resultat-recherche',
             loadChildren: () => import('./resultat-recherche/resultat-recherche.module').then( m => m.ResultatRecherchePageModule)
-          }
+          },
+          {
+            path: 'profil-hotesse',
+            loadChildren: () => import('./profil-hotesse/profil-hotesse.module').then( m => m.ProfilHotessePageModule)
+          },
         ]
       },
       {

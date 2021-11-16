@@ -15,8 +15,17 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () =>
-          import('./home/home.module').then((m) => m.HomePageModule),
+        children:[
+          {
+            path:'',
+            loadChildren: () =>
+            import('./home/home.module').then((m) => m.HomePageModule),
+          },
+          {
+            path: 'mon-profil',
+            loadChildren: () => import('../coiffeuse/home/mon-profil/mon-profil.module').then( m => m.MonProfilPageModule)
+          }
+        ]
       },
       {
         path: 'planning',
