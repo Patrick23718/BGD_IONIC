@@ -123,6 +123,11 @@ const routes: Routes = [
     path: 'nouveau-mot-de-passe',
     loadChildren: () => import('./pages/reinitialisation2/reinitialisation2.module').then( m => m.Reinitialisation2PageModule)
   },
+  {
+    path: 'inscription-coiffeuse',
+    loadChildren: () => import('./pages/inscription-coiffeuse/inscription-coiffeuse.module').then( m => m.InscriptionCoiffeusePageModule)
+  },
+
 
 ];
 @NgModule({

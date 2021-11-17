@@ -24,6 +24,7 @@ export class ProfilPage implements OnInit {
       title: 'Nous contacter',
       to: 'contacter-nous',
     },
+    {icon:'', title:'mes avis', to:'mes-avis'},
   ];
   constructor(
     private userService: UtilisateurService,

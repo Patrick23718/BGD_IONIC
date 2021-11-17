@@ -1,0 +1,119 @@
+<ion-content>
+  <div class="px-5 space-y-5 mb-5">
+    <div class="my-10 font-bold text-center text-2xl">Inscription</div>
+    <div class="">
+      <form action="">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Nom</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3 flex justify-center p-1">
+            <img src="assets/icon/contact.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Prénom</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3 flex justify-center p-1">
+            <img src="assets/icon/contact.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
+          <input
+            type="email"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/email.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Ville</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="absolute top-5 right-3">
+            <img src="assets/icon/arrow_down.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Téléphone</label>
+          <input
+            type="tel"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="absolute top-3 right-3">
+            <img src="assets/icon/tel.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Prestation</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Biographie</label>
+          <!-- <input
+            type="tel"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          /> -->
+          <textarea name="" id="" cols="30" rows="10" (focus)="focused = true" (blur)="onBlur($event)"></textarea>
+          <!-- <div class="absolute top-3 right-3">
+            <img src="assets/icon/tel.svg" alt="">
+          </div> -->
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/eye.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">confirmer mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/eye.svg" alt="">
+          </div>
+        </div>
+        <div class="flex justify-center text-primary underline text-sm cursor-pointer mb-5" routerLink="/reinitialisation-mot-de-passe">s’inscrire comme coiffeuse</div>
+        <div class="flex justify-center bg-primary rounded-md h-12 cursor-pointer">
+          <button type="submit" class="w-full h-full text-white text-md uppercase">se connecter</button>
+        </div>
+      </form>
+    </div>
+    <div class="px-10">
+      <fieldset class="border-t-2"><legend class="px-5 text-center">ou</legend></fieldset>
+    </div>
+    <div class="text-center">Se conecter avec</div>
+    <div class="relative cursor-pointer">
+      <ion-button class="uppercase w-full text-center">Facebook</ion-button>
+      <img src="assets/icon/facebook-blanc.svg" alt="" class="absolute top-3 left-24">
+    </div>
+    <div class="px-2 whitespace-nowrap">vous avez déjà un compte? <span class="text-primary cursor-pointer underline" routerLink = "/connexion-cliente">se connecter</span></div>
+  </div>
+</ion-content>

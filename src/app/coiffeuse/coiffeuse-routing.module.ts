@@ -116,6 +116,10 @@ const routes: Routes = [
                 (m) => m.HistoriquePageModule
               ),
           },
+          {
+            path: 'mes-avis',
+            loadChildren: () => import('./profil/mes-avis/mes-avis.module').then( m => m.MesAvisPageModule)
+          },
         ],
       },
     ],
