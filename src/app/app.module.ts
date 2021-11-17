@@ -25,6 +25,8 @@ registerLocaleData(localeFr, 'fr');
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { Camera } from '@ionic-native/camera/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -42,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgCalendarModule,
   ],
   providers: [
+    Camera,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

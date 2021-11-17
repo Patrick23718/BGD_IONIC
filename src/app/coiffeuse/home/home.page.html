@@ -25,7 +25,12 @@
         center
       "
     >
-      <img class="rounded-xl h-32 w-32" [src]="img" alt="" srcset="" />
+      <img
+        class="rounded-xl h-32 w-32"
+        [src]="user?.photoURL === null ? 'assets/default.jpeg':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.photoURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+        alt=""
+        srcset=""
+      />
       <div
         class="absolute bg-primary p-3 rounded-full -right-3 -bottom-3"
         (click)="presentActionSheet()"
@@ -40,7 +45,7 @@
   >
     <!-- <app-input label="Password"></app-input> -->
     <h1 class="font-bold text-2xl pt-3 pb-6 text-center">
-      Bonjour {{prenom}},
+      Bonjour {{user?.prenom}},
     </h1>
     <div class="grid grid-cols-3 gap-2">
       <ion-card
@@ -58,7 +63,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../profil/porte-monnaie"
+        routerLink="/coiffeuse/profil/porte-monnaie"
       >
         <div align="center">
           <img src="assets/icon/porte-monnaie.svg" alt="" srcset="" />
@@ -86,7 +91,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../planning/rendez-vous"
+        routerLink="/coiffeuse/planning/rendez-vous"
       >
         <div align="center">
           <img src="assets/icon/rendez-vous.svg" alt="" srcset="" />
@@ -114,7 +119,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../message"
+        routerLink="/coiffeuse/message"
       >
         <div align="center">
           <img src="assets/icon/discussion.svg" alt="" srcset="" />
@@ -142,7 +147,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../profil/prestation"
+        routerLink="/coiffeuse/profil/prestation"
       >
         <div align="center">
           <img src="assets/icon/prestation.svg" alt="" srcset="" />
@@ -170,7 +175,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../planning"
+        routerLink="/coiffeuse/planning"
       >
         <div align="center">
           <img src="assets/icon/calendrier.svg" alt="" srcset="" />
@@ -198,7 +203,7 @@
           py-4
           rounded-lg
         "
-        routerLink="../profil"
+        routerLink="/coiffeuse/profil/mon-profil"
       >
         <div align="center">
           <img src="assets/icon/profilIcon.svg" alt="" srcset="" />

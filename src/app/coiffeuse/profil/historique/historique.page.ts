@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historique.page.scss'],
 })
 export class HistoriquePage implements OnInit {
+  items = [{}, {}, {}, {}, {}];
+  date = new Date(Date.UTC(2021, 10, 17));
+  value = new Intl.DateTimeFormat('en-FR').format(this.date);
+  constructor(private location: Location) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  myBackButton() {
+    this.location.back();
   }
-
 }

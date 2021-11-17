@@ -25,10 +25,16 @@ export class PrestationPage implements OnInit {
     if (this.localstorage.get('utilisateur') !== null) {
       this.user = JSON.parse(this.localstorage.get('utilisateur'));
     }
+    // this.loadPrestation().then((res: any) => {});
   }
 
   ngOnInit() {
-    this.loadPrestation().then((res: any) => {});
+    // this.reload();
+  }
+
+  async ionViewWillEnter() {
+    console.log('coll');
+    await this.loadPrestation();
   }
 
   myBackButton() {
@@ -71,6 +77,10 @@ export class PrestationPage implements OnInit {
     });
     console.log(this.items);
     loading.dismiss();
+  }
+
+  reload() {
+    window.location.reload();
   }
 
   async deletePrestation(id: string) {

@@ -1,0 +1,81 @@
+<ion-content>
+  <div class="text-gray-600">
+    <div class="flex flex-row justify-between items-center py-5 text-gray-600">
+      <ion-button (click)="myBackButton()" color="danger" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold whitespace-nowrap text-center">
+        Renseigner mon compte
+      </h1>
+      <ion-button disabled="true" fill="clear"></ion-button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="px-5">
+      <div class="pb-5">
+        afin de compléter votre compte, merci de renseigner les informations
+        suivantes :
+      </div>
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''">Nom</label>
+        <input
+          type="text"
+          [(ngModel)]="user.nom"
+          [ngModelOptions]="{standalone: true}"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+      </div>
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''"
+          >Numéro de téléphone</label
+        >
+        <input
+          type="tel"
+          [(ngModel)]="user.telephone"
+          [ngModelOptions]="{standalone: true}"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+      </div>
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''">email@</label>
+        <input
+          type="email"
+          [(ngModel)]="user.email"
+          [ngModelOptions]="{standalone: true}"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+      </div>
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''"
+          >Créer un mot de passe</label
+        >
+        <input
+          type="password"
+          [(ngModel)]="password"
+          [ngModelOptions]="{standalone: true}"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+      </div>
+      <div class="w-full flex justify-center pb-5">
+        <button
+          class="
+            text-white
+            bg-primary
+            py-3
+            w-3/4
+            whitespace-nowrap
+            rounded-lg
+            text-md
+            uppercase
+          "
+          (click)="onSubmit()"
+        >
+          CONTINUER
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

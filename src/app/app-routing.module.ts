@@ -96,7 +96,59 @@ const routes: Routes = [
   },
   {
     path: 'prestation',
-    loadChildren: () => import('./components/prestation/prestation.module').then( m => m.PrestationPageModule)
+    loadChildren: () =>
+      import('./components/prestation/prestation.module').then(
+        (m) => m.PrestationPageModule
+      ),
+  },
+  {
+    path: 'connexion-cliente',
+    loadChildren: () =>
+      import('./pages/connexion-cliente/connexion-cliente.module').then(
+        (m) => m.ConnexionClientePageModule
+      ),
+  },
+  {
+    path: 'etrecoiffee',
+    loadChildren: () =>
+      import('./pages/etrecoiffee/etrecoiffee.module').then(
+        (m) => m.EtrecoiffeePageModule
+      ),
+  },
+  {
+    path: 'inscription-cliente',
+    loadChildren: () =>
+      import('./pages/inscription-cliente/inscription-cliente.module').then(
+        (m) => m.InscriptionClientePageModule
+      ),
+  },
+  {
+    path: 'reinitialisation1',
+    loadChildren: () =>
+      import('./pages/reinitialisation1/reinitialisation1.module').then(
+        (m) => m.Reinitialisation1PageModule
+      ),
+  },
+  {
+    path: 'reinitialisation2',
+    loadChildren: () =>
+      import('./pages/reinitialisation2/reinitialisation2.module').then(
+        (m) => m.Reinitialisation2PageModule
+      ),
+  },
+  {
+    path: 'renseigner-mon-compte',
+    loadChildren: () =>
+      import('./pages/renseigner-mon-compte/renseigner-mon-compte.module').then(
+        (m) => m.RenseignerMonComptePageModule
+      ),
+  },
+  {
+    path: 'mon-espace-client',
+    loadChildren: () =>
+      import('./pages/mon-espace-client/mon-espace-client-routing.module').then(
+        (m) => m.MonEspaceClientPageRoutingModule
+      ),
   },
 ];
 @NgModule({

@@ -1,0 +1,77 @@
+<ion-content>
+  <div class="px-5 space-y-5">
+    <div class="text-2xl text-center my-16 font-bold">Connexion</div>
+    <div class="">
+      <form action="" class="">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">email</label>
+          <input
+            type="email"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/email.svg" alt="" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/eye.svg" alt="" />
+          </div>
+        </div>
+        <div
+          class="
+            flex
+            justify-end
+            text-primary
+            underline
+            text-sm
+            cursor-pointer
+            mb-5
+          "
+          routerLink="/reinitialisation-mot-de-passe"
+        >
+          Mot de passe oublié ?
+        </div>
+        <div
+          class="flex justify-center bg-primary rounded-md h-12 cursor-pointer"
+        >
+          <button
+            type="submit"
+            class="w-full h-full text-white text-md uppercase"
+          >
+            se connecter
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="px-10">
+      <fieldset class="border-t-2">
+        <legend class="px-5 text-center">ou</legend>
+      </fieldset>
+    </div>
+    <div class="text-center">Se conecter avec</div>
+    <div class="relative cursor-pointer">
+      <ion-button class="uppercase w-full text-center">Facebook</ion-button>
+      <img
+        src="assets/icon/facebook-blanc.svg"
+        alt=""
+        class="absolute top-3 left-24"
+      />
+    </div>
+    <div class="px-2 whitespace-nowrap">
+      Vous n’avez pas encore de compte?
+      <span
+        class="text-primary cursor-pointer underline"
+        routerLink="/inscription-cliente"
+        >s’inscrire</span
+      >
+    </div>
+  </div>
+</ion-content>

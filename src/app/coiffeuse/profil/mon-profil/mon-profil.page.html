@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="">
+    <div class="flex flex-row justify-start items-center py-5 text-gray-600">
+      <ion-button (click)="myBackButton()" color="danger" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" class="w-10 h-10" />
+      </ion-button>
+      <div class="text-2xl font-bold text-center pl-12 whitespace-nowrap">
+        Mon profil
+      </div>
+    </div>
+    <div class="space-y-5 px-5">
+      <div class="flex justify-center">
+        <img
+          src="assets/icon/photo1.svg"
+          alt=""
+          class="border-2 border-dashed border-red-400 rounded-md px-1"
+        />
+      </div>
+      <div class="bg-primary-op flex justify-center rounded-md">
+        <ion-button fill="clear" class="text-primary uppercase"
+          >changer ma photo</ion-button
+        >
+      </div>
+    </div>
+    <div class="my-10 px-5">
+      <form action="">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">ville</label>
+          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">email</label>
+          <input
+            type="email"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">téléphone</label>
+          <input type="tel" (focus)="focused = true" (blur)="onBlur($event)" />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">prénom</label>
+          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">nom</label>
+          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <div class="bg-primary flex justify-center rounded-md">
+          <ion-button fill="clear" class="uppercase text-white"
+            >Mis à jour</ion-button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

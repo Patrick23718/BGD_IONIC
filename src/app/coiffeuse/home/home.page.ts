@@ -5,15 +5,19 @@ import {
   ModalController,
   ActionSheetController,
   NavController,
+  LoadingController,
 } from '@ionic/angular';
 import { NotificationsPage } from '../modals/notifications/notifications.page';
 import { Notification } from '../../interfaces/notification';
-import { Camera, CameraResultType } from '@capacitor/camera';
 import { ReservationModalComponent } from 'src/app/coiffeuse/modals/reservation-modal/reservation-modal.component';
 import { ReservationPage } from 'src/app/components/reservation/reservation.page';
 import { PorteMonnaiePage } from '../profil/porte-monnaie/porte-monnaie.page';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +25,11 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  user: any;
   items: any = [{ title: 'ds', icon: 'sdf', to: 'sdf' }];
-  img = 'assets/profil.png';
-
+  imageURL = '';
+  imagePath: string;
+  upload: any;
   notif: Notification = {
     imageURL: 'assets/profil.png',
     prenom: 'Gloria',
@@ -39,7 +45,6 @@ export class HomePage implements OnInit {
       console.log('Je refuse');
     },
   };
-  prenom = '';
 
   constructor(
     private fbAuth: AngularFireAuth,
@@ -47,16 +52,21 @@ export class HomePage implements OnInit {
     public actionSheetController: ActionSheetController,
     public navCtrl: NavController,
     private afDB: AngularFireDatabase,
-    private localstorage: LocalStorageService
+    private localstorage: LocalStorageService,
+    public alertController: AlertController,
+    public loadingController: LoadingController,
+    private camera: Camera,
+    private afSG: AngularFireStorage,
+    private afSt: AngularFirestore
   ) {
     this.fbAuth.authState.subscribe(async (authState) => {
-      this.prenom = authState.displayName.split('#$')[0];
       const user = {
         uid: authState.uid,
         prenom: authState.displayName,
         email: authState.email,
         photoURL: authState.photoURL,
       };
+      this.user = user;
       // this.localstorage.remove('utilisateur');
       this.localstorage.set('utilisateur', JSON.stringify(user));
       console.log(
@@ -93,14 +103,14 @@ export class HomePage implements OnInit {
           text: 'Appareil photo',
           icon: 'camera-outline',
           handler: async () => {
-            await this.takePicture();
+            await this.addCameraPhoto();
           },
         },
         {
           text: 'Galerie',
           icon: 'image-outline',
-          handler: () => {
-            console.log('Share clicked');
+          handler: async () => {
+            await this.addLibraryPhoto();
           },
         },
       ],
@@ -111,24 +121,6 @@ export class HomePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  takePicture = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri,
-    });
-
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    const imageUrl = image.webPath;
-
-    // Can be set to the src of an image now
-    console.log(imageUrl);
-    this.img = imageUrl;
-  };
-
   ngOnInit() {}
   async presentModal() {
     const modal = await this.modalController.create({
@@ -138,10 +130,79 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  add() {
-    this.afDB.list('User/').push({
-      pseudo: 'drissas',
+  async addCameraPhoto() {
+    const cameraPhoto = await this.openCamera();
+    this.imageURL = 'data:image/jpg;base64,' + cameraPhoto;
+    await this.uploadFirebase();
+  }
+
+  async addLibraryPhoto() {
+    const libraryImage = await this.openLibrary();
+    this.imageURL = 'data:image/jpg;base64,' + libraryImage;
+    await this.uploadFirebase();
+  }
+  async openLibrary() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+    };
+    return await this.camera.getPicture(options);
+  }
+
+  async openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+    };
+    return await this.camera.getPicture(options);
+  }
+
+  async uploadFirebase() {
+    this.imagePath = 'profile/' + new Date().getTime() + '.jpg';
+    const loading = await this.loadingController.create({ mode: 'ios' });
+    await loading.present();
+    this.upload = this.afSG
+      .ref(this.imagePath)
+      .putString(this.imageURL, 'data_url');
+    this.upload.then(async () => {
+      // this.imageURL = '';
+
+      this.fbAuth.authState.subscribe(async (authState) => {
+        authState
+          .updateProfile({
+            photoURL: this.imagePath,
+          })
+          .then(async () => {
+            const user = {
+              uid: authState.uid,
+              prenom: authState.displayName,
+              email: authState.email,
+              photoURL: this.imagePath,
+            };
+            this.user = user;
+            // this.localstorage.remove('utilisateur');
+            this.localstorage.set('utilisateur', JSON.stringify(user));
+            await loading.dismiss();
+            const alert = await this.alertController.create({
+              header: 'Félicitation',
+              // eslint-disable-next-line @typescript-eslint/quotes
+              message: "L'envoi de la photo est terminé!",
+              buttons: ['OK'],
+            });
+            await alert.present();
+          });
+      });
+      // this.getGalerie();
     });
-    console.log('Ok');
   }
 }

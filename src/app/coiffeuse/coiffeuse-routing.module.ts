@@ -109,6 +109,13 @@ const routes: Routes = [
                 (m) => m.HistoriquePageModule
               ),
           },
+          {
+            path: 'mon-profil',
+            loadChildren: () =>
+              import('./profil/mon-profil/mon-profil.module').then(
+                (m) => m.MonProfilPageModule
+              ),
+          },
         ],
       },
     ],

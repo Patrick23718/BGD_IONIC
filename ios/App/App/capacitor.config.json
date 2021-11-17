@@ -2,5 +2,8 @@
 	"appId": "com.bigoodee.app",
 	"appName": "Bigoodee",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"android": {
+		"allowMixedContent": true
+	}
 }

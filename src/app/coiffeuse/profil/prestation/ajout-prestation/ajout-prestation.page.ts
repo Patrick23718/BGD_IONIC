@@ -47,14 +47,114 @@ export class AjoutPrestationPage implements OnInit {
           checked: false,
         },
         {
-          title: 'braids courte',
+          title: 'braids longues',
           img: '',
           checked: false,
         },
       ],
     },
     {
+      title: 'fulani braids',
+      checked: false,
+      sub: [],
+    },
+    {
       title: 'vanilles (twists)',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'cornrows',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'nattes collées',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'bantu knots',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'senegales twist',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'piqués lãchés',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'crochet braids',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'tissages',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'fausses locks',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'lissages',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'soins',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'lace frontal',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'brushing',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'tresses enfants',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'coupes',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'chignon',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'coupes enfants',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'balayage',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'locks',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'pose perruque',
       checked: false,
       sub: [],
     },
@@ -135,7 +235,7 @@ export class AjoutPrestationPage implements OnInit {
         })
         .then((res: any) => {
           console.log(res);
-          this.router.navigateByUrl('prestation');
+          this.router.navigateByUrl('/coiffeuse/profil/prestation');
         })
         .catch(async (err) => {
           console.log(err);
