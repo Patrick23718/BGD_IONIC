@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-guide',
   templateUrl: './guide.page.html',
@@ -9,7 +10,8 @@ export class GuidePage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
+  title = 'angular-demo';
 
 }

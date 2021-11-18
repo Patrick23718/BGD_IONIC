@@ -21,4 +21,17 @@ describe('GuidePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should have as title 'angular-demo'`, () => {
+    const fixture = TestBed.createComponent(GuidePage);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('angular-demo');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(GuidePage);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('angular-demo app is running!');
+  });
 });
