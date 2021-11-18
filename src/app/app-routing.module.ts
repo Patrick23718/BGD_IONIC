@@ -126,7 +126,11 @@ const routes: Routes = [
   {
     path: 'inscription-coiffeuse',
     loadChildren: () => import('./pages/inscription-coiffeuse/inscription-coiffeuse.module').then( m => m.InscriptionCoiffeusePageModule)
+  },  {
+    path: 'splash',
+    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
+
 
 
 ];

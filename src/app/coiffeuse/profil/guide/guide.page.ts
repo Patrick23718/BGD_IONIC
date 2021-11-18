@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 
 
 @Component({
@@ -10,8 +10,7 @@ export class GuidePage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
-
-  title = 'angular-demo';
+  ngOnInit() {
+  }
 
 }
