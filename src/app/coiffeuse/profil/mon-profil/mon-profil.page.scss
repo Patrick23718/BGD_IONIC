@@ -23,21 +23,11 @@
     // font-weight: 600;
     border: 1px solid #e7ebee;
     border-radius: 10px;
-    outline: none;
+    outline: none !important;
     padding: 1rem;
     background: none;
     z-index: 1;
     color: #171c25;
-  }
-
-  input:focus {
-    border-color: #ff3e79 !important;
-
-    outline: none;
-    outline-color: transparent;
-    .label-focused {
-      color: #ff3e79 !important;
-    }
   }
 
   .label-focused {
@@ -48,5 +38,15 @@
     background-color: #fff;
     // color: #ff3e79 !important;
     z-index: 10;
+  }
+}
+
+input:focus {
+  outline: none !important;
+  outline-color: transparent !important;
+  border-color: #ff3e79 !important;
+  box-shadow: none;
+  .label-focused {
+    color: #ff3e79 !important;
   }
 }

@@ -1,45 +1,45 @@
-<div class="h-screen text-gray-600 relative">
-  <div class="flex justify-center">
-    <img class="w-8/12" src="assets/onboard.png" />
-  </div>
-  <ion-slides pager="true">
-    <ion-slide class="">
-      <div class="flex flex-col space-y-10">
-        <div>
-          <p class="text-lg px-10">
-            Trouvez votre Coiffeuse parmi de nombreuses coiffeuses qualifiées et
-            expérimentées.
-          </p>
-        </div>
+<ion-content class="ion-padding">
+  <ion-slides pager="true" class="h-5/6">
+    <ion-slide class="block px-2">
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
+
+      <div class="slider-text">
+        <p>
+          Trouvez votre Coiffeuse parmi de nombreuses coiffeuses qualifiées et
+          expérimentées.
+        </p>
       </div>
     </ion-slide>
-    <ion-slide class="">
-      <div class="flex flex-col space-y-10">
-        <div>
-          <p class="text-lg">
-            Trouvez votre Coiffeuse parmi de nombreuses coiffeuses qualifiées et
-            expérimentées.
-          </p>
-        </div>
+    <ion-slide class="block px-2">
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
+      <div class="slider-text">
+        <p>Choisissez votre coiffure parmi de nombreux modèles proposés.</p>
+      </div>
+    </ion-slide>
+    <ion-slide class="block px-2">
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
+
+      <div class="slider-text">
+        <p>
+          Sélectionnez la date à laquelle vous souhaitez vous faire coiffer.
+        </p>
       </div>
     </ion-slide>
   </ion-slides>
-  <button
-    class="
-      absolute
-      bottom-10
-      right-10
-      text-white
-      bg-primary
-      px-5
-      py-2
-      rounded-lg
-      uppercase
-      font-medium
-      text-lg
-    "
-    (click)="next()"
-  >
-    SUIvant
-  </button>
-</div>
+  <div class="flex justify-end pr-5">
+    <ion-button
+      fill="clear"
+      class="bg-primary rounded-md text-white uppercase"
+      (click)="next()"
+      *ngIf="index"
+      >suivant</ion-button
+    >
+    <ion-button
+      fill="clear"
+      class="bg-primary rounded-md text-white uppercase"
+      routerLink="/creermoncompte"
+      *ngIf="!index"
+      >continuer</ion-button
+    >
+  </div>
+</ion-content>

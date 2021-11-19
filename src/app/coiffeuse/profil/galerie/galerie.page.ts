@@ -40,7 +40,7 @@ export class GaleriePage implements OnInit {
       this.user = JSON.parse(this.localstorage.get('utilisateur'));
     }
     console.log(this.user);
-    this.getGalerie();
+    // this.getGalerie();
   }
 
   ngOnInit() {}
@@ -147,19 +147,10 @@ export class GaleriePage implements OnInit {
   async getGalerie() {
     const loading = await this.presentLoading();
     await loading.present();
-    // this.ngFire.collection('planning').where('uid', '==', this.user.uid).get().
     const citiesRef = this.afSt.collection('galerie', (ref) =>
       ref.where('uid', '==', this.user.uid)
     );
     const snapshot = await citiesRef.get();
-    // snapshot.subscribe((res: any) => {
-    //   this.prestations = [];
-    //   res.forEach((element) => {
-    //     this.prestations.push(element);
-    //   });
-    //   console.log(this.prestations);
-    // });
-    // console.log(snapshot);
     this.items = [];
 
     snapshot.forEach((doc) => {

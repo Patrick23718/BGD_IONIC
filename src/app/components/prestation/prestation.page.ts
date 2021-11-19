@@ -21,15 +21,21 @@ export class PrestationPage implements OnInit {
   }
 
   arrayOption(item) {
-    let i = 0;
-    for (i = 0; i < this.prestations.length; i++) {
-      this.prestations[i].checked = false;
-    }
-    item.checked = true;
     if (item.sub.length === 0) {
+      let i = 0;
+      for (i = 0; i < this.prestations.length; i++) {
+        this.prestations[i].checked = false;
+      }
+      item.checked = true;
       this.value = item.title;
       this.modalController.dismiss(this.value);
     } else {
+      const test = item.checked;
+      let i = 0;
+      for (i = 0; i < this.prestations.length; i++) {
+        this.prestations[i].checked = false;
+      }
+      item.checked = !test;
       this.value = '';
     }
     console.log(this.value);
@@ -37,12 +43,12 @@ export class PrestationPage implements OnInit {
 
   arrayOption2(arraySub, test) {
     let i = 0;
-    for (i = 0; i < arraySub.length; i++) {
-      arraySub[i].checked = false;
+    for (i = 0; i < arraySub.sub.length; i++) {
+      arraySub.sub[i].checked = false;
     }
 
     test.checked = true;
-    this.value = test.title;
+    this.value = arraySub.title + ' ' + test.title;
     this.modalController.dismiss(this.value);
   }
 }

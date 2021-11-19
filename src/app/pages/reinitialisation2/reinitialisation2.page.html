@@ -7,8 +7,10 @@
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''">mot de passe</label>
           <input
-            type="password"
+            type="text"
             (focus)="focused = true"
+            [(ngModel)]="code"
+            [ngModelOptions]="{standalone: true}"
             (blur)="onBlur($event)"
           />
           <div class="bg-primary absolute rounded-full top-3 right-3">
@@ -17,11 +19,13 @@
         </div>
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''"
-            >confirmer mot de passe</label
+            >nouveau mot de passe</label
           >
           <input
             type="password"
             (focus)="focused = true"
+            [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}"
             (blur)="onBlur($event)"
           />
           <div class="bg-primary absolute rounded-full top-3 right-3">
@@ -31,7 +35,10 @@
         <div
           class="flex justify-center bg-primary rounded-md h-12 cursor-pointer"
         >
-          <button class="w-full h-full text-white text-md uppercase">
+          <button
+            class="w-full h-full text-white text-md uppercase"
+            (click)="sendCode()"
+          >
             enregistrer le mot de passe
           </button>
         </div>

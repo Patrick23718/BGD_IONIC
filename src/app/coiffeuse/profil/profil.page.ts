@@ -39,6 +39,13 @@ export class ProfilPage implements OnInit {
     console.log(this.user);
   }
 
+  ionViewWillEnter() {
+    if (this.localstorage.get('utilisateur') !== null) {
+      this.user = JSON.parse(this.localstorage.get('utilisateur'));
+    }
+    console.log(this.user);
+  }
+
   async presentLoading(): Promise<any> {
     return await this.loadingController.create({
       cssClass: 'my-custom-class',

@@ -5,13 +5,20 @@ import {
   ModalController,
   ActionSheetController,
   NavController,
+  LoadingController,
 } from '@ionic/angular';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ReservationModalComponent } from 'src/app/coiffeuse/modals/reservation-modal/reservation-modal.component';
 import { ReservationPage } from 'src/app/components/reservation/reservation.page';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Notification } from 'src/app/interfaces/notification';
 import { NotificationsPage } from '../../modals/notifications/notifications.page';
+import { Location } from '@angular/common';
+import { Utilisateur } from 'src/app/interfaces/utilisateur';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-mon-profil',
@@ -20,7 +27,22 @@ import { NotificationsPage } from '../../modals/notifications/notifications.page
 })
 export class MonProfilPage implements OnInit {
   items: any = [{ title: 'ds', icon: 'sdf', to: 'sdf' }];
-  img = 'assets/profil.png';
+  img = 'assets/default.jpeg';
+  imageURL = '';
+  imagePath: string;
+  upload: any;
+  focused = true;
+  user: Utilisateur = {
+    email: '',
+    nom: '',
+    prenom: '',
+    role: '',
+    telephone: '',
+    biographie: '',
+    ville: '',
+    photoURL: '',
+    uid: '',
+  };
 
   notif: Notification = {
     imageURL: 'assets/profil.png',
@@ -44,16 +66,53 @@ export class MonProfilPage implements OnInit {
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public navCtrl: NavController,
-    private afDB: AngularFireDatabase
+    private camera: Camera,
+    private afDB: AngularFireDatabase,
+    private location: Location,
+    private firestore: AngularFirestore,
+    private utilisateurService: UtilisateurService,
+    private loadingController: LoadingController,
+    private afSG: AngularFireStorage,
+    private localstorage: LocalStorageService,
+    private alertController: AlertController
   ) {
     this.fbAuth.authState.subscribe(async (authState) => {
-      this.prenom = authState.displayName.split('#$')[0];
-      console.log(authState);
+      this.user.uid = authState.uid;
+      this.user.prenom = authState.displayName;
+      this.user.email = authState.email;
+      this.user.photoURL = authState.photoURL;
+      console.log(this.user);
+      let test: any;
+      const utilisateurCollection = await this.firestore
+        .collection('utilisateur')
+        .doc(authState.uid);
+      const utilisateur = await utilisateurCollection.snapshotChanges();
+      utilisateur.subscribe((res: any) => {
+        console.log(res);
+        // console.log(res.payload.data());
+        test = res.payload.data();
+        console.log(test);
+        this.user.biographie = test.biographie;
+        this.user.nom = test.nom;
+        this.user.telephone = test.telephone;
+        this.user.ville = test.ville;
+      });
     });
   }
 
   goTo(id: string) {
     this.navCtrl.navigateForward('coiffeuse/profil/porte-monnaie');
+  }
+  myBackButton() {
+    this.location.back();
+  }
+
+  onBlur(event: any) {
+    const value = event.target.value;
+
+    if (!value) {
+      this.focused = false;
+    }
   }
 
   async openReservationModal() {
@@ -71,51 +130,6 @@ export class MonProfilPage implements OnInit {
     modal.onDidDismiss();
   }
 
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Choisissez votre opération',
-      cssClass: 'my-custom-class',
-      buttons: [
-        {
-          text: 'Appareil photo',
-          icon: 'camera-outline',
-          handler: async () => {
-            await this.takePicture();
-          },
-        },
-        {
-          text: 'Galerie',
-          icon: 'image-outline',
-          handler: () => {
-            console.log('Share clicked');
-          },
-        },
-      ],
-    });
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
-
-  takePicture = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri,
-    });
-
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    const imageUrl = image.webPath;
-
-    // Can be set to the src of an image now
-    console.log(imageUrl);
-    this.img = imageUrl;
-  };
-
   ngOnInit() {}
   async presentModal() {
     const modal = await this.modalController.create({
@@ -130,5 +144,156 @@ export class MonProfilPage implements OnInit {
       pseudo: 'drissas',
     });
     console.log('Ok');
+  }
+
+  async updateuser() {
+    const loading = await this.presentLoading();
+    await loading.present();
+    this.fbAuth.authState.subscribe(async (authState) => {
+      authState
+        .updateProfile({ displayName: this.user.prenom })
+        .then((res: any) => {
+          this.utilisateurService
+            .updateUser(this.user.uid, {
+              biographie: this.user.biographie,
+              email: this.user.email,
+              nom: this.user.nom,
+              prenom: this.user.prenom,
+              telephone: this.user.telephone,
+              ville: this.user.ville,
+            })
+            .then(async (resss: any) => {
+              console.log(resss);
+              loading.dismiss();
+              const user = {
+                uid: authState.uid,
+                prenom: this.user.prenom,
+                email: authState.email,
+                photoURL: authState.photoURL,
+              };
+              // this.localstorage.remove('utilisateur');
+              this.localstorage.set('utilisateur', JSON.stringify(user));
+              const alert = await this.alertController.create({
+                header: 'Félicitation',
+                // eslint-disable-next-line @typescript-eslint/quotes
+                message: 'Mise à jour est terminée!',
+                buttons: ['OK'],
+              });
+              await alert.present();
+            });
+        });
+    });
+  }
+
+  async presentLoading(): Promise<any> {
+    return await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: '',
+      backdropDismiss: false,
+      mode: 'ios',
+    });
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Choisissez votre opération',
+      cssClass: 'my-custom-class',
+      buttons: [
+        {
+          text: 'Appareil photo',
+          icon: 'camera-outline',
+          handler: async () => {
+            await this.addCameraPhoto();
+          },
+        },
+        {
+          text: 'Galerie',
+          icon: 'image-outline',
+          handler: async () => {
+            await this.addLibraryPhoto();
+          },
+        },
+      ],
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  async addCameraPhoto() {
+    const cameraPhoto = await this.openCamera();
+    this.imageURL = 'data:image/jpg;base64,' + cameraPhoto;
+    await this.uploadFirebase();
+  }
+
+  async addLibraryPhoto() {
+    const libraryImage = await this.openLibrary();
+    this.imageURL = 'data:image/jpg;base64,' + libraryImage;
+    await this.uploadFirebase();
+  }
+  async openLibrary() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+    };
+    return await this.camera.getPicture(options);
+  }
+
+  async openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+    };
+    return await this.camera.getPicture(options);
+  }
+
+  async uploadFirebase() {
+    this.imagePath = 'profile/' + new Date().getTime() + '.jpg';
+    const loading = await this.loadingController.create({ mode: 'ios' });
+    await loading.present();
+    this.upload = this.afSG
+      .ref(this.imagePath)
+      .putString(this.imageURL, 'data_url');
+    this.upload.then(async () => {
+      // this.imageURL = '';
+
+      this.fbAuth.authState.subscribe(async (authState) => {
+        authState
+          .updateProfile({
+            photoURL: this.imagePath,
+          })
+          .then(async () => {
+            const user = {
+              uid: authState.uid,
+              prenom: authState.displayName,
+              email: authState.email,
+              photoURL: this.imagePath,
+            };
+            this.user.photoURL = this.imagePath;
+            // this.localstorage.remove('utilisateur');
+            this.localstorage.set('utilisateur', JSON.stringify(user));
+            await loading.dismiss();
+            const alert = await this.alertController.create({
+              header: 'Félicitation',
+              // eslint-disable-next-line @typescript-eslint/quotes
+              message: "L'envoi de la photo est terminé!",
+              buttons: ['OK'],
+            });
+            await alert.present();
+          });
+      });
+      // this.getGalerie();
+    });
   }
 }

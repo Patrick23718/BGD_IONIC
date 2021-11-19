@@ -15,6 +15,358 @@ export const environment = {
     appId: '1:418421848655:web:b9cb198164714ea5fa883a',
     measurementId: 'G-63P59NL83N',
   },
+  prestations: [
+    {
+      title: 'braids',
+      checked: false,
+      sub: [
+        {
+          title: 'courtes',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'mi-longues',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'longues',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'fulani braids',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'vanilles (twists)',
+      checked: false,
+      sub: [
+        {
+          title: 'effet mi-long',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'effet long',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'cornrows',
+      checked: false,
+      sub: [
+        {
+          title: '2 tresses',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '3 tresses',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '4 tresses',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'nattes collées',
+      checked: false,
+      sub: [
+        {
+          title: 'sur cheveux naturelles',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'avec mèches',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'bantu knots',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'senegales twist',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'piqués lãchés',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'crochet braids',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'tissages',
+      checked: false,
+      sub: [
+        {
+          title: 'avec closure',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'ouvert',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'fermé',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'demi tête',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'fausses locks',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'lissages',
+      checked: false,
+      sub: [
+        {
+          title: 'Brésilien',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'steampod',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'soins',
+      checked: false,
+      sub: [
+        {
+          title: 'coloration',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'hydratant',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'protéiné',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '+ shampoing',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'profond silk press',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '+ coupes',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'défrisage',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'lace frontal',
+      checked: false,
+      sub: [
+        {
+          title: 'pose lace frontale',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'pose lace wig',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'brushing',
+      checked: false,
+      sub: [
+        {
+          title: 'cheveux court',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'cheveux mi-long',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '+ shampoing',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'tresses enfants',
+      checked: false,
+      sub: [
+        {
+          title: 'avec mèches',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'sans mèches',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'coupes',
+      checked: false,
+      sub: [
+        {
+          title: 'avec shampoing',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'cheveux courts',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'cheveux longs',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'chignon',
+      checked: false,
+      sub: [
+        {
+          title: 'mariage',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'sophistiqé',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'simple',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'coupes enfants',
+      checked: false,
+      sub: [
+        {
+          title: 'seule',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'avec shampoing',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'balayage',
+      checked: false,
+      sub: [
+        {
+          title: 'cheveux courts',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'cheveux mi-long',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'cheveux long',
+          img: '',
+          checked: false,
+        },
+        {
+          title: '+ coupe',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'locks',
+      checked: false,
+      sub: [
+        {
+          title: 'départ locks',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'reprise locks',
+          img: '',
+          checked: false,
+        },
+        {
+          title: 'entretien locks',
+          img: '',
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: 'pose perruque',
+      checked: false,
+      sub: [],
+    },
+  ],
 };
 
 /*

@@ -110,6 +110,7 @@ export class BiographiePage implements OnInit {
     this.userServices
       .registerUser(this.user.email, this.password)
       .then(async (res: any) => {
+        this.localStorage.set('uid', res.user.uid);
         res.user.updateProfile({
           displayName: this.user.prenom,
           phoneNumber: this.user.telephone,
@@ -126,7 +127,7 @@ export class BiographiePage implements OnInit {
           this.navCtrl.navigateForward('/ajoutprestation');
         } catch (error) {
           loading.dismiss();
-          await this.presentToast('Opération réussite!!', 'danger');
+          await this.presentToast('Opération réussie!!', 'danger');
         }
         // Do something here
       })

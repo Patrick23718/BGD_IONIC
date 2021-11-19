@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
+// import * as firebase from 'firebase/app';
+
 @Component({
   selector: 'app-connexion-coiffeuse',
   templateUrl: './connexion-coiffeuse.page.html',

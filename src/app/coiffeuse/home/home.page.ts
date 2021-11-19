@@ -58,7 +58,8 @@ export class HomePage implements OnInit {
     private camera: Camera,
     private afSG: AngularFireStorage,
     private afSt: AngularFirestore
-  ) {
+  ) {}
+  async ionViewWillEnter() {
     this.fbAuth.authState.subscribe(async (authState) => {
       const user = {
         uid: authState.uid,

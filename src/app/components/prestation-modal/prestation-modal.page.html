@@ -1,10 +1,22 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>prestation-modal</ion-title>
-    <ion-tab-button slot="end" (click)="dismiss()">
+  <div class="relative flex justify-center">
+    <div>Liste des prestations</div>
+    <div class="abolute right-1">
+      <ion-button fill="clear" (click)="dismiss()">
+        <img src="assets/icon/close.svg" alt="" srcset="" />
+      </ion-button>
+    </div>
+  </div>
+  <!-- <ion-toolbar class="relative">
+    <ion-title>Liste des prestations</ion-title>
+    <ion-tab-button
+      class="absolute right-3 top-3"
+      slot="end"
+      (click)="dismiss()"
+    >
       <img src="assets/icon/close.svg" alt="" srcset="" />
     </ion-tab-button>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>

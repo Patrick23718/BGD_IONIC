@@ -8,10 +8,24 @@ import { IonSlides } from '@ionic/angular';
 })
 export class OnboardPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
+
+  index = true;
   constructor() {}
 
   ngOnInit() {}
   next() {
-    this.slides.slideNext();
+    this.slides.slideNext().then(() => {
+      this.slides.getActiveIndex().then((res: any) => {
+        if (res === 2) {
+          this.index = false;
+        } else {
+          this.index = true;
+        }
+      });
+    });
+    // this.slides.ionSlideReachEnd.subscribe((res) => {
+    //   console.log(res);
+    // });
+    //slideNext();
   }
 }

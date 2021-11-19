@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -14,8 +15,11 @@ export class BienvenuePage implements OnInit {
     private fbAuth: AngularFireAuth,
     private userService: UtilisateurService,
     public toastController: ToastController,
-    public loadingController: LoadingController
-  ) {}
+    public loadingController: LoadingController,
+    private localstorage: LocalStorageService
+  ) {
+    this.localstorage.remove('uid');
+  }
 
   async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({

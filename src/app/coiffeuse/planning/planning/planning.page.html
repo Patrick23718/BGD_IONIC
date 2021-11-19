@@ -65,7 +65,7 @@
       <ion-item>
         <ion-label>08h - 12h</ion-label>
         <ion-toggle
-          [checked]="plage1"
+          [checked]="planning.plage1"
           (ionChange)="plage1($event)"
           mode="ios"
           color="success"
@@ -76,17 +76,16 @@
         <ion-label>12h - 18h</ion-label>
         <ion-toggle
           mode="ios"
-          [checked]="plage2"
+          [checked]="planning.plage2"
           (ionChange)="plage2($event)"
           color="success"
-          disabled="true"
         ></ion-toggle>
       </ion-item>
 
       <ion-item>
         <ion-label>18h - 22h</ion-label>
         <ion-toggle
-          [checked]="plage3"
+          [checked]="planning.plage3"
           (ionChange)="plage3($event)"
           mode="ios"
           color="success"

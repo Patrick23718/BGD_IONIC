@@ -1,1 +1,22 @@
+// ion-slides {
+//     height: 100%;
+// }
 
+// ion-slide {
+//     display: block;
+// }
+
+// ion-slide img {
+//     padding: 15%;
+// }
+
+// .slider-text {
+//     padding-top: 10%;
+ion-slide {
+  --progress-bar-background-active: #ff3e79 !important;
+  --progress-bar-background: #ff3e79 !important;
+  --scroll-bar-background-active: #ff3e79 !important;
+  --scroll-bar-background: #ff3e79 !important;
+  --bullet-bar-background-active: #ff3e79 !important;
+  --bullet-bar-background: #ff3e79 !important;
+}

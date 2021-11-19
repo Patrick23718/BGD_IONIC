@@ -15,8 +15,28 @@
 
 <ion-content>
   <div class="pt-2 px-5">
-    <app-input label="objet"></app-input>
-    <app-text-area label="Commentaires"></app-text-area>
+    <form action="">
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''">objet</label>
+        <input
+          type="text"
+          (focus)="focused = true"
+          [(ngModel)]="objet"
+          (blur)="onBlur($event)"
+          [ngModelOptions]="{standalone: true}"
+        />
+      </div>
+      <div class="form-fields">
+        <label [ngClass]="focused ? 'label-focused' : ''">Commentaires</label>
+        <textarea
+          cols="8"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+          [(ngModel)]="commentaire"
+          [ngModelOptions]="{standalone: true}"
+        ></textarea>
+      </div>
+    </form>
     <div class="w-full flex justify-end pb-5">
       <button
         class="
@@ -29,7 +49,7 @@
           text-md
           uppercase
         "
-        routerLink="/ajoutprestation"
+        (click)="sendMessage()"
       >
         envoyer
       </button>

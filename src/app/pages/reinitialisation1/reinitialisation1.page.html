@@ -13,6 +13,8 @@
           <label [ngClass]="focused ? 'label-focused' : ''">email</label>
           <input
             type="email"
+            [(ngModel)]="email"
+            [ngModelOptions]="{standalone: true}"
             (focus)="focused = true"
             (blur)="onBlur($event)"
           />
@@ -25,7 +27,7 @@
         >
           <button
             class="w-full h-full text-white text-md uppercase"
-            routerLink="/nouveau-mot-de-passe"
+            (click)="sendCode()"
           >
             reinitialiser le mot de passe
           </button>

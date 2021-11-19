@@ -10,6 +10,7 @@ import {
 import { PrestationModalPage } from 'src/app/components/prestation-modal/prestation-modal.page';
 import { PrestationPage } from 'src/app/components/prestation/prestation.page';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ajout-prestation',
@@ -36,129 +37,7 @@ export class AjoutPrestationPage implements OnInit {
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  prestations = [
-    {
-      title: 'braids',
-      checked: false,
-      sub: [
-        {
-          title: 'braids courtes',
-          img: '',
-          checked: false,
-        },
-        {
-          title: 'braids longues',
-          img: '',
-          checked: false,
-        },
-      ],
-    },
-    {
-      title: 'fulani braids',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'vanilles (twists)',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'cornrows',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'nattes collées',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'bantu knots',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'senegales twist',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'piqués lãchés',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'crochet braids',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'tissages',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'fausses locks',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'lissages',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'soins',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'lace frontal',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'brushing',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'tresses enfants',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'coupes',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'chignon',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'coupes enfants',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'balayage',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'locks',
-      checked: false,
-      sub: [],
-    },
-    {
-      title: 'pose perruque',
-      checked: false,
-      sub: [],
-    },
-  ];
+  prestations = environment.prestations;
 
   ngOnInit() {}
   myBackButton() {
@@ -227,7 +106,7 @@ export class AjoutPrestationPage implements OnInit {
       await this.presentToast('Informations non correctes', 'danger');
     } else {
       this.ngFire
-        .collection('planning')
+        .collection('prestation-coiffeuse')
         .add({
           uid: this.user.uid,
           prestation: this.prestation,

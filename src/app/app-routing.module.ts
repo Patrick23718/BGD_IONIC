@@ -11,7 +11,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/creermoncompte',
+    redirectTo: '/onboard',
     pathMatch: 'full',
   },
 
@@ -41,6 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'onboard',
+    canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/onboard/onboard.module').then((m) => m.OnboardPageModule),
   },
@@ -149,6 +150,25 @@ const routes: Routes = [
       import('./pages/mon-espace-client/mon-espace-client-routing.module').then(
         (m) => m.MonEspaceClientPageRoutingModule
       ),
+  },
+  {
+    path: 'inscription-coiffeuse',
+    loadChildren: () =>
+      import('./pages/inscription-coiffeuse/inscription-coiffeuse.module').then(
+        (m) => m.InscriptionCoiffeusePageModule
+      ),
+  },
+  {
+    path: 'init-prestation',
+    loadChildren: () =>
+      import('./pages/init-prestation/init-prestation.module').then(
+        (m) => m.InitPrestationPageModule
+      ),
+  },
+  {
+    path: 'splash',
+    loadChildren: () =>
+      import('./splash/splash.module').then((m) => m.SplashPageModule),
   },
 ];
 @NgModule({

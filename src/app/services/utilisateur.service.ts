@@ -156,4 +156,8 @@ export class UtilisateurService {
   signOut() {
     return this.ngFireAuth.signOut();
   }
+
+  updateUser(id: string, record: any) {
+    return this.afStore.collection('utilisateur').doc(id).update(record);
+  }
 }

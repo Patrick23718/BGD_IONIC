@@ -53,7 +53,7 @@ export class PrestationPage implements OnInit {
     const loading = await this.presentLoading();
     await loading.present();
     // this.ngFire.collection('planning').where('uid', '==', this.user.uid).get().
-    const citiesRef = this.ngFire.collection('planning', (ref) =>
+    const citiesRef = this.ngFire.collection('prestation-coiffeuse', (ref) =>
       ref.where('uid', '==', this.user.uid)
     );
     const snapshot = await citiesRef.get();
@@ -88,7 +88,7 @@ export class PrestationPage implements OnInit {
     await loading.present();
 
     this.ngFire
-      .collection('planning')
+      .collection('prestation-coiffeuse')
       .doc(id)
       .delete()
       .then((res: any) => {
