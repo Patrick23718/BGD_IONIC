@@ -12,7 +12,10 @@
       </ion-button>
     </div>
     <div class="text-gray-600">
-      <ion-card class="flex flex-row justify-between items-center h-20 pr-2">
+      <ion-card
+        (click)="div1 = ! div1"
+        class="flex flex-row rounded-lg justify-between items-center h-20 pr-2"
+      >
         <div class="bg-secondary h-full w-3"></div>
         <div class="text-xl whitespace-normal pl-3 font-semibold">
           Comment mettre en avant ton profil ?
@@ -21,7 +24,7 @@
           <img src="assets/icon/toggle.svg" alt="" />
         </div>
       </ion-card>
-      <div class="px-5 space-y-5">
+      <div *ngIf="div1" class="px-5 space-y-5">
         <div class="">Pour être plus attractive, il te faut :</div>
         <div class="flex flex-row items-start space-x-3">
           <div class="w-10">
@@ -62,7 +65,10 @@
           </div>
         </div>
       </div>
-      <ion-card class="flex flex-row justify-between items-center h-20 pr-2">
+      <ion-card
+        (click)="div2 = ! div2"
+        class="flex flex-row rounded-lg justify-between items-center h-20 pr-2"
+      >
         <div class="bg-secondary h-full w-3"></div>
         <div class="text-lg whitespace-normal pl-3 font-semibold">
           Comment ajouter / supprimer tes prestations ?
@@ -71,7 +77,7 @@
           <img src="assets/icon/toggle.svg" alt="" />
         </div>
       </ion-card>
-      <div class="px-5 space-y-5">
+      <div *ngIf="div2" class="px-5 space-y-5">
         <div class="">Pour ajouter une prestation :</div>
         <div class="flex flex-row items-start space-x-3">
           <div class="text-secondary">1</div>
@@ -95,7 +101,10 @@
           poubelle de suppression.
         </div>
       </div>
-      <ion-card class="flex flex-row justify-between items-center h-20 pr-2">
+      <ion-card
+        (click)="div3 = ! div3"
+        class="flex flex-row rounded-lg justify-between items-center h-20 pr-2"
+      >
         <div class="bg-secondary h-full w-3"></div>
         <div class="text-lg whitespace-normal pl-3 font-semibold">
           Comment ajouter tes photos dans « ma galerie » ?
@@ -104,7 +113,7 @@
           <img src="assets/icon/toggle.svg" alt="" />
         </div>
       </ion-card>
-      <div class="px-5 space-y-5">
+      <div *ngIf="div3" class="px-5 space-y-5">
         <div class="">
           Pour ajouter, dans « ma galerie », appuie sur le bouton « Ajouter une
           image ».
@@ -119,7 +128,10 @@
           pour quelles puissent être validées par le service client.
         </div>
       </div>
-      <ion-card class="flex flex-row justify-between items-center h-20 pr-2">
+      <ion-card
+        (click)="div4 = ! div4"
+        class="flex flex-row rounded-lg justify-between items-center h-20 pr-2"
+      >
         <div class="bg-secondary h-full w-3"></div>
         <div class="text-lg whitespace-normal pl-3 font-semibold">
           Comment ajouter / supprimer tes prestations ?
@@ -128,7 +140,7 @@
           <img src="assets/icon/toggle.svg" alt="" />
         </div>
       </ion-card>
-      <div class="space-y-5 px-5">
+      <div *ngIf="div4" class="space-y-5 px-5">
         <div>
           Bigoodee te conseille de ne pas proposer des tarifs plus élevés que
           les autres coiffeuses, pour être compétitive. Grâce à la grille

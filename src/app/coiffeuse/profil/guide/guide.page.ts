@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guide.page.scss'],
 })
 export class GuidePage implements OnInit {
+  div1 = false;
+  div2 = false;
+  div3 = false;
+  div4 = false;
   constructor(private location: Location) {}
 
   ngOnInit() {}

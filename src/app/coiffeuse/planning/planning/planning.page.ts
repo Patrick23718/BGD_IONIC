@@ -17,6 +17,9 @@ export class PlanningPage implements OnInit {
     plage1: false,
     plage2: false,
     plage3: false,
+    id1: '',
+    id2: '',
+    id3: '',
   };
   items = [];
 
@@ -65,11 +68,14 @@ export class PlanningPage implements OnInit {
     console.log(this.segment);
     if (this.segment === 'disponibilites') {
       console.log('ok');
-      this.getPlan();
     } else {
       this.planning.plage1 = false;
       this.planning.plage2 = false;
       this.planning.plage3 = false;
+      this.planning.id1 = '';
+      this.planning.id2 = '';
+      this.planning.id3 = '';
+      this.selectedDate = '';
     }
   }
 
@@ -77,31 +83,12 @@ export class PlanningPage implements OnInit {
     this.viewTitle = event;
   }
 
-  onChange(event) {
+  async onChange(event) {
     console.log(new Date(event.selectedTime));
     console.log(this.calendar.currentDate);
     this.selectedDate = new Date(event.selectedTime);
-    this.segment = 'disponibilites';
+    await this.getPlan();
   }
-
-  // getTask(id) {
-  //   return this.ngFirestore.collection('tasks').doc(id).valueChanges();
-  // }
-
-  // update(id, todo: any) {
-  //   this.ngFirestore
-  //     .collection('tasks')
-  //     .doc(id)
-  //     .update(todo)
-  //     .then(() => {
-  //       // this.router.navigate(['/todo-list']);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }
-
-  // delete(id: string) {
-  //   this.ngFirestore.doc('tasks/' + id).delete();
-  // }
 
   async getPlan() {
     const loading = await this.presentLoading();
@@ -122,16 +109,21 @@ export class PlanningPage implements OnInit {
         });
       });
       this.items.forEach((elt) => {
-        if (elt.data.plage == '08h-12h') {
-          console.log(elt.data.plage);
-          this.planning.plage1 = true;
-        } else if (elt.data.plage === '12h-18h') {
-          this.planning.plage2 = true;
-        } else if (elt.data.plage === '18h-22h') {
-          this.planning.plage3 = true;
+        if (elt.data.uid === this.uid) {
+          if (elt.data.plage == '08h-12h') {
+            console.log(elt.data.plage);
+            this.planning.plage1 = true;
+            this.planning.id1 = elt.id;
+          } else if (elt.data.plage === '12h-18h') {
+            this.planning.plage2 = true;
+            this.planning.id2 = elt.id;
+          } else if (elt.data.plage === '18h-22h') {
+            this.planning.plage3 = true;
+            this.planning.id3 = elt.id;
+          }
         }
-        loading.dismiss();
       });
+      this.segment = 'disponibilites';
       loading.dismiss();
     });
 
@@ -149,78 +141,126 @@ export class PlanningPage implements OnInit {
   }
 
   async plage1(event) {
-    console.log(event.detail.checked);
-    if (event.detail.checked) {
+    console.log(this.planning.plage1);
+    if (this.selectedDate !== '') {
       const loading = await this.presentLoading();
       await loading.present();
-      this.ngFirestore
-        .collection('planning')
-        .add({
-          date: this.selectedDate,
-          uid: this.uid,
-          plage: '08h-12h',
-        })
-        .then((res) => {
-          console.log(res);
-          this.loadingController.dismiss();
-        })
-        .catch((err) => {
-          console.log(err);
-          this.loadingController.dismiss();
-        })
-        .finally(() => {
-          this.loadingController.dismiss();
-        });
+      if (this.planning.plage1) {
+        this.ngFirestore
+          .collection('planning')
+          .doc(this.planning.id1)
+          .delete()
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+        console.log('good');
+      } else {
+        this.ngFirestore
+          .collection('planning')
+          .add({
+            date: this.selectedDate,
+            uid: this.uid,
+            plage: '08h-12h',
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+        console.log('bad');
+      }
     }
   }
   async plage2(event) {
-    const loading = await this.presentLoading();
-    await loading.present();
-    console.log(event.detail.checked);
-    if (event.detail.checked) {
-      this.ngFirestore
-        .collection('planning')
-        .add({
-          date: this.selectedDate,
-          uid: this.uid,
-          plage: '12h-18h',
-        })
-        .then((res) => {
-          console.log(res);
-          this.loadingController.dismiss();
-        })
-        .catch((err) => {
-          console.log(err);
-          this.loadingController.dismiss();
-        })
-        .finally(() => {
-          this.loadingController.dismiss();
-        });
+    if (this.selectedDate !== '') {
+      const loading = await this.presentLoading();
+      await loading.present();
+      if (this.planning.plage2) {
+        this.ngFirestore
+          .collection('planning')
+          .doc(this.planning.id2)
+          .delete()
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+        console.log(this.planning.plage2);
+      } else {
+        this.ngFirestore
+          .collection('planning')
+          .add({
+            date: this.selectedDate,
+            uid: this.uid,
+            plage: '12h-18h',
+          })
+          .then((res) => {
+            console.log(res);
+            this.loadingController.dismiss();
+          })
+          .catch((err) => {
+            console.log(err);
+            this.loadingController.dismiss();
+          })
+          .finally(() => {
+            this.loadingController.dismiss();
+          });
+      }
     }
   }
   async plage3(event) {
-    const loading = await this.presentLoading();
-    await loading.present();
-    console.log(event.detail.checked);
-    if (event.detail.checked) {
-      this.ngFirestore
-        .collection('planning')
-        .add({
-          date: this.selectedDate,
-          uid: this.uid,
-          plage: '18h-22h',
-        })
-        .then((res) => {
-          console.log(res);
-          this.loadingController.dismiss();
-        })
-        .catch((err) => {
-          console.log(err);
-          this.loadingController.dismiss();
-        })
-        .finally(() => {
-          this.loadingController.dismiss();
-        });
+    if (this.selectedDate !== '') {
+      const loading = await this.presentLoading();
+      await loading.present();
+      if (this.planning.plage3) {
+        this.ngFirestore
+          .collection('planning')
+          .doc(this.planning.id3)
+          .delete()
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+        console.log(this.planning.plage3);
+      } else {
+        this.ngFirestore
+          .collection('planning')
+          .add({
+            date: this.selectedDate,
+            uid: this.uid,
+            plage: '18h-22h',
+          })
+          .then((res) => {
+            console.log(res);
+            this.loadingController.dismiss();
+          })
+          .catch((err) => {
+            console.log(err);
+            this.loadingController.dismiss();
+          })
+          .finally(() => {
+            this.loadingController.dismiss();
+          });
+      }
     }
   }
 }

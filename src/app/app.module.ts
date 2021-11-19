@@ -21,6 +21,9 @@ registerLocaleData(localeFr, 'fr');
 // Calendar UI Module
 // import { CalendarModule } from 'ion2-calendar';
 
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 // Environment
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,11 +47,14 @@ import { Camera } from '@ionic-native/camera/ngx';
     NgCalendarModule,
   ],
   providers: [
+    SplashScreen,
+    StatusBar,
     Camera,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,
     },
+    { provide: LOCALE_ID, useValue: 'fr' },
   ],
   bootstrap: [AppComponent],
 })
