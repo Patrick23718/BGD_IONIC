@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilHotessePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public location : Location
+  ) { }
 
   ngOnInit() {
+  }
+
+  myBackButton() {
+    this.location.back();
   }
 
 }
