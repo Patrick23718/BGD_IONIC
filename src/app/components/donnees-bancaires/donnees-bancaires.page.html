@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="">
+    <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+    >
+      <h1 class="text-2xl font-bold flex text-center">Invites tes amies</h1>
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+    </div>
+    <form action="">
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''">Mot de passe actuel</label>
+        <input
+          type="password"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+        <div class="bg-primary absolute rounded-full top-3 right-3">
+          <img src="assets/icon/eye.svg" alt="">
+        </div>
+      </div>
+      <div class="bg-primary rounded-md flex justify-center">
+        <ion-button fill="clear" class="uppercase text-white"></ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

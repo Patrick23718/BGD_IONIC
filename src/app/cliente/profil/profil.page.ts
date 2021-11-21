@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilPage implements OnInit {
 
+
+  items = [
+    { icon: 'historique.svg', title: 'Mon historique', to: 'historique' },
+    { icon: 'inviter.svg', title: 'inviter des amis', to: 'inviter-amis',},
+    { icon: 'question.svg', title: 'questions fréquentes', to: 'questions-frequentes' },
+    { icon: 'contact2.svg', title: 'Nous contacter', to: 'nous-contacter',},
+    { icon: 'parametre.svg', title: 'paramètres', to: 'parametres' },
+  ];
   constructor() { }
 
   ngOnInit() {

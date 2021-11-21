@@ -1,0 +1,25 @@
+<ion-content>
+  <div class="">
+    <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+    >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">moyen de paiement</h1>
+    </div>
+    <div class="flex flex-col items-center space-y-5 mt-32">
+      <div class="">
+        <img src="assets/icon/carte.svg" alt="">
+      </div>
+      <div class="text-center">
+        Vous n’avez pas encore de Carte Bancaire enregistrée.
+      </div>
+    </div>
+    <div class="px-8 mt-10" (click)="ajouterCarte()">
+      <div class="bg-primary rounded-md flex justify-center">
+        <ion-button fill="clear" class="text-white uppercase">Ajouter ma carte</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -29,6 +29,10 @@ const routes: Routes = [
             path: 'profil-hotesse',
             loadChildren: () => import('./profil-hotesse/profil-hotesse.module').then( m => m.ProfilHotessePageModule)
           },
+          {
+            path: 'avis-cliente',
+            loadChildren: () => import('./avis-hotesse/avis-hotesse.module').then( m => m.AvisHotessePageModule)
+          },
         ]
       },
       {
@@ -37,6 +41,60 @@ const routes: Routes = [
           {
             path: '',
             loadChildren : () => import('./planning/planning.module').then(m => m.PlanningPageModule)
+          }
+        ]
+      },
+      {
+        path: 'profil',
+        children: [
+          {
+            path: '',
+            loadChildren : () => import('./profil/profil.module').then(m => m.ProfilPageModule)
+          },
+          {
+            path: 'historique',
+            loadChildren: () => import('./profil/historique/historique.module').then( m => m.HistoriquePageModule)
+          },
+          {
+            path: 'parametres',
+            children:[
+              {
+                path: '',
+                loadChildren: () => import('./profil/parametres/parametres.module').then( m => m.ParametresPageModule)
+              },
+              {
+                path: 'moyen-paiement',
+                loadChildren: () => import('./profil/parametres/moyen-paiement/moyen-paiement.module').then( m => m.MoyenPaiementPageModule)
+              },
+              {
+                path: 'gestion-mot-passe',
+                loadChildren: () => import('./profil/parametres/gestion-mot-passe/gestion-mot-passe.module').then( m => m.GestionMotPassePageModule)
+              },
+              {
+                path: 'coiffeuses-preferees',
+                loadChildren: () => import('./profil/parametres/coiffeuses-preferees/coiffeuses-preferees.module').then( m => m.CoiffeusesPrefereesPageModule)
+              },
+              {
+                path: 'supprimer-compte',
+                loadChildren: () => import('./profil/parametres/supprimer-compte/supprimer-compte.module').then( m => m.SupprimerComptePageModule)
+              },
+              {
+                path: 'cgu',
+                loadChildren: () => import('./profil/parametres/cgu/cgu.module').then( m => m.CGUPageModule)
+              }
+            ]
+          },
+          {
+            path: 'inviter-amis',
+            loadChildren: () => import('./profil/inviter-amis/inviter-amis.module').then( m => m.InviterAmisPageModule)
+          },
+          {
+            path: 'nous-contacter',
+            loadChildren: () => import('./profil/nous-contacter/nous-contacter.module').then( m => m.NousContacterPageModule)
+          },
+          {
+            path: 'questions-frequentes',
+            loadChildren: () => import('./profil/questions-frequentes/questions-frequentes.module').then( m => m.QuestionsFrequentesPageModule)
           }
         ]
       }

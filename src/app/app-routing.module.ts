@@ -130,6 +130,10 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
+  {
+    path: 'donnees-bancaires',
+    loadChildren: () => import('./components/donnees-bancaires/donnees-bancaires.module').then( m => m.DonneesBancairesPageModule)
+  },
 
 
 
