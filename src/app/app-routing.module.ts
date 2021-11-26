@@ -126,7 +126,8 @@ const routes: Routes = [
   {
     path: 'inscription-coiffeuse',
     loadChildren: () => import('./pages/inscription-coiffeuse/inscription-coiffeuse.module').then( m => m.InscriptionCoiffeusePageModule)
-  },  {
+  },
+  {
     path: 'splash',
     loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
@@ -134,6 +135,7 @@ const routes: Routes = [
     path: 'donnees-bancaires',
     loadChildren: () => import('./components/donnees-bancaires/donnees-bancaires.module').then( m => m.DonneesBancairesPageModule)
   },
+
 
 
 

@@ -1,0 +1,132 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="dismiss()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Notifications</h1>
+    <ion-button fill="clear"> </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+
+  <div class="text-gray-600 flex flex-col space-y-5">
+    <ion-list class="space-y-3">
+      <!-- Sliding item with text options on both sides -->
+      <ion-item-sliding id="item100">
+        <ion-item lines="none" detail="false">
+          <ion-card class="w-screen m-1">
+            <div class="flex flex-row px-2 gap-4 shadow">
+              <img src="assets/icon/validate.svg" alt="" srcset="" />
+              <div class="flex flex-col">
+                <h1 class="whitespace-nowrap font-semibold text-lg">
+                  Lénnie sonfack
+                </h1>
+                <p>
+                  réservation confirmée : braids courtes (46€) pour le
+                  15/08/2020 entre 15h-18h.
+                </p>
+                <div class="text-xs flex justify-end">il y’a 3 jours</div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-item>
+
+        <!-- <ion-item-options side="start">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options> -->
+
+        <ion-item-options side="end">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding id="item100">
+        <ion-item lines="none" detail="false">
+          <ion-card class="w-screen m-1">
+            <div class="flex flex-row px-2 gap-4 shadow">
+              <img src="assets/icon/validate.svg" alt="" srcset="" />
+              <div class="flex flex-col">
+                <h1 class="whitespace-nowrap font-semibold text-lg">
+                  Lénnie sonfack
+                </h1>
+                <p>
+                  réservation confirmée : braids courtes (46€) pour le
+                  15/08/2020 entre 15h-18h.
+                </p>
+                <div class="text-xs flex justify-end">il y’a 3 jours</div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-item>
+
+        <!-- <ion-item-options side="start">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options> -->
+
+        <ion-item-options side="end">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding id="item100">
+        <ion-item lines="none" detail="false">
+          <ion-card class="w-screen m-1">
+            <div class="flex flex-row px-2 gap-4 shadow">
+              <img src="assets/icon/poubelle.svg" alt="" srcset="" />
+              <div class="flex flex-col">
+                <h1 class="whitespace-nowrap font-semibold text-lg">
+                  Annette MABLA
+                </h1>
+                <p>
+                  réservation annulée : braids courtes
+                  (46€) pour le 15/08/2020 entre 15h-18h.
+                </p>
+                <div class="text-xs flex justify-end">il y’a 3 jours</div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding id="item100">
+        <ion-item lines="none" detail="false">
+          <ion-card class="w-screen m-1">
+            <div class="flex flex-row px-2 gap-4 shadow">
+              <img src="assets/icon/dossier.svg" alt="" srcset="" />
+              <div class="flex flex-col">
+                <h1 class="whitespace-nowrap font-semibold text-lg">
+                  Annette MABLA
+                </h1>
+                <p>
+                  réservation annulée : braids courtes
+                  (46€) pour le 15/08/2020 entre 15h-18h.
+                </p>
+                <div class="text-xs flex justify-end">il y’a 3 jours</div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="none">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>
+

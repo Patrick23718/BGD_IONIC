@@ -27,7 +27,29 @@ const routes: Routes = [
           },
           {
             path: 'profil-hotesse',
-            loadChildren: () => import('./profil-hotesse/profil-hotesse.module').then( m => m.ProfilHotessePageModule)
+            children : [
+              {
+                path: '',
+                loadChildren: () => import('./profil-hotesse/profil-hotesse.module').then( m => m.ProfilHotessePageModule)
+              },
+              {
+                path: 'validation-reservation',
+                children : [
+                  {
+                    path : '',
+                    loadChildren: () => import('./validation-reservation/validation-reservation.module').then( m => m.ValidationReservationPageModule)
+                  },
+                  {
+                    path: 'reservation-confirme',
+                    loadChildren: () => import('./validation-reservation/reservation-confirme/reservation-confirme.module').then( m => m.ReservationConfirmePageModule)
+                  },
+                  {
+                    path: 'reservation-non-confirme',
+                    loadChildren: () => import('./validation-reservation/reservation-non-confirme/reservation-non-confirme.module').then( m => m.ReservationNonConfirmePageModule)
+                  },
+                ]
+              },
+            ]
           },
           {
             path: 'avis-cliente',
@@ -97,6 +119,19 @@ const routes: Routes = [
             loadChildren: () => import('./profil/questions-frequentes/questions-frequentes.module').then( m => m.QuestionsFrequentesPageModule)
           }
         ]
+      },
+      {
+        path: 'message',
+        children :[
+          {
+            path: '',
+            loadChildren : () => import('./message/message.module').then( m => m.MessagePageModule)
+          },
+          {
+            path: 'message-details',
+            loadChildren: () => import('./message/message-details/message-details.module').then( m => m.MessageDetailsPageModule)
+          }
+        ]
       }
     ]
   },
@@ -104,6 +139,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/cliente/acceuil',
     pathMatch: 'full'
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
   },
 ];
 

@@ -1,9 +1,103 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>message</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+  >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">messages</h1>
+  </div>
+  <div class="">
+    <div class="px-5">
+      <ion-input type="search" placeholder="Rechercher un contact" class="rounded-md ion-input-padding-10"></ion-input>
+    </div>
+    <ion-card class="bg-primary-op shadow-none h-16" routerLink="../message/message-details">
+      <div class="w-full h-full flex flex-row space-x-5 pr-5">
+        <div class="bg-secondary h-full w-5">
+          <img src="assets/icon/barre.svg" alt="">
+        </div>
+        <div class="flex flex-row w-full py-2 space-x-5 items-center">
+          <div class="rounded-full">
+            <img src="assets/icon/tof.svg" alt="" class="rounded-full w-12 h-10">
+          </div>
+          <div class="w-full">
+            <div class="flex flex-row justify-between">
+              <div class="font-bold">Sarah</div>
+              <div class="">16:30</div>
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="">bonjour</div>
+              <div class="rounded-full bg-primary text-center text-white h-6 w-6">1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+    <ion-card class="bg-primary-op shadow-none h-16">
+      <div class="w-full h-full flex flex-row space-x-5 pr-5">
+        <div class="bg-secondary h-full w-5">
+          <img src="assets/icon/barre.svg" alt="">
+        </div>
+        <div class="flex flex-row w-full py-2 space-x-5 items-center">
+          <div class="rounded-full">
+            <img src="assets/icon/tof.svg" alt="" class="rounded-full w-12 h-10">
+          </div>
+          <div class="w-full">
+            <div class="flex flex-row justify-between">
+              <div class="font-bold">Sarah</div>
+              <div class="">16:30</div>
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="">bonjour</div>
+              <div class="rounded-full bg-primary text-center text-white h-6 w-6">1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+    <ion-card class="bg-primary-op shadow-none h-16">
+      <div class="w-full h-full flex flex-row space-x-5 pr-5">
+        <div class="bg-secondary h-full w-5">
+          <img src="assets/icon/barre.svg" alt="">
+        </div>
+        <div class="flex flex-row w-full py-2 space-x-5 items-center">
+          <div class="rounded-full">
+            <img src="assets/icon/tof.svg" alt="" class="rounded-full w-12 h-10">
+          </div>
+          <div class="w-full">
+            <div class="flex flex-row justify-between">
+              <div class="font-bold">Sarah</div>
+              <div class="">16:30</div>
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="">bonjour</div>
+              <div class="rounded-full bg-primary text-center text-white h-6 w-6">1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+    <ion-card class="bg-primary-op shadow-none h-16">
+      <div class="w-full h-full flex flex-row space-x-5 pr-5">
+        <div class="bg-secondary h-full w-5">
+          <img src="assets/icon/barre.svg" alt="">
+        </div>
+        <div class="flex flex-row w-full py-2 space-x-5 items-center">
+          <div class="rounded-full">
+            <img src="assets/icon/tof.svg" alt="" class="rounded-full w-12 h-10">
+          </div>
+          <div class="w-full">
+            <div class="flex flex-row justify-between">
+              <div class="font-bold">Sarah</div>
+              <div class="">16:30</div>
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="">bonjour</div>
+              <div class="rounded-full bg-primary text-center text-white h-6 w-6">1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
 </ion-content>

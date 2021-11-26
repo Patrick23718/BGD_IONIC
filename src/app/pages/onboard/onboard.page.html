@@ -1,37 +1,45 @@
 <ion-content class="ion-padding">
   <ion-slides pager="true" class="h-5/6">
     <ion-slide class="block px-2">
-      <img src="/assets/onboard.png" class="px-10 pt-20">
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
 
       <div class="slider-text">
         <p>
-          Trouvez votre Coiffeuse
-          parmi de nombreuses coiffeuses 
-          qualifiées et expérimentées.
+          Trouvez votre Coiffeuse parmi de nombreuses coiffeuses qualifiées et
+          expérimentées.
         </p>
       </div>
     </ion-slide>
     <ion-slide class="block px-2">
-      <img src="/assets/onboard.png" class="px-5">
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
       <div class="slider-text">
-        <p>
-          Choisissez votre coiffure parmi
-          de nombreux modèles proposés.
-        </p>
+        <p>Choisissez votre coiffure parmi de nombreux modèles proposés.</p>
       </div>
     </ion-slide>
     <ion-slide class="block px-2">
-      <img src="/assets/onboard.png" >
+      <img src="/assets/onboard.png" class="px-10 pt-20" />
 
       <div class="slider-text">
         <p>
-          Sélectionnez la date à laquelle
-          vous souhaitez vous faire coiffer.
+          Sélectionnez la date à laquelle vous souhaitez vous faire coiffer.
         </p>
       </div>
     </ion-slide>
   </ion-slides>
   <div class="flex justify-end pr-5">
-    <ion-button fill="clear" class="bg-primary rounded-md text-white" (click)="next()">suivant</ion-button>
+    <ion-button
+      fill="clear"
+      class="bg-primary rounded-md text-white uppercase"
+      (click)="next()"
+      *ngIf="index"
+      >suivant</ion-button
+    >
+    <ion-button
+      fill="clear"
+      class="bg-primary rounded-md text-white uppercase"
+      routerLink="/cliente"
+      *ngIf="!index"
+      >continuer</ion-button
+    >
   </div>
 </ion-content>
