@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: MoyenPaiementPage
+  },
+  {
+    path: 'ma-carte',
+    loadChildren: () => import('./ma-carte/ma-carte.module').then( m => m.MaCartePageModule)
   }
 ];
 

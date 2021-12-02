@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="px-5">
+    <div
+      class="flex flex-row justify-between items-center mb-10 text-gray-600"
+    >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">moyen de paiement</h1>
+      <ion-button fill="clear"></ion-button>
+    </div>
+    <div class="">
+      <div class="flex justify-start text-base mb-3">Ma carte</div>
+      <div class="bg-secondary-op p-3 space-y-4 rounded-md">
+        <div class="flex items-start justify-between">
+          <div class="">Nom du titulaire de la carte</div>
+          <div class="flex flex-row space-x-2">
+            <div class="">
+              <img src="assets/icon/poubelle2.svg" alt="" class="">
+            </div>
+            <div class="">
+              <img src="assets/icon/modifier.svg" alt="" class="">
+            </div>
+          </div> 
+        </div>
+        <div class="">
+          xxxx xxxx xxxx 1235
+        </div>
+        <div class="flex flex-row justify-between">
+          <div class="">11/20</div>
+          <div class="">
+            <img src="assets/icon/carte_bancaire.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <ion-button fill="clear" expand="block" class="bg-primary text-white uppercase rounded-md mt-5" (click)="openConfirmation()">ajouter une carte</ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { DonneesBancairesPage } from 'src/app/shared/modals/donnees-bancaires/donnees-bancaires.page';
 
 @Component({
   selector: 'app-moyen-paiement',
@@ -11,7 +12,7 @@ export class MoyenPaiementPage implements OnInit {
 
   constructor(
     public location : Location,
-    public alert : AlertController
+    private modalCtrl : ModalController
     ) { }
 
   ngOnInit() {
@@ -21,17 +22,16 @@ export class MoyenPaiementPage implements OnInit {
     this.location.back()
   }
 
-  async ajouterCarte() {
-    const alert = await this.alert.create({
-      header : '',
-      message:
-       `
-       <app-donnees-bancaires></app-donnees-bancaires>
-
-      `,
+  async infosBancaires(){
+    const modal = await this.modalCtrl.create({
+      component : DonneesBancairesPage,
+      cssClass : 'bancaire-css',
+      backdropDismiss : true,
+      mode : 'ios'
     });
 
-    await alert.present();
+    await modal.present();
+    modal.onDidDismiss();
   }
 
 }

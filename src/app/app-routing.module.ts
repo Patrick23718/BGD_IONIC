@@ -134,7 +134,19 @@ const routes: Routes = [
   {
     path: 'donnees-bancaires',
     loadChildren: () => import('./components/donnees-bancaires/donnees-bancaires.module').then( m => m.DonneesBancairesPageModule)
+  },  {
+    path: 'ask-confirmation',
+    loadChildren: () => import('./shared/modals/ask-confirmation/ask-confirmation.module').then( m => m.AskConfirmationPageModule)
   },
+  {
+    path: 'invitation',
+    loadChildren: () => import('./shared/modals/invitation/invitation.module').then( m => m.InvitationPageModule)
+  },
+  {
+    path: 'donnees-bancaires',
+    loadChildren: () => import('./shared/modals/donnees-bancaires/donnees-bancaires.module').then( m => m.DonneesBancairesPageModule)
+  },
+
 
 
 
