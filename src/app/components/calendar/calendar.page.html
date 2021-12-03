@@ -30,16 +30,25 @@
 
     <hr />
 
-    <div>
-      <div>choisis ta plage horaire</div>
-      <div class="grid grid-co">
-        <ion-card button="true">
-          <div class="rounded py-2 text-gray-500" *ngFor="let item of items">
+    <div class="px-5">
+      <div class="text-center font-semibold py-5 text-md text-gray-500">
+        Choisis ta plage horaire
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <ion-card
+          button="true"
+          *ngFor="let item of items"
+          class="shadow-md m-0 p-0 rounded-lg"
+          (click)="getPlage(item)"
+        >
+          <div
+            class="rounded py-3 text-center font-semibold"
+            [ngClass]="item.checked ? 'text-primary bg-pink-100':'text-gray-500 bg-gray-100'"
+          >
             {{item.text}}
           </div>
         </ion-card>
       </div>
-      te
     </div>
   </div>
 </ion-content>

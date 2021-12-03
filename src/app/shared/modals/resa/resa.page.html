@@ -1,6 +1,12 @@
 <ion-content>
   <div class="flex h-full flex-col justify-center items-center w-full">
-    <ion-slides pager="true" class="w-full">
+    <ion-slides
+      pager="true"
+      class="w-full"
+      #testSlider
+      (ionSlideTap)="getIndex()"
+      (ionSlideDidChange)="getIndex()"
+    >
       <ion-slide
         class="block px-2 w-full mb-5 relative"
         *ngFor="let item of resa"
@@ -19,12 +25,12 @@
             bottom-20
           "
         >
-          <p>{{item.title}}</p>
+          <p>{{item.title|titlecase}}</p>
         </div>
         &nbsp;<br />
       </ion-slide>
     </ion-slides>
-    <ion-button expand="block"
+    <ion-button expand="block" (click)="getPrestation()"
       ><span class="font-semibold">Trouvez votre coiffeuse</span></ion-button
     >
   </div>

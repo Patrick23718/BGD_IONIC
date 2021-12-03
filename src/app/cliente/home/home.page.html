@@ -45,7 +45,7 @@
           text-white
         "
       >
-        Decouvrez et reservez la coiffeuse qui vous correspond !
+        Decouvrez et réservez la coiffeuse qui vous correspond !
       </div>
       <div class="rounded-lg bg-white w-full h-4/5 mt-3 p-3 overflow-y-scroll">
         <div class="grid grid-cols-2 gap-4">
@@ -63,7 +63,7 @@
             [ngClass]="segment? 'bg-primary': 'bg-primary-op'"
             (click)="segment = false"
           >
-            Je reserve ma coiffeuse
+            Je réserve ma coiffeuse
           </div>
           <div
             class="
@@ -155,7 +155,8 @@
               <div class="flex flex-row gap-4 items-center">
                 <img src="assets/icon/calendar2.svg" alt="" />
                 <div class="text-lg">
-                  {{date ==='' ? 'choix de votre date': date| date}}
+                  {{date ==='' ? 'choix de votre date': (plage.date| date)+ ';'+
+                  plage.plage.text }}
                 </div>
               </div>
               <div>
@@ -197,7 +198,7 @@
                 srcset=""
               />
               <div class="w-full flex justify-center text-center text-gray-500">
-                {{item.prestation[0].title}}
+                {{item.title || item.prestation[0].title|titlecase}}
               </div>
             </div>
           </div>

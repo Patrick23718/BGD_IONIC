@@ -110,7 +110,7 @@ export const environment = {
       sub: [],
     },
     {
-      title: 'crochet braids',
+      title: 'crochets braids',
       checked: false,
       sub: [],
     },
@@ -380,10 +380,15 @@ export const environment = {
   ],
   type: [
     {
+      title: 'BRAIDS',
       prestation: [
         {
           url: '2021-09-01T02-16-25.470ZBRAIDS COURTES.jpeg',
           title: 'BRAIDS COURTES',
+        },
+        {
+          url: '1.jpeg',
+          title: 'BRAIDS MI-LONGUES',
         },
         {
           url: '2021-09-01T02-16-38.897ZBRAIDS LONGUES.jpeg',
@@ -400,10 +405,15 @@ export const environment = {
       ],
     },
     {
+      title: 'CORNROWS',
       prestation: [
         {
           url: '2021-09-01T02-14-27.235ZCORNROWS.jpeg',
-          title: 'CORNROWS',
+          title: 'cornrows 2 tresses',
+        },
+        {
+          url: '4.jpeg',
+          title: 'cornrows 4 tresses',
         },
       ],
     },
@@ -424,10 +434,19 @@ export const environment = {
       ],
     },
     {
+      title: ' TISSAGES',
       prestation: [
         {
           url: '2021-09-01T02-19-19.084ZTISSAGE.jpeg',
-          title: 'TISSAGE',
+          title: 'TISSAGES FERMÉ',
+        },
+        {
+          url: '13.jpeg',
+          title: 'TISSAGES OUVERT',
+        },
+        {
+          url: '10.jpeg',
+          title: 'TISSAGES AVEC CLOSURE',
         },
       ],
     },
@@ -440,10 +459,15 @@ export const environment = {
       ],
     },
     {
+      title: 'VANILLES (TWISTS)',
       prestation: [
         {
           url: '2021-09-01T02-21-09.122ZVANILLES.jpeg',
-          title: 'VANILLES',
+          title: 'VANILLES (TWISTS) EFFET LONG',
+        },
+        {
+          url: '8.jpeg',
+          title: 'VANILLES (TWISTS) EFFET MI-LONG',
         },
       ],
     },
@@ -471,6 +495,72 @@ export const environment = {
         },
       ],
     },
+    {
+      prestation: [
+        {
+          url: '0.jpeg',
+          title: 'lace frontal',
+        },
+      ],
+    },
+    {
+      title: 'nattes collées',
+      prestation: [
+        {
+          url: '5.jpeg',
+          title: 'nattes collées sur cheveux naturelles',
+        },
+        {
+          url: '6.jpeg',
+          title: 'nattes collées avec mèches',
+        },
+      ],
+    },
+    {
+      title: 'crochets braids',
+      prestation: [
+        {
+          url: '9.jpeg',
+          title: 'crochets braids',
+        },
+      ],
+    },
+    {
+      title: 'brushing',
+      prestation: [
+        {
+          url: '11.jpeg',
+          title: 'brushing cheveux mi-long',
+        },
+      ],
+    },
+    {
+      title: 'chignon',
+      prestation: [
+        {
+          url: '14.jpeg',
+          title: 'chignon',
+        },
+      ],
+    },
+    // {
+    //   title: '',
+    //   prestation: [
+    //     {
+    //       url: '.jpeg',
+    //       title: '',
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: '',
+    //   prestation: [
+    //     {
+    //       url: '.jpeg',
+    //       title: '',
+    //     },
+    //   ],
+    // },
   ],
 };
 

@@ -10,23 +10,28 @@ import { CalendarMode, Step } from 'ionic2-calendar/calendar';
 })
 export class CalendarPage implements OnInit {
   eventSource = [];
-  items: [
+  plage: any;
+  items = [
     {
-      text: '08h:00 - 10h:00';
-      checked: false;
+      text: '9h - 12h',
+      plage: 1,
+      checked: false,
     },
     {
-      text: '10h:00 - 12h:00';
-      checked: false;
+      text: '12h - 15h',
+      plage: 2,
+      checked: false,
     },
     {
-      text: '12h:00 - 14h:00';
-      checked: false;
+      text: '15h - 18h',
+      plage: 3,
+      checked: false,
     },
     {
-      text: '14h:00 - 16h:00';
-      checked: false;
-    }
+      text: '18h - 21h',
+      plage: 4,
+      checked: false,
+    },
   ];
   viewTitle = '';
   calendar = {
@@ -49,11 +54,19 @@ export class CalendarPage implements OnInit {
   ngOnInit() {}
   ionViewWillEnter() {
     this.i = 0;
+    this.plage = null;
+    this.selectedDate = null;
   }
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss('');
+    if (this.selectedDate === null || this.plage === null) {
+    } else {
+      this.modalController.dismiss({
+        date: this.selectedDate,
+        plage: this.plage,
+      });
+    }
   }
 
   next() {
@@ -71,6 +84,13 @@ export class CalendarPage implements OnInit {
     this.myCal.slidePrev();
   }
 
+  getPlage(item: any) {
+    this.checked();
+    item.checked = true;
+    this.plage = item;
+    this.dismiss();
+  }
+
   onViewTitleChanged(event) {
     this.viewTitle = event;
   }
@@ -80,7 +100,7 @@ export class CalendarPage implements OnInit {
     console.log(this.calendar.currentDate);
     this.selectedDate = new Date(event.selectedTime);
     if (this.i !== 0) {
-      this.modalController.dismiss(this.selectedDate);
+      this.dismiss();
     }
     this.i += 1;
   }

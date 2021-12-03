@@ -22,6 +22,7 @@ export class HomePage implements OnInit {
   prestation = '';
   ville = '';
   date = '';
+  plage: any;
   type = environment.type;
   constructor(
     public alert: AlertController,
@@ -79,7 +80,8 @@ export class HomePage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       if (data.data !== '') {
-        this.date = data.data;
+        this.plage = data.data;
+        this.date = this.plage.plage.text;
       }
       console.log(data); // Here's your selected user!
     });
@@ -98,11 +100,14 @@ export class HomePage implements OnInit {
     });
     await modal.present();
 
-    // modal.onDidDismiss().then((data) => {
-    //   if (data.data !== '') {
-    //     this.prestation = data.data;
-    //   }
-    //   console.log(data); // Here's your selected user!
-    // });
+    modal.onDidDismiss().then((data) => {
+      if (data.data) {
+        this.prestation = data.data;
+        this.segment = false;
+      }
+      console.log(data); // Here's your selected user!
+    });
   }
+
+  search() {}
 }
