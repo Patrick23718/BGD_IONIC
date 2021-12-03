@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-validation-reservation',
@@ -9,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class ValidationReservationPage implements OnInit {
 
   focused : boolean;
-  constructor(private location : Location) {}
+  espece : boolean = false;
+  bancaire : boolean = false;
+  constructor(
+    private location : Location,
+    private router : Router
+    ) {}
 
   onBlur(event: any) {
     const value = event.target.value;
@@ -21,6 +27,15 @@ export class ValidationReservationPage implements OnInit {
 
   myBackButton(){
     this.location.back();
+  }
+
+  goTo(){
+    if(this.bancaire == true){
+      this.router.navigateByUrl('cliente/acceuil/profil-hotesse/validation-reservation/validation-bancaire')
+    }
+    else if (this.espece == true){
+      this.router.navigateByUrl('cliente/acceuil/profil-hotesse/validation-reservation/validation-espece');
+    }
   }
 
   ngOnInit() {

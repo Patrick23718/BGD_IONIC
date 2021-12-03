@@ -65,32 +65,39 @@
     </ion-card>
     <div class="justify-start my-3">choisis ton moyen de paiement</div>
     <ion-card class="shadow-none">
-      <div class="flex flex-row justify-between items-center border-2 rounded-lg w-full h-16 p-4" (click)="bancaire = true; espece = false">
-        <div class="flex flex-row items-center space-x-3">
-          <div class="">
-            <img src="assets/icon/carte_bancaire.svg" alt="">
-          </div>
-          <div class="text-base font-light">paiement Carte bancaire</div>
-        </div>
+      <div class="flex flex-row items-start border-2 rounded-lg p-4 space-x-3">
         <div class="">
-          <img [src]="bancaire ? 'assets/icon/check.svg':'assets/icon/checkbox.svg'" alt="">
+          <img src="assets/icon/carte_bancaire.svg" alt="">
+        </div>
+        <div class="w-full space-y-2">
+          <div class="flex flex-row justify-between">
+            <div class="">Carte bancaire : xxxx 2235</div>
+            <div class="" (click)="modificationBancaire()">
+              <img src="assets/icon/modif.svg" alt="">
+            </div>
+          </div>
+          <div class="flex flex-row justify-between">
+            <div class="">prix initial :</div>
+            <div class="">
+              40€
+            </div>
+          </div>
+          <div class="flex flex-row justify-between">
+            <div class="">réduction :</div>
+            <div class="">
+              5€
+            </div>
+          </div>
+          <div class="flex flex-row justify-between font-semibold">
+            <div class="">net à payer :</div>
+            <div class="">
+              35€
+            </div>
+          </div>  
         </div>
       </div>
     </ion-card>
-    <ion-card class="shadow-none">
-      <div class="flex flex-row justify-between items-center border-2 rounded-lg w-full h-16 p-4" (click)="espece=true; bancaire=false">
-        <div class="flex flex-row space-x-3 items-center">
-          <div class="">
-            <img src="assets/icon/espece.svg" alt="">
-          </div>
-          <div class="text-base font-light">paiement espèces</div>
-        </div>
-        <div class="">
-          <img [src]="espece ? 'assets/icon/check.svg':'assets/icon/checkbox.svg'" alt="">
-        </div>
-      </div>
-    </ion-card>
-    <ion-button fill="clear" expand="block" class="uppercase rounded-md text-white bg-primary" (click)="goTo()">valider</ion-button>
+    <ion-button fill="clear" expand="block" class="uppercase rounded-md text-white bg-primary">valider le paiement</ion-button>
   </form>
 </div>
 </ion-content>

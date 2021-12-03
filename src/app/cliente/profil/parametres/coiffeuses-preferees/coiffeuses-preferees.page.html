@@ -8,7 +8,7 @@
     <h1 class="text-2xl font-bold flex text-center">Mes coiffeuses préférées</h1>
   </div>
   <ion-item>
-    <div class="flex flex-row items-center my-5">
+    <div class="flex w-full flex-row items-center justify-between my-5 pr-5">
       <div class="flex flex-row space-x-2">
         <div class="rounded-md">
           <img src="assets/icon/sarah.svg" alt="" class="w-20 h-20">
@@ -23,13 +23,13 @@
           </div>
         </div>
       </div>
-      <ion-button fill="clear" slot="end" class="bg-primary-op flex justify-center h-10 rounded-md">
+      <ion-button fill="clear" class="bg-primary-op flex justify-center h-10 rounded-md">
         <img src="assets/icon/sms_pink.svg" alt="">
       </ion-button>
     </div>
   </ion-item>
   <div class="border-t-2 border-primary mb-5"></div>
-  <div class="space-y-5">
+  <div class="space-y-5 px-5 mb-10">
     <ion-segment
       (ionChange)="segmentChanged($event)"
       color="danger"
@@ -45,38 +45,25 @@
         <ion-label>DISPONIBILITÉS</ion-label>
       </ion-segment-button>
     </ion-segment>
-    <!-- <ion-list>
-      <ion-item>
-        <ion-label>dffd</ion-label>
-        <div class="bg-primary rounded-full flex justify-center items-center pl-2">
-          <ion-checkbox slot="end"></ion-checkbox>
-        </div>
-      </ion-item>
-      <ion-item>
-        <ion-label>dffd</ion-label>
-        <div class="bg-primary rounded-full flex justify-center items-center pl-2">
-          <ion-checkbox slot="end"></ion-checkbox>
-        </div>
-      </ion-item>
-      <ion-item>
-        <ion-label>dffd</ion-label>
-        <div class="bg-primary rounded-full flex justify-center items-center pl-2">
-          <ion-checkbox slot="end"></ion-checkbox>
-        </div>
-      </ion-item>
-    </ion-list> -->
-    <ion-card>
-      <div class="" *ngFor="let item of items">
-        <div class="">
-          <div class="">
-            <img src="assets/icon/outil.svg" alt="">
+    <div class="" *ngIf="segment === 'prestations'">
+      <ion-card class="shadow-none border-2 h-14 py-3" *ngFor="let item of items">
+        <div class="flex flex-row justify-between items-center px-5">
+          <div class="flex flex-row space-x-2 items-center">
+            <div class="">
+              <img src="assets/icon/outil.svg" alt="" class="">
+            </div>
+            <div class="text-lg">{{item.title}}</div>
           </div>
-          <div class="text-gray-600">{{item.title}}</div>
+          <div class="">
+            <img src="assets/icon/check.svg" alt="" class="">
+          </div>
+          <div class="">
+            <img src="assets/icon/checkbox.svg" alt="" class="">
+          </div>
         </div>
-        <div class="bg-primary rounded-full flex justify-center items-center pl-2">
-          <ion-checkbox slot="end"></ion-checkbox>
-        </div>
-      </div>
-    </ion-card>
+      </ion-card>
+      <ion-button fill="clear" expand="block" class="bg-primary text-white uppercase rounded-md">reserver cette prestation</ion-button>
+    </div>
+    <div class="" *ngIf="segment === 'disponibilites'"></div>
   </div>
 </ion-content>

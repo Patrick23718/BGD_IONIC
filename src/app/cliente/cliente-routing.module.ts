@@ -47,6 +47,14 @@ const routes: Routes = [
                     path: 'reservation-non-confirme',
                     loadChildren: () => import('./validation-reservation/reservation-non-confirme/reservation-non-confirme.module').then( m => m.ReservationNonConfirmePageModule)
                   },
+                  {
+                    path: 'validation-bancaire',
+                    loadChildren: () => import('./validation-bancaire/validation-bancaire.module').then( m => m.ValidationBancairePageModule)
+                  },
+                  {
+                    path: 'validation-espece',
+                    loadChildren: () => import('./validation-espece/validation-espece.module').then( m => m.ValidationEspecePageModule)
+                  },
                 ]
               },
             ]
@@ -143,6 +151,10 @@ const routes: Routes = [
   {
     path: 'notification',
     loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'validation-reservation2',
+    loadChildren: () => import('./validation-reservation2/validation-reservation2.module').then( m => m.ValidationReservation2PageModule)
   },
 ];
 

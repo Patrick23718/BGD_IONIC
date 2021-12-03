@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: ProfilPage
   },
+  {
+    path: 'mes-informations',
+    loadChildren: () => import('./mes-informations/mes-informations.module').then( m => m.MesInformationsPageModule)
+  },
   
 ];
 

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoiffeusesPrefereesPage implements OnInit {
 
-
+  segment = 'prestations';
   items = [
     {title:'Braids'},
     {title:'nattes collées'},
@@ -19,8 +19,9 @@ export class CoiffeusesPrefereesPage implements OnInit {
   ]
   constructor(public location : Location) { }
 
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
+  segmentChanged(event: any) {
+    this.segment = event.detail.value;
+    console.log(this.segment);
   }
 
   myBackButton(){

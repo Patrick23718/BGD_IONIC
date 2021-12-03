@@ -146,6 +146,14 @@ const routes: Routes = [
     path: 'donnees-bancaires',
     loadChildren: () => import('./shared/modals/donnees-bancaires/donnees-bancaires.module').then( m => m.DonneesBancairesPageModule)
   },
+  {
+    path: 'modif-bancaires',
+    loadChildren: () => import('./shared/modals/modif-bancaires/modif-bancaires.module').then( m => m.ModifBancairesPageModule)
+  },
+  {
+    path: 'ask-delete',
+    loadChildren: () => import('./shared/modals/ask-delete/ask-delete.module').then( m => m.AskDeletePageModule)
+  },
 
 
 

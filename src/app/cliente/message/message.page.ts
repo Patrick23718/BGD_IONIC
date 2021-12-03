@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagePage implements OnInit {
 
+  items = [
+    {},
+    {},
+    {},
+    {},
+  ]
   constructor(private location : Location) {}
 
   myBackButton(){
