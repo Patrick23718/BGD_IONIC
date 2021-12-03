@@ -1,0 +1,165 @@
+<ion-content>
+  <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+  >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">Questions fréquentes</h1>
+  </div>
+  <div class="">
+    <div class="flex justify-center">
+      <img src="assets/icon/questions.svg" alt="">
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div1 = !div1">
+        <ion-card-content class="text-lg pr-10">PROBLÈME DE PAIEMENT AVEC MA CARTE ? </ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div1" (click)="div1 = !div1">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div1" (click)="div1 = !div1">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5 space-y-5" *ngIf="div1">
+        <div class="">
+          Il peut y avoir plusieurs explications : Avez-vous vérifié la date de validité de votre 
+          carte de paiement visible sur sa face avant ?
+        </div>
+        <div class="">
+          Avez-vous vérifié le numéro de carte que vous avez saisi, le code de sécurité? (les 3 derniers 
+          numéros au dos de la carte) 
+        </div>
+        <div class="">
+          Avez-vous bien saisi votre nom tel qu'affiché sur votre carte? 
+        </div>
+        <div class="">
+          Si vous disposez d'une nouvelle carte, il est possible que votre banque vous demande de faire 
+          un premier retrait avant de pouvoir l'utiliser sur internet.
+        </div>
+        <div class="">
+          Peut-être avez-vous atteint votre plafond de paiement. Dans ce cas, nous vous invitons à 
+          demander à votre banque de le relever.
+        </div>
+        <div class="">3D SECURE+</div>
+        <div class="">
+          <p>
+            Il arrive parfois qu'un contrôle de la transaction soit réalisé par votre banque à l'aide du 
+            3D Secure. Lorsque cela arrive, votre banque affiche une fenêtre de vérification permettant 
+            le contrôle du 3D Secure. En cas de problème de chargement ou d'affichage, nous n'avons 
+            malheureusement pas intervenir.
+          </p>
+          <p>
+            Si vous ne recevez pas le SMS de vérification, assurez-vous que votre banque 
+            l'adresse bien au bon numéro de téléphone. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div2 = !div2">
+        <ion-card-content class="text-lg pr-10">AJOUTER UN CODE DE RÉDUCTION ?</ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div2" (click)="div2 = !div2">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div2" (click)="div2 = !div2">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5" *ngIf="div2">
+        Vous avez un code de réduction et vous aimeriez l’utiliser pour votre prochain rendez-vous ?
+        Il suffit de réserver la prestation de votre choix sur notre plateforme. 
+        Une fois arrivé sur la page du paiement, vous trouverez une mention "j'ai un code promo"
+      </div>
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div3 = !div3">
+        <ion-card-content class="text-lg pr-10">VOUS SOUHAITEZ ANNULER VOTRE RÉSERVATION ? </ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div3" (click)="div3 = !div3">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div3" (click)="div3 = !div3">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5 space-y-5" *ngIf="div3">
+        <div class="">
+          Vous avez la possibilité d'annuler gratuitement votre réservation jusqu'à 24h avant l'heure du rendez-vous.
+          Il vous suffit pour cela de nous contacter en nous envoyons un message depuis NOUS CONTACTER dans votre compte.
+        </div>
+        <div class="">
+          Après annulation de votre réservation, vous recevrez votre remboursement entre 3 et 5 jours.
+        </div>
+      </div>
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div4 = !div4">
+        <ion-card-content class="text-lg pr-10">QUAND AVEZ-VOUS DROIT À UN REMBOURSEMENT ?</ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div4" (click)="div4 = !div4">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div4" (click)="div4 = !div4">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5 space-y-5" *ngIf="div4">
+        <div class="">
+          Nous vous permettons d'annuler votre réservation jusqu'à 24h avant votre rendez-vous. 
+          Par ailleurs, un remboursement est possible dans les conditions suivantes :
+        </div>
+        <div class="">La coiffeuse a annulée ou a un empêchement de dernière minute.</div>
+        <div class="">Si la coiffeuse a annulé votre rendez-vous à l'avance et par téléphone / SMS.</div>
+        <div class="">Si vous avez annulée 24h avant le début de la prestation.</div>
+      </div>
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div5 = !div5">
+        <ion-card-content class="text-lg pr-10">METTRE MES COIFFEUSES PRÉFÉRÉES EN FAVORIS :</ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div5" (click)="div5 = !div5">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div5" (click)="div5 = !div5">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5" *ngIf="div5">
+        <div>
+          Pour mettre vos coiffeuses préférées en favoris, il vous suffit de cliquer sur le cœur présent 
+          sur le profil de la coiffeuse. Et pour les retrouver dans votre compte, il vous suffit de vous 
+          rendre dans votre compte, puis de cliquer sur paramètres puis sur mes coiffeuses préférées.
+        </div>
+      </div>
+    </div>
+    <div class="relative">
+      <ion-card class="shadow-none border-2  flex items-center" (click)="div6 = !div6">
+        <ion-card-content class="text-lg pr-10">PARRAINER ET INVITER DES AMIS</ion-card-content>
+      </ion-card>
+      <div class="absolute top-5 right-8">
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="!div6" (click)="div6 = !div6">
+          <img src="assets/icon/arrow_forward.svg" alt="">
+        </div>
+        <div class="rounded-full bg-primary w-8 h-8 flex justify-center items-center" *ngIf="div6" (click)="div6 = !div6">
+          <img src="assets/icon/arrow_down.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5 space-y-5" *ngIf="div6">
+        <div class="">
+          Vous souhaiter parrainer un proche et obtenir 5€ de remise pour vous et votre filleul ? Pour cela rien de plus simple : 
+        </div>
+        <div class="">
+          Rendez vous dans mon compte, puis sélectionnez Invitez des amies et suivez le processus.
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -5,7 +5,7 @@
     <ion-button (click)="myBackButton()" fill="clear">
       <img src="assets/icon/back.svg" alt="" srcset="" />
     </ion-button>
-    <h1 class="text-2xl font-bold whitespace-nowrap">Mon planning</h1>
+    <h1 class="text-2xl font-bold whitespace-nowrap">Mes disponibilités</h1>
     <ion-button fill="clear">
       <img src="assets/icon/Bell.svg" alt="" srcset="" />
     </ion-button>
@@ -14,7 +14,8 @@
 </ion-header>
 
 <ion-content>
-  <div class="px-5 pb-5">
+  <div *ngIf="uid !== '1'">
+    <!-- <div class="px-5 pb-5">
     <ion-segment
       (ionChange)="segmentChanged($event)"
       color="danger"
@@ -30,67 +31,179 @@
         <ion-label>DISPONIBILITÉS</ion-label>
       </ion-segment-button>
     </ion-segment>
-  </div>
+  </div> -->
 
-  <div *ngIf="segment === 'reservations'">
-    <div class="flex justify-between items-center px-10 pb-8 text-2xl">
-      <ion-icon name="chevron-back-outline" (click)="back()"></ion-icon
-      ><span class="font-medium text-gray-500">{{ viewTitle }}</span
-      ><ion-icon name="chevron-forward-outline" (click)="next()"></ion-icon>
-    </div>
-    <div class="ion-padding p-1">
-      <calendar
-        class="border-none"
-        [eventSource]="eventSource"
-        [locale]="calendar.locale"
-        [currentDate]="calendar.currentDate"
-        (onTitleChanged)="onViewTitleChanged($event)"
-        (onTimeSelected)="onChange($event)"
-      ></calendar>
+    <div>
+      <div class="flex justify-between items-center px-10 pb-8 text-2xl">
+        <ion-icon name="chevron-back-outline" (click)="back()"></ion-icon
+        ><span class="font-medium text-gray-500">{{ viewTitle }}</span
+        ><ion-icon name="chevron-forward-outline" (click)="next()"></ion-icon>
+      </div>
+      <div class="ion-padding p-1">
+        <calendar
+          class="border-none"
+          [eventSource]="eventSource"
+          [locale]="calendar.locale"
+          [currentDate]="calendar.currentDate"
+          (onTitleChanged)="onViewTitleChanged($event)"
+          (onTimeSelected)="onChange($event)"
+        ></calendar>
 
-      <!-- <ion-calendar [(ngModel)]="startDate" [format]="'YYYY-MM-DD'" [options]="optionsRange">
+        <!-- <ion-calendar [(ngModel)]="startDate" [format]="'YYYY-MM-DD'" [options]="optionsRange">
   </ion-calendar> -->
+      </div>
+      <div class="px-5 text-gray-600 pb-5" *ngIf="test!==null">
+        <div class="grid grid-cols-2 gap-4">
+          <ion-card
+            button="true"
+            class="rounded-lg"
+            *ngFor="let item of test.plage"
+            (click)="item.checked = !item.checked"
+          >
+            <div
+              class="
+                flex flex-col
+                gap
+                items-center
+                py-3
+                px-1
+                border-2
+                rounded-lg
+              "
+              [ngClass]="item.checked?'border-primary': ''"
+              *ngIf="item.plage === 1"
+            >
+              <ion-icon
+                [color]="item.checked? 'primary':''"
+                name="cafe-outline"
+                class="text-7xl"
+              ></ion-icon>
+              <ion-text [color]="item.checked? 'primary':''"
+                ><p>Matin</p></ion-text
+              >
+              <ion-text><p>9h - 12h</p></ion-text>
+              <ion-text
+                ><p class="text-xs text-gray-400 text-center pt-2">
+                  Cette semaine uniquement
+                </p></ion-text
+              >
+            </div>
+            <div
+              class="
+                flex flex-col
+                gap
+                items-center
+                py-3
+                px-1
+                border-2
+                rounded-lg
+              "
+              [ngClass]="item.checked?'border-primary': ''"
+              *ngIf="item.plage === 2"
+            >
+              <ion-icon
+                [color]="item.checked? 'primary':''"
+                name="time-outline"
+                class="text-7xl"
+              ></ion-icon>
+              <ion-text [color]="item.checked? 'primary':''"
+                ><p>Midi</p></ion-text
+              >
+              <ion-text><p>12h - 15h</p></ion-text>
+              <ion-text
+                ><p class="text-xs text-gray-400 text-center pt-2">
+                  Cette semaine uniquement
+                </p></ion-text
+              >
+            </div>
+
+            <div
+              class="
+                flex flex-col
+                gap
+                items-center
+                py-3
+                px-1
+                border-2
+                rounded-lg
+              "
+              [ngClass]="item.checked?'border-primary': ''"
+              *ngIf="item.plage === 3"
+            >
+              <ion-icon
+                [color]="item.checked? 'primary':''"
+                name="sunny-outline"
+                class="text-7xl"
+              ></ion-icon>
+              <ion-text [color]="item.checked? 'primary':''"
+                ><p>Après-midi</p></ion-text
+              >
+              <ion-text><p>15h - 18h</p></ion-text>
+              <ion-text
+                ><p class="text-xs text-gray-400 text-center pt-2">
+                  Cette semaine uniquement
+                </p></ion-text
+              >
+            </div>
+
+            <div
+              class="
+                flex flex-col
+                gap
+                items-center
+                py-3
+                px-1
+                border-2
+                rounded-lg
+              "
+              [ngClass]="item.checked?'border-primary': ''"
+              *ngIf="item.plage === 4"
+            >
+              <ion-icon
+                [color]="item.checked? 'primary':''"
+                name="moon-outline"
+                class="text-7xl"
+              ></ion-icon>
+              <ion-text [color]="item.checked? 'primary':''"
+                ><p>Soirée</p></ion-text
+              >
+              <ion-text><p>18h - 21h</p></ion-text>
+              <ion-text
+                ><p class="text-xs text-gray-400 text-center pt-2">
+                  Cette semaine uniquement
+                </p></ion-text
+              >
+            </div>
+          </ion-card>
+        </div>
+
+        <ion-card class="rounded-lg">
+          <div class="grid grid-cols-2 gap-4 p-2 font-semibold">
+            <div
+              class="
+                border border-primary
+                bg-transparent
+                py-2
+                text-center
+                rounded-lg
+                text-primary
+              "
+            >
+              <button
+                class="border border-primary bg-transparent py-1 text-center"
+                (click)="cancel()"
+              >
+                Annuler
+              </button>
+            </div>
+            <div class="bg-primary py-2 text-center rounded-lg text-white">
+              <button class="text-center py-1" (click)="addPlanning()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+        </ion-card>
+      </div>
     </div>
-    <div class="px-5 text-gray-600 pb-5">
-      <div class="text-lg font-medium pb-5">vos rendez-vous</div>
-      <p>vous n’avez pas de rendez-vous ce jour</p>
-    </div>
-  </div>
-
-  <div *ngIf="segment === 'disponibilites'" class="text-lg">
-    <ion-list>
-      <ion-item>
-        <ion-label>{{selectedDate|date:'fullDate'}} </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>08h - 12h</ion-label>
-        <ion-toggle
-          [checked]="planning.plage1"
-          (click)="plage1($event)"
-          mode="ios"
-          color="success"
-        ></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>12h - 18h</ion-label>
-        <ion-toggle
-          mode="ios"
-          [checked]="planning.plage2"
-          (click)="plage2($event)"
-          color="success"
-        ></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>18h - 22h</ion-label>
-        <ion-toggle
-          [checked]="planning.plage3"
-          (click)="plage3($event)"
-          mode="ios"
-          color="success"
-        ></ion-toggle>
-      </ion-item>
-    </ion-list>
   </div>
 </ion-content>

@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="flex h-full flex-col justify-center items-center w-full">
+    <ion-slides pager="true" class="w-full">
+      <ion-slide
+        class="block px-2 w-full mb-5 relative"
+        *ngFor="let item of resa"
+      >
+        <img [src]="'/assets/'+item.url" class="rounded-lg w-5/6" />
+
+        <div
+          class="
+            w-full
+            justify-center
+            slider-text
+            text-white
+            font-bold
+            text-center
+            absolute
+            bottom-20
+          "
+        >
+          <p>{{item.title}}</p>
+        </div>
+        &nbsp;<br />
+      </ion-slide>
+    </ion-slides>
+    <ion-button expand="block"
+      ><span class="font-semibold">Trouvez votre coiffeuse</span></ion-button
+    >
+  </div>
+</ion-content>

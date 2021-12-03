@@ -12,10 +12,10 @@ export class CreermoncomptePage implements OnInit {
     private localStorage: LocalStorageService,
     private navCtrl: NavController
   ) {
-    const init = this.localStorage.get('init');
-    if (init === '1') {
-      this.navCtrl.navigateForward('coiffeuse/home');
-    }
+    // const init = this.localStorage.get('init');
+    // if (init === '1') {
+    //   this.navCtrl.navigateForward('coiffeuse/home');
+    // }
   }
 
   ngOnInit() {}

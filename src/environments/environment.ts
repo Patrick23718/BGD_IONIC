@@ -1,7 +1,6 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
   serverUrl: 'http://93.90.207.75:8082',
@@ -365,6 +364,112 @@ export const environment = {
       title: 'pose perruque',
       checked: false,
       sub: [],
+    },
+  ],
+  villes: [
+    {
+      title: 'nantes',
+      checked: false,
+      sub: [],
+    },
+    {
+      title: 'rennes',
+      checked: false,
+      sub: [],
+    },
+  ],
+  type: [
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-16-25.470ZBRAIDS COURTES.jpeg',
+          title: 'BRAIDS COURTES',
+        },
+        {
+          url: '2021-09-01T02-16-38.897ZBRAIDS LONGUES.jpeg',
+          title: 'BRAIDS LONGUES',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-12-49.822ZFAUSSES LOCKS.jpeg',
+          title: 'FAUSSES LOCKS',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-14-27.235ZCORNROWS.jpeg',
+          title: 'CORNROWS',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-15-32.053ZBANTU KNOTS.jpeg',
+          title: 'BANTU KNOTS',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-17-27.409ZPIQUÉ LÂCHÉ.jpeg',
+          title: 'PIQUÉ LÂCHÉ',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-19-19.084ZTISSAGE.jpeg',
+          title: 'TISSAGE',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-19-46.982ZLISSAGE.jpeg',
+          title: 'LISSAGE',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-21-09.122ZVANILLES.jpeg',
+          title: 'VANILLES',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-21-34.891ZFULANI BRAIDS.jpeg',
+          title: 'FULANI BRAIDS',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-22-14.552ZSENEGALESE TWISTS.jpeg',
+          title: 'SENEGALESE TWISTS',
+        },
+      ],
+    },
+    {
+      prestation: [
+        {
+          url: '2021-09-01T02-22-48.140ZCOUPES.jpeg',
+          title: 'COUPES',
+        },
+      ],
     },
   ],
 };

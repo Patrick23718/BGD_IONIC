@@ -1,0 +1,94 @@
+<ion-content>
+  <div class="space-y-5">
+    <div class="flex flex-row justify-start items-center py-5 text-gray-600">
+      <ion-button (click)="myBackButton()" color="danger" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" class="w-10 h-10"/>
+      </ion-button>
+      <div class="text-2xl font-bold text-center whitespace-nowrap">résultats de la recherche</div>
+    </div>
+    <div class="flex flex-row space-x-5 px-5">
+      <div class="bg-tertiary flex flex-row items-center w-48 rounded-md px-2 space-x-2 py-3">
+        <div class="">Paris, Yvelines (78)</div>
+        <div class="pl-2">
+          <img src="assets/icon/arrow_empty.svg" alt="">
+        </div>
+      </div>
+      <div class="bg-tertiary flex flex-row items-center w-32 rounded-md px-2 space-x-2 py-3">
+        <div class="">
+          <img src="assets/icon/calendar.svg" alt="">
+        </div>
+        <div class="">11/03/2020</div>
+      </div>
+    </div>
+    <div class="px-5 space-y-5">
+      <div class="border-2 grid-cols-2 grid gap-2 px-2 py-2 rounded-md">
+        <div class="">
+          <img src="assets/icon/sarah.svg" alt="">
+        </div>
+        <div class="flex flex-col space-y-5 py-2">
+          <div class="flex flex-row space-x-10">
+            <div class="uppercase">sarah</div>
+            <div class="bg-secondary-op whitespace-nowrap text-center w-14">40 €</div>
+          </div>
+          <div class="flex flex-row space-x-14">
+            <div class="flex flex-row space-x-2">
+              <div class="">
+                <img src="assets/icon/localisation.svg" alt="">
+              </div>
+              <div class="">Nantes</div>
+            </div>
+            <ion class="">
+              <img src="assets/icon/icon1.svg" alt="">
+            </ion>
+          </div>
+          <div class="flex flex-row space-x-14"> 
+            <div class="whitespace-nowrap">7 avis (5/5)</div>
+            <ion class="">
+              <img src="assets/icon/icon2.svg" alt="">
+            </ion>
+          </div>
+        </div>
+        <div class="bg-primary rounded-md flex justify-center">
+          <button class="text-white py-2">voir le profil</button>
+        </div>
+        <div class="bg-white rounded-md border-2 border-primary flex justify-center">
+          <button class="text-primary py-2">contactez-la</button>
+        </div>
+      </div>
+      <div class="border-2 grid-cols-2 grid gap-2 px-2 py-2 rounded-md">
+        <div class="">
+          <img src="assets/icon/camille.svg" alt="">
+        </div>
+        <div class="flex flex-col space-y-5 py-2">
+          <div class="flex flex-row space-x-10">
+            <div class="uppercase">camille</div>
+            <div class="bg-secondary-op whitespace-nowrap text-center w-14">60 €</div>
+          </div>
+          <div class="flex flex-row space-x-14">
+            <div class="flex flex-row space-x-2">
+              <div class="">
+                <img src="assets/icon/localisation.svg" alt="">
+              </div>
+              <div class="">Nantes</div>
+            </div>
+            <ion class="">
+              <img src="assets/icon/icon1.svg" alt="">
+            </ion>
+          </div>
+          <div class="flex flex-row space-x-14"> 
+            <div class="whitespace-nowrap">7 avis (5/5)</div>
+            <ion class="">
+              <img src="assets/icon/icon2.svg" alt="">
+            </ion>
+          </div>
+        </div>
+        <div class="bg-primary rounded-md flex justify-center" routerLink="../profil-hotesse">
+          <button class="text-white py-2">voir le profil</button>
+        </div>
+        <div class="bg-white rounded-md border-2 border-primary flex justify-center">
+          <button class="text-primary py-2">contactez-la</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

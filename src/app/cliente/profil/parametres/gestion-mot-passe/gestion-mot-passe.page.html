@@ -1,0 +1,52 @@
+<ion-content>
+  <div class="pt-2">
+    <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+    >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">Gestion du mot passe</h1>
+    </div>
+    <div class="">
+      <form action="" class="px-5">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Mot de passe actuel</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/eye.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Nouveau mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/invisible_eye.svg" alt="">
+          </div>
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Confirmer mot de passe</label>
+          <input
+            type="password"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+          <div class="bg-primary absolute rounded-full top-3 right-3">
+            <img src="assets/icon/invisible_eye.svg" alt="">
+          </div>
+        </div>
+        <div class="bg-primary flex justify-center rounded-md">
+          <ion-button fill="clear" class="text-white uppercase">enregistrer</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

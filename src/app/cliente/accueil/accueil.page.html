@@ -1,0 +1,136 @@
+<ion-content>
+  <div class="">
+    <div class="bg-white mb-10 space-y-10">
+      <div class="flex justify-end">
+        <ion-button fill="clear" class="">
+          <img src="assets/icon/Bell.svg" alt="" />
+        </ion-button>
+      </div>
+      <div class="flex flex-col items-center space-y-10">
+        <div class="">
+          <img src="assets/icon/bigoodee.svg" alt="" class="" />
+        </div>
+        <div class="text-2xl font-bold">Bonjour Louise,</div>
+      </div>
+    </div>
+    <div class="bg-primary px-2 py-3">
+      <div class="text-center text-2xl text-white py-2">
+        Decouvrez et reservez la coiffeuse qui vous correspond !
+      </div>
+      <div class="bg-white px-2 py-4 rounded-md space-y-5">
+        <div class="gap-4 grid grid-cols-2">
+          <div
+            class="flex justify-center rounded-md py-2"
+            [ngClass]="btn ? 'bg-primary-op':'bg-primary'"
+            (click)="part1=true; part2=false; btn=true"
+          >
+            <button class="text-white">Je reserve ma coiffeuse</button>
+          </div>
+          <div
+            class="flex justify-center rounded-md py-2"
+            [ngClass]="btn ? 'bg-primary':'bg-primary-op'"
+            (click)="part2=true; part1=false; btn=false"
+          >
+            <button class="text-white">Je découvre les coiffures</button>
+          </div>
+        </div>
+        <div class="" *ngIf="part1">
+          <form action="">
+            <div class="form-field">
+              <label [ngClass]="focused ? 'label-focused' : ''"
+                >choix de la ville</label
+              >
+              <input
+                type="text"
+                (focus)="focused = true"
+                (blur)="onBlur($event)"
+              />
+              <div class="absolute top-5 right-3">
+                <img src="assets/icon/arrow_empty.svg" alt="" class="w-4" />
+              </div>
+              <div class="absolute top-3 left-3">
+                <img src="assets/icon/localisation.svg" alt="" class="w-6" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label [ngClass]="focused ? 'label-focused' : ''"
+                >type de prestation</label
+              >
+              <input
+                type="text"
+                (focus)="focused = true"
+                (blur)="onBlur($event)"
+              />
+              <div class="absolute top-5 right-3">
+                <img src="assets/icon/arrow_empty.svg" alt="" class="w-4" />
+              </div>
+              <div class="absolute top-3 left-3">
+                <img src="assets/icon/outil.svg" alt="" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label [ngClass]="focused ? 'label-focused' : ''"
+                >choix de votre date</label
+              >
+              <input
+                type="text"
+                (focus)="focused = true"
+                (blur)="onBlur($event)"
+              />
+              <div class="absolute top-5 right-3">
+                <img src="assets/icon/arrow_empty.svg" alt="" class="w-4" />
+              </div>
+              <div class="absolute top-2 left-3">
+                <img src="assets/icon/calendar2.svg" alt="" />
+              </div>
+            </div>
+            <div
+              class="
+                flex
+                justify-center
+                bg-primary
+                rounded-md
+                h-12
+                cursor-pointer
+              "
+              routerLink="../resultat-recherche"
+            >
+              <button class="uppercase text-white">rechercher</button>
+            </div>
+          </form>
+        </div>
+        <div class="bg-white px-2 py-4 rounded-md" *ngIf="part2">
+          <div class="grid grid-cols-2 gap-4 place-items-center">
+            <div
+              class="flex flex-col items-start cursor-pointer"
+              (click)="slide()"
+            >
+              <div class="w-32 cursor-pointer">
+                <img src="assets/icon/img1.svg" alt="" class="w-full" />
+              </div>
+              <div class="">Tresses ( braids)</div>
+            </div>
+            <div class="flex flex-col items-start">
+              <div class="w-32 cursor-pointer">
+                <img src="assets/icon/img2.svg" alt="" class="w-full" />
+              </div>
+              <div class="">Vanilles ( braids)</div>
+            </div>
+            <div class="flex flex-col items-start">
+              <div class="w-32 cursor-pointer">
+                <img src="assets/icon/img3.svg" alt="" class="w-full" />
+              </div>
+              <div class="">Tresses ( braids)</div>
+            </div>
+            <div class="flex flex-col items-start">
+              <div class="w-32 cursor-pointer">
+                <img src="assets/icon/img4.svg" alt="" class="w-full" />
+              </div>
+              <div class="">Vanilles ( braids)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

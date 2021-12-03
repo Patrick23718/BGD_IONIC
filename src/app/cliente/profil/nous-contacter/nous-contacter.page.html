@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="">
+    <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+    >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">Nous contacter</h1>
+    </div>
+    <form action="" class="px-5">
+      <div class="form-field">
+        <label [ngClass]="focused ? 'label-focused' : ''">objet</label>
+        <input
+          type="text"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+        />
+      </div>
+      <div class="form-fields h-32">
+        <label [ngClass]="focused ? 'label-focused' : ''">commentaire</label>
+        <textarea name="" id="" cols="30" rows="50" (focus)="focused = true" (blur)="onBlur($event)"></textarea>
+      </div>
+      <div class="bg-primary rounded-md flex justify-center mt-10">
+        <ion-button fill="clear" class="uppercase text-white">envoyer</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

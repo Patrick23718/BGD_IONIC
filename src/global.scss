@@ -77,6 +77,34 @@
   padding: 15px;
 }
 
+.imageModal {
+  background: transparent !important;
+  --max-height: 450px;
+  --border-radius: 10px;
+  padding: 15px;
+}
+.modal-wrapper {
+  background: transparent !important;
+}
+
+.invitation-css {
+  --height: 200px;
+  --border-radius: 10px;
+  padding: 25px;
+}
+
+.bancaire-css {
+  --height: 450px;
+  --border-radius: 10px;
+  padding: 25px;
+}
+
+.ask-css {
+  --height: 200px;
+  --border-radius: 10px;
+  padding: 25px;
+}
+
 // .swiper-pagination-bullets {
 //   bottom: -20px !important;
 // }

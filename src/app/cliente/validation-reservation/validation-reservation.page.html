@@ -1,0 +1,100 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="dismiss()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">validation de réservation</h1>
+    <ion-button fill="clear"> </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+<div class="">
+  <div class="flex justify-between items-start px-5">
+    <div class="">
+      <img src="assets/icon/sarah.svg" alt="">
+    </div>
+    <div class="flex flex-col space-y-8">
+      <div class="">Sarah</div>
+      <div class="flex flex-row space-x-2">
+        <img src="assets/icon/localisation.svg" alt="">
+        <div class="">Nantes</div>
+      </div>
+      <div class="">7 avis (5/5)</div>
+    </div>
+    <div class="text-secondary bg-primary-op rounded-md w-20 text-center items-start text-lg h-10 pt-2">40 €</div>
+  </div>
+  <div class="px-5 my-5 space-y-5">
+    <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row space-x-4 items-center">
+        <div class="">
+          <img src="assets/icon/calendar2.svg" alt="">
+        </div>
+        <div class="flex flex-col">
+          <div class="">Le mardi 11 mars 2021</div>
+          <div class="">entre 10h:00 - 12h:00</div>
+        </div>
+      </div>
+      <ion-button fill="clear" class="bg-primary-op text-primary rounded-md uppercase">modifier</ion-button>
+    </div>
+    <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row space-x-4 items-center">
+        <div class="">
+          <img src="assets/icon/outil.svg" alt="">
+        </div>
+        <div class="flex flex-col">
+          <div class="">Le mardi 11 mars 2021</div>
+          <div class="">entre 10h:00 - 12h:00</div>
+        </div>
+      </div>
+      <ion-button fill="clear" class="bg-primary-op text-primary rounded-md uppercase">modifier</ion-button>
+    </div>
+  </div>
+  <form action="" class="px-5">
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">code de réduction</label>
+      <input
+        type="password"
+        (focus)="focused = true"
+        (blur)="onBlur($event)"
+      />
+      <div class="bg-primary absolute rounded-full top-2 right-3">
+        <img src="assets/icon/send.svg" alt="" class="w-7">
+      </div>
+      <div class="absolute top-4 left-4">
+        <img src="assets/icon/coupon.svg" alt="">
+      </div>
+    </div>
+    <div class="justify-start my-3">choisis ton moyen de paiement</div>
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">paiement Carte bancaire</label>
+      <input
+        type="password"
+        (focus)="focused = true"
+        (blur)="onBlur($event)"
+      />
+      <div class="bg-primary absolute rounded-full top-3 right-3">
+        <img src="assets/icon/checkbox.svg" alt="">
+      </div>
+      <div class="absolute top-4 left-4">
+        <img src="assets/icon/carte_bancaire.svg" alt="">
+      </div>
+    </div>
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">paiement espèces</label>
+      <input
+        type="password"
+        (focus)="focused = true"
+        (blur)="onBlur($event)"
+      />
+      <div class="bg-primary absolute rounded-full top-3 right-3">
+        <img src="assets/icon/checkbox.svg" alt="">
+      </div>
+      <div class="absolute top-4 left-4">
+        <img src="assets/icon/espece.svg" alt="">
+      </div>
+    </div>
+    <ion-button fill="clear" expand="block" class="uppercase rounded-md text-white bg-primary">valider</ion-button>
+  </form>
+</div>
+</ion-content>

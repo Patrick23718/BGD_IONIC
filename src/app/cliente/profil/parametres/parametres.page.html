@@ -1,0 +1,40 @@
+<ion-content class="">
+  <div
+      class="flex flex-row items-center space-x-12 px- py-5 text-gray-600"
+  >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center whitespace-nowrap">Paramètres</h1>
+  </div>
+  <div class="flex flex-col gap-4 px-3 text-gray-600 pt-10 pb-5">
+    <ion-card
+      class="p-0 m-0 rounded-lg shadow-sm"
+      button="true"
+      *ngFor="let item of items"
+      [routerLink]="item.to"
+      
+    >
+      <div
+        class="
+          border border-gray-400
+          rounded-lg
+          flex flex-row
+          justify-between
+          pr-5
+          h-14
+        "
+      >
+        <div class="flex flex-row items-center">
+          <div class="h-full bg-secondary w-3"></div>
+          <div class="text-lg pl-2 whitespace-nowrap">{{item.title}}</div>
+        </div>
+        <div class="flex justify-center items-center">
+          <div class="h-10 w-10 py-3 pl-4 rounded-full bg-primary">
+            <img src="assets/icon/right.svg" alt="" srcset="" />
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

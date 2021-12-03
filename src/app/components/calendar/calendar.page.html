@@ -1,0 +1,45 @@
+<ion-content>
+  <div>
+    <div
+      class="
+        text-gray-500
+        font-bold
+        flex
+        justify-center
+        text-center text-2xl
+        py-5
+      "
+    >
+      Choix de la date
+    </div>
+    <div class="flex justify-between items-center px-10 pb-8 text-2xl">
+      <ion-icon name="chevron-back-outline" (click)="back()"></ion-icon
+      ><span class="font-medium text-gray-500">{{ viewTitle }}</span
+      ><ion-icon name="chevron-forward-outline" (click)="next()"></ion-icon>
+    </div>
+    <div class="ion-padding p-1">
+      <calendar
+        class="border-none"
+        [eventSource]="eventSource"
+        [locale]="calendar.locale"
+        [currentDate]="calendar.currentDate"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onChange($event)"
+      ></calendar>
+    </div>
+
+    <hr />
+
+    <div>
+      <div>choisis ta plage horaire</div>
+      <div class="grid grid-co">
+        <ion-card button="true">
+          <div class="rounded py-2 text-gray-500" *ngFor="let item of items">
+            {{item.text}}
+          </div>
+        </ion-card>
+      </div>
+      te
+    </div>
+  </div>
+</ion-content>

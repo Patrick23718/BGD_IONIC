@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<ion-content>
   <div class="flex flex-row items-center justify-between w-full">
     <ion-button fill="clear"></ion-button>
     <div class="text-gray-600 text-xl">Liste des prestations</div>
@@ -6,15 +6,6 @@
       <img src="assets/icon/close.svg" alt="" srcset="" />
     </ion-button>
   </div>
-  <!-- <ion-toolbar>
-    <ion-title>prestation-test</ion-title>
-    <ion-tab-button slot="end" (click)="dismiss()">
-      <img src="assets/icon/close.svg" alt="" srcset="" />
-    </ion-tab-button>
-  </ion-toolbar> -->
-</ion-header>
-
-<ion-content>
   <div class="flex flex-col gap-4 p-5">
     <div *ngFor="let item of prestations">
       <ion-card

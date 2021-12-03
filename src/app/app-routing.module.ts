@@ -41,13 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'onboard',
-    canActivate: [InitGuard],
+    // canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/onboard/onboard.module').then((m) => m.OnboardPageModule),
   },
   {
     path: 'creermoncompte',
-    canActivate: [InitGuard],
+    // canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/creermoncompte/creermoncompte.module').then(
         (m) => m.CreermoncomptePageModule
@@ -55,6 +55,7 @@ const routes: Routes = [
   },
   {
     path: 'etrecoiffeuse',
+    canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/etrecoiffeuse/etrecoiffeuse.module').then(
         (m) => m.EtrecoiffeusePageModule
@@ -169,6 +170,29 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () =>
       import('./splash/splash.module').then((m) => m.SplashPageModule),
+  },
+  {
+    path: 'ville',
+    loadChildren: () =>
+      import('./components/ville/ville.module').then((m) => m.VillePageModule),
+  },
+  {
+    path: 'calendar',
+    loadChildren: () =>
+      import('./components/calendar/calendar.module').then(
+        (m) => m.CalendarPageModule
+      ),
+  },
+  {
+    path: 'ville-add',
+    loadChildren: () =>
+      import('./components/ville-add/ville-add.module').then(
+        (m) => m.VilleAddPageModule
+      ),
+  },
+  {
+    path: 'resa',
+    loadChildren: () => import('./shared/modals/resa/resa.module').then( m => m.ResaPageModule)
   },
 ];
 @NgModule({

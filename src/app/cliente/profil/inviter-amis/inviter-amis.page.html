@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="">
+    <div
+      class="flex flex-row items-center mb-10 text-gray-600"
+    >
+      <ion-button (click)="myBackButton()" fill="clear">
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </ion-button>
+      <h1 class="text-2xl font-bold flex text-center">Invites tes amies</h1>
+    </div>
+    <div class="flex flex-col items-center space-y-10">
+      <div class="">
+        <img src="assets/icon/inviter_amis.svg" alt="">
+      </div>
+      <div class="text-center">Gagnes 5€  quand tes amis réservent leurs premières prestation.</div>
+    </div>
+    <div class="px-6 my-20">
+      <div class="bg-primary flex justify-center rounded-md" (click)="openInvitation()">
+        <ion-button fill="clear" class="uppercase text-white">invites tes amies</ion-button>
+      </div>
+    </div>
+    <div class="text-center">
+      offre valable pour chaque nouveau membre que tu invites. partages vite cette bonne nouvelle.
+    </div>
+  </div>
+</ion-content>
