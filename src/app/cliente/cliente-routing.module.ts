@@ -2,6 +2,7 @@
 import { importType } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SearchService } from '../shared/resolvers/search.service';
 
 import { ClientePage } from './cliente.page';
 
@@ -24,14 +25,17 @@ const routes: Routes = [
               import('./home/home.module').then((m) => m.HomePageModule),
           },
           {
-            path: 'resultat-recherche',
+            path: 'resultat-recherche/:ville/:prestation/:date/:plage',
+            resolve: {
+              search: SearchService,
+            },
             loadChildren: () =>
               import('./resultat-recherche/resultat-recherche.module').then(
                 (m) => m.ResultatRecherchePageModule
               ),
           },
           {
-            path: 'profil-hotesse',
+            path: 'profil-hotesse/:uid',
             children: [
               {
                 path: '',
@@ -63,6 +67,20 @@ const routes: Routes = [
                       import(
                         './validation-reservation/reservation-non-confirme/reservation-non-confirme.module'
                       ).then((m) => m.ReservationNonConfirmePageModule),
+                  },
+                  {
+                    path: 'validation-bancaire',
+                    loadChildren: () =>
+                      import(
+                        './validation-bancaire/validation-bancaire.module'
+                      ).then((m) => m.ValidationBancairePageModule),
+                  },
+                  {
+                    path: 'validation-espece',
+                    loadChildren: () =>
+                      import(
+                        './validation-espece/validation-espece.module'
+                      ).then((m) => m.ValidationEspecePageModule),
                   },
                 ],
               },

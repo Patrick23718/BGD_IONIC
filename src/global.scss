@@ -77,9 +77,21 @@
   padding: 15px;
 }
 
+.calendarModal {
+  --max-height: 80vh;
+  --border-radius: 10px;
+  padding: 5px;
+}
+
 .imageModal {
   background: transparent !important;
   --max-height: 450px;
+  --border-radius: 10px;
+  padding: 15px;
+}
+
+.deconnectionModal {
+  --max-height: 220px;
   --border-radius: 10px;
   padding: 15px;
 }
@@ -93,8 +105,18 @@
   padding: 25px;
 }
 
+.bg-tertiary {
+  background-color: #f2f2f2 !important;
+}
+
 .bancaire-css {
   --height: 450px;
+  --border-radius: 10px;
+  padding: 25px;
+}
+
+.bancaires-css {
+  --height: 540px;
   --border-radius: 10px;
   padding: 25px;
 }

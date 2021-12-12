@@ -22,7 +22,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashscreen.hide();
-      this.router.navigateByUrl('/splash');
+      // this.router.navigateByUrl('/splash');
 
       // let status bar overlay webview
       // this.statusBar.overlaysWebView(true);

@@ -102,7 +102,7 @@
               <div class="flex flex-row gap-4 items-center">
                 <img src="assets/icon/locate.svg" alt="" />
                 <div class="text-lg">
-                  {{ville ==='' ? 'choix de la ville': ville| uppercase}}
+                  {{ville ==='' ? 'choix de la ville': ville| titlecase}}
                 </div>
               </div>
               <div>
@@ -129,7 +129,7 @@
                 <img src="assets/icon/prestations.svg" alt="" />
                 <div class="text-lg">
                   {{prestation ==='' ? 'Type de prestation': prestation|
-                  uppercase}}
+                  uppercase|titlecase}}
                 </div>
               </div>
               <div>
@@ -156,7 +156,7 @@
                 <img src="assets/icon/calendar2.svg" alt="" />
                 <div class="text-lg">
                   {{date ==='' ? 'choix de votre date': (plage.date| date)+ ';'+
-                  plage.plage.text }}
+                  plage.plage.text | titlecase}}
                 </div>
               </div>
               <div>
@@ -178,7 +178,7 @@
               justify-center
               uppercase
             "
-            routerLink="../acceuil/resultat-recherche"
+            (click)="search()"
           >
             rechercher
           </div>

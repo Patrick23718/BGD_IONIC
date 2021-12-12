@@ -69,6 +69,10 @@ export class CalendarPage implements OnInit {
     }
   }
 
+  close() {
+    this.modalController.dismiss();
+  }
+
   next() {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.myCal.slideNext();

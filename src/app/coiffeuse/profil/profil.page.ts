@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { DeconnectionPage } from 'src/app/shared/modals/deconnection/deconnection.page';
 
 @Component({
   selector: 'app-profil',
@@ -31,7 +32,8 @@ export class ProfilPage implements OnInit {
     private userService: UtilisateurService,
     private router: Router,
     public loadingController: LoadingController,
-    private localstorage: LocalStorageService
+    private localstorage: LocalStorageService,
+    private modalController: ModalController
   ) {
     if (this.localstorage.get('utilisateur') !== null) {
       this.user = JSON.parse(this.localstorage.get('utilisateur'));
@@ -66,4 +68,22 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  async openLogOutModal() {
+    const modal = await this.modalController.create({
+      component: DeconnectionPage,
+      cssClass: 'deconnectionModal',
+      backdropDismiss: true,
+      mode: 'ios',
+    });
+    await modal.present();
+
+    // modal.onDidDismiss().then((data) => {
+    //   if (data.data) {
+    //     this.prestation = data.data;
+    //     this.segment = false;
+    //   }
+    //   console.log(data); // Here's your selected user!
+    // });
+  }
 }

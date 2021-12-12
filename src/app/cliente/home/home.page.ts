@@ -9,6 +9,7 @@ import { PrestationPage } from 'src/app/components/prestation/prestation.page';
 import { VillePage } from 'src/app/components/ville/ville.page';
 import { ResaPage } from 'src/app/shared/modals/resa/resa.page';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ export class HomePage implements OnInit {
   type = environment.type;
   constructor(
     public alert: AlertController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private route: Router
   ) {}
   ngOnInit(): void {}
 
@@ -72,7 +74,7 @@ export class HomePage implements OnInit {
   async openCalendarModal() {
     const modal = await this.modalController.create({
       component: CalendarPage,
-      cssClass: 'prestationModal',
+      cssClass: 'calendarModal',
       backdropDismiss: true,
       mode: 'ios',
     });
@@ -109,5 +111,13 @@ export class HomePage implements OnInit {
     });
   }
 
-  search() {}
+  search() {
+    this.route.navigate([
+      '/cliente/acceuil/resultat-recherche',
+      this.ville,
+      this.prestation,
+      this.plage.date.toString(),
+      this.plage.plage.plage,
+    ]);
+  }
 }

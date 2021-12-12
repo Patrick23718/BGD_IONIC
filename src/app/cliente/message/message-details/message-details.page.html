@@ -1,11 +1,42 @@
 <ion-content>
   <div
-      class="flex flex-row items-center mb-10 text-gray-600"
+      class="flex flex-row items-center justify-between mb-10 text-gray-600"
   >
-      <ion-button (click)="myBackButton()" fill="clear">
-        <img src="assets/icon/back.svg" alt="" srcset="" />
+      <ion-button (click)="myBackButton()" fill="clear" class="text-black">
+        <ion-icon size="large" name="arrow-back-outline"></ion-icon>
       </ion-button>
       <h1 class="text-2xl font-bold flex text-center">messages</h1>
+      <ion-button fill="clear"></ion-button>
   </div>
-   
+   <div class="relative px-5">
+      <ion-card class="shadow-none">
+        <div class="flex flex-row justify-between items-center border-2 rounded-md p-2">
+          <div class="flex flex-row space-x-3 items-center">
+            <div class="rounded-full">
+              <img src="assets/icon/tof.svg" alt="" class="rounded-full">
+            </div>
+            <div class="text-lg font-bold">Sarah</div>
+          </div>
+          <ion-button fill="clear" class="rounded-md text-white bg-primary uppercase">reserver</ion-button>
+        </div>
+      </ion-card>
+      <div class="">
+        <div class="bg-primary-op w-1/2 p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, dolor.</div>
+      <div class="bg-primary-op w-1/2 p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam pariatur dolor eius quidem? Ea minima debitis laboriosam placeat. Commodi ipsa quibusdam, facilis vitae dolorem consequuntur?</div>
+      <div class="bg-primary-op w-1/2 p-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam quisquam quibusdam quaerat iure quam asperiores sunt doloribus non quia vitae.</div>
+      </div>
+      <div class="fixed -bottom-1 w-full pr-5">
+        <div class="relative w-full pr-5">
+          <textarea name="" id="" cols="30" rows="2" class="w-full border-primary pl-5 pr-32 rounded-md shadow-none focus:shadow-none"></textarea>
+          <div class="fixed bottom-5 right-10 flex flex-row items-center space-x-2">
+            <div class="text-primary">
+              <ion-icon size="large" name="image-outline"></ion-icon>
+            </div>
+            <div class="text-white bg-primary rounded-full flex justify-center w-9 h-9 pt-px">
+              <ion-icon size="large" name="paper-plane-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
 </ion-content>

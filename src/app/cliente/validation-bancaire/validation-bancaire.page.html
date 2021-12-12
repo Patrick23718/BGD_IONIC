@@ -1,0 +1,103 @@
+<ion-content>
+  <div
+    class="flex flex-row justify-between items-center px- py-5 text-gray-600"
+  >
+    <ion-button (click)="myBackButton()" fill="clear" class="text-black">
+      <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <h1 class="text-2xl font-bold whitespace-nowrap">validation de réservation</h1>
+    <ion-button fill="clear"> </ion-button>
+  </div>
+<div class="">
+  <div class="flex justify-between items-start px-5">
+    <div class="">
+      <img src="assets/icon/sarah.svg" alt="">
+    </div>
+    <div class="flex flex-col space-y-8">
+      <div class="">Sarah</div>
+      <div class="flex flex-row space-x-2">
+        <img src="assets/icon/localisation.svg" alt="">
+        <div class="">Nantes</div>
+      </div>
+      <div class="">7 avis (5/5)</div>
+    </div>
+    <div class="text-secondary bg-primary-op rounded-md w-20 text-center items-start text-lg h-10 pt-2">40 €</div>
+  </div>
+  <div class="px-5 my-5 space-y-5">
+    <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row space-x-4 items-center">
+        <div class="">
+          <img src="assets/icon/calendar2.svg" alt="">
+        </div>
+        <div class="flex flex-col">
+          <div class="">Le mardi 11 mars 2021</div>
+          <div class="">entre 10h:00 - 12h:00</div>
+        </div>
+      </div>
+      <ion-button fill="clear" class="bg-primary-op text-primary rounded-md uppercase">modifier</ion-button>
+    </div>
+    <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row space-x-4 items-center">
+        <div class="">
+          <img src="assets/icon/outil.svg" alt="">
+        </div>
+        <div class="flex flex-col">
+          <div class="">Le mardi 11 mars 2021</div>
+          <div class="">entre 10h:00 - 12h:00</div>
+        </div>
+      </div>
+      <ion-button fill="clear" class="bg-primary-op text-primary rounded-md uppercase">modifier</ion-button>
+    </div>
+  </div>
+  <form action="" class="px-5 mb-5">
+    <ion-card class="shadow-none">
+      <div class="flex flex-row justify-between items-center border-2 rounded-lg w-full h-16 p-4">
+        <div class="flex flex-row items-center space-x-3">
+          <div class="">
+            <img src="assets/icon/coupon.svg" alt="">
+          </div>
+          <div class="text-base font-light">code de réduction</div>
+        </div>
+        <div class="bg-primary rounded-full flex items-center text-white justify-center w-8 h-8 p-1">
+          <ion-icon size="large" name="paper-plane-outline"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+    <div class="justify-start my-3">choisis ton moyen de paiement</div>
+    <ion-card class="shadow-none">
+      <div class="flex flex-row items-start border-2 rounded-lg p-4 space-x-3">
+        <div class="">
+          <img src="assets/icon/carte_bancaire.svg" alt="">
+        </div>
+        <div class="w-full space-y-2">
+          <div class="flex flex-row justify-between">
+            <div class="">Carte bancaire : xxxx 2235</div>
+            <div class="" (click)="modificationBancaire()">
+              <img src="assets/icon/modif.svg" alt="">
+            </div>
+          </div>
+          <div class="flex flex-row justify-between">
+            <div class="">prix initial :</div>
+            <div class="">
+              40€
+            </div>
+          </div>
+          <div class="flex flex-row justify-between">
+            <div class="">réduction :</div>
+            <div class="">
+              5€
+            </div>
+          </div>
+          <div class="flex flex-row justify-between font-semibold">
+            <div class="">net à payer :</div>
+            <div class="">
+              35€
+            </div>
+          </div>  
+        </div>
+      </div>
+    </ion-card>
+    <ion-button fill="clear" expand="block" class="uppercase rounded-md text-white bg-primary">valider le paiement</ion-button>
+  </form>
+</div>
+</ion-content>

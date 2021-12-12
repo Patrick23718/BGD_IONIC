@@ -1,7 +1,7 @@
 <ion-content>
   <div class="px-5">
     <div class="flex flex-row items-center justify-between">
-      <ion-button fill="clear" class="text-black">
+      <ion-button fill="clear" class="text-black" (click)="myBackButton()">
         <ion-icon size="large" name="arrow-back-outline"></ion-icon>
       </ion-button>
       <div class="text-2xl font-bold">Mes informations</div>
@@ -12,8 +12,32 @@
         <img src="assets/icon/photo_profil.svg" alt="" class=" border-dashed border-2 border-primary rounded-md p-2">
       </div>
       <ion-button fill="clear" expand="block" class="bg-primary-op text-primary rounded-md">changer ma photo</ion-button>
-      <form action="">
-
+      <form action="" class="my-10">
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
+          <input
+            type="email"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Prénom</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Téléphone</label>
+          <input
+            type="tel"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+          />
+        </div>
+        <ion-button fill="clear" expand="block" class="bg-primary text-white uppercase rounded-md">mis à jour</ion-button>
       </form>
     </div>
   </div>

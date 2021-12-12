@@ -2,78 +2,141 @@
   <div class="relative">
     <div class="bg-primary-op h-72">
       <ion-button fill="clear" (click)="myBackButton()">
-        <img src="assets/icon/back_white.svg" alt="">
+        <img src="assets/icon/back_white.svg" alt="" />
       </ion-button>
     </div>
-    <div class="absolute w-full px-5 top-32">
+    <div class="absolute w-full px-5 top-32" *ngIf="test">
       <div class="bg-white rounded-md relative pt-24 shadow-md pb-5">
-        <div class="flex flex-col items-center justify-center space-y-2 absolute -top-20 left-1/3">
-          <img src="assets/icon/sarah.svg" alt="" class="border-4 border-white rounded-md">
-          <div class="">Sarah</div>
+        <div
+          class="
+            flex flex-col
+            items-center
+            justify-center
+            space-y-2
+            absolute
+            -top-20
+            left-1/3
+          "
+        >
+          <img
+            src="assets/icon/sarah.svg"
+            alt=""
+            class="border-4 border-white rounded-md"
+          />
+          <div class="mt-4 mb-2 font-bold text-gray-500 text-xl">
+            {{users.prenom|titlecase}}
+          </div>
         </div>
         <div class="grid grid-cols-3 gap-4 px-2 place-items-center">
           <div class="flex flex-row space-x-2">
-            <img src="assets/icon/localisation.svg" alt="">
-            <div class="">Nantes</div>
+            <img src="assets/icon/localisation.svg" alt="" />
+            <div class="font-bold text-gray-500 text-">
+              {{users.ville|titlecase}}
+            </div>
           </div>
           <div class="">
-            <img src="assets/icon/star.svg" alt="">
+            <img src="assets/icon/star.svg" alt="" />
           </div>
           <div class="bg-secondary-op rounded-md flex justify-center w-24 h-10">
-            <img src="assets/icon/coeur.svg" alt="" class="w-6">
+            <img src="assets/icon/coeur.svg" alt="" class="w-6" />
           </div>
           <div class="">Se deplacer</div>
           <div class="">à domicile</div>
-          <div class="bg-primary-op rounded-md text-center py-2 px-8 cursor-pointer" routerLink="../avis-cliente">avis</div>
+          <div
+            class="
+              bg-primary-op
+              rounded-md
+              text-center
+              py-2
+              px-8
+              cursor-pointer
+            "
+            routerLink="../avis-cliente"
+          >
+            avis
+          </div>
         </div>
-        <hr class="border-primary my-5">
+        <hr class="border-primary my-5" />
         <div class="grid grid-cols-5 px-2 gap-4">
-          <div class="col-span-1 bg-primary-op rounded-md flex justify-center py-2 px-2">
-            <img src="assets/icon/sms_pink.svg" alt="">
+          <div
+            class="
+              col-span-1
+              bg-primary-op
+              rounded-md
+              flex
+              justify-center
+              py-2
+              px-2
+            "
+            routerLink="../../message"
+          >
+            <img src="assets/icon/sms_pink.svg" alt="" />
           </div>
           <div class="col-span-4 bg-primary rounded-md flex justify-center">
-            <ion-button fill="clear" class="text-white uppercase" routerLink="../profil-hotesse/validation-reservation">réserver la prestation</ion-button>
+            <ion-button
+              fill="clear"
+              class="text-white uppercase"
+              routerLink="../profil-hotesse/validation-reservation"
+              >réserver la prestation</ion-button
+            >
           </div>
         </div>
       </div>
       <div class="mt-5 space-y-3">
-        <p class="">Biographie</p>
-        <p class="">Je suis sarah, et je ravie de m’occuper de vous.</p>
-        <p class="">Galerie</p>
+        <p class="mt-4 mb-2 font-bold text-gray-500 text-lg">Biographie</p>
+        <p class="">{{users.biographie}}</p>
+        <p class="mt-4 mb-2 font-bold text-gray-500 text-lg">Galerie</p>
       </div>
-      <div class="grid grid-cols-3 gap-4 my-5">
+      <!-- <div class="grid grid-cols-3 gap-4 my-5">
         <div class="">
-          <img src="assets/icon/img1.svg" alt="">
+          <img src="assets/icon/img1.svg" alt="" />
         </div>
         <div class="">
-          <img src="assets/icon/img2.svg" alt="">
+          <img src="assets/icon/img2.svg" alt="" />
         </div>
         <div class="">
-          <img src="assets/icon/img3.svg" alt="">
+          <img src="assets/icon/img3.svg" alt="" />
+        </div>
+      </div> -->
+      <ion-slides pager="false" [options]="slideOpts">
+        <ion-slide *ngFor="let item of galeries">
+          <img
+            class="rounded-md"
+            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/galerie%2F'+item.photoURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            alt=""
+          />
+        </ion-slide>
+      </ion-slides>
+      <div class="mt-4 mb-2 font-bold text-gray-500 text-lg">
+        Autres prestations
+      </div>
+      <div class="space-y-3">
+        <div class="flex flex-row" *ngFor="let item of prestations">
+          <div class="border rounded-lg border-gray-200 w-full">
+            <div
+              class="
+                flex flex-row
+                w-full
+                h-full
+                border-secondary border-l-8
+                rounded-lg
+                items-center
+                py-3
+                justify-between
+              "
+            >
+              <div class="text-primary text-lg font-medium pl-5">
+                {{item.prestation|titlecase}}
+              </div>
+              <div class="flex flex-row text-secondary text-xl font-semibold">
+                <div class="rounded-lg bg-secondary-op pl-5 mr-3">
+                  {{item.tarif}} €
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="">Autres prestations</div>
-      <ion-card class="flex flex-row space-x-2 h-16 items-center">
-        <div class="bg-secondary h-full w-3"></div>
-        <div class="flex space-x-20 items-center">
-          <div class="text-primary text-xl uppercase">tissage</div>
-          <div class="bg-secondary-op rounded-md w-20 h-10 justify-center flex items-center uppercase">40 €</div>
-        </div>
-      </ion-card>
-      <ion-card class="flex flex-row space-x-2 h-16 items-center">
-        <div class="bg-secondary h-full w-3"></div>
-        <div class="flex space-x-20 items-center">
-          <div class="text-primary text-xl uppercase">tissage</div>
-          <div class="bg-secondary-op rounded-md w-20 h-10 justify-center flex items-center uppercase">40 €</div>
-        </div>
-      </ion-card>
-      <ion-card class="flex flex-row space-x-2 h-16 items-center">
-        <div class="bg-secondary h-full w-3"></div>
-        <div class="flex space-x-20 items-center">
-          <div class="text-primary text-xl uppercase">tissage</div>
-          <div class="bg-secondary-op rounded-md w-20 h-10 justify-center flex items-center uppercase">40 €</div>
-        </div>
-      </ion-card>
     </div>
   </div>
 </ion-content>

@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="text-gray-500 p-5">
+    <div class="text-center py-5 text-lg">
+      Souhaitez-vous vous déconnecter de votre compte?
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 pt-5">
+      <div
+        class="
+          py-3
+          flex
+          items-center
+          justify-center
+          text-primary
+          border-2 border-primary
+          font-semibold
+          uppercase
+          rounded-lg
+        "
+        (click)="signout()"
+      >
+        confirmer
+      </div>
+      <div
+        class="
+          py-3
+          flex
+          items-center
+          justify-center
+          text-white
+          bg-primary
+          font-semibold
+          uppercase
+          rounded-lg
+        "
+        (click)="cancel()"
+      >
+        ANNULER
+      </div>
+    </div>
+  </div>
+</ion-content>
