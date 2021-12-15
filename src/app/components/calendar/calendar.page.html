@@ -34,7 +34,7 @@
       <div class="grid grid-cols-2 gap-4 pt-5">
         <ion-card
           button="true"
-          *ngFor="let item of items"
+          *ngFor="let item of plages"
           class="shadow-md m-0 p-0 rounded-lg"
           (click)="getPlage(item)"
         >
@@ -42,7 +42,7 @@
             class="rounded py-3 text-center font-semibold"
             [ngClass]="item.checked ? 'text-primary bg-pink-100':'text-gray-500 bg-gray-100'"
           >
-            {{item.text}}
+            {{item.plage}}
           </div>
         </ion-card>
       </div>

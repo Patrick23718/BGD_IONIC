@@ -1,11 +1,17 @@
 export interface Utilisateur {
-  uid?: string;
+  _id?: string;
+  uid?: string; //?
   nom: string;
   prenom: string;
-  email: string;
   role: string;
-  photoURL?: string;
-  telephone: string;
-  ville?: string;
+  email: string;
   biographie?: string;
+  imageURL?: string;
+  photoURL?: string; //?
+  telephone?: string; //?
+  ville?: string;
+  status?: string; //!
+  numero?: string; //!
+  domicile?: boolean;
+  deplace?: boolean;
 }

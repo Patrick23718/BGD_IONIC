@@ -29,6 +29,8 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { Camera } from '@ionic-native/camera/ngx';
+// import { FileTransfer } from '@ionic-native/file-transfer';
+import { ImagesProvider } from '../providers/images/images';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,6 +52,8 @@ import { Camera } from '@ionic-native/camera/ngx';
     SplashScreen,
     StatusBar,
     Camera,
+    ImagesProvider,
+    // FileTransfer,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

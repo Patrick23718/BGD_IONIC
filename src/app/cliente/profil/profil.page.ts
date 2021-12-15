@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { AskDeletePage } from 'src/app/shared/modals/ask-delete/ask-delete.page';
 
 @Component({
@@ -24,7 +25,14 @@ export class ProfilPage implements OnInit {
     },
     { icon: 'parametre.svg', title: 'paramètres', to: 'parametres' },
   ];
-  constructor(private modalCtrl: ModalController) {}
+  user: any = {
+    prenom: '',
+    email: '',
+  };
+  constructor(
+    private modalCtrl: ModalController,
+    private localstorage: LocalStorageService
+  ) {}
 
   async modalDeconnexion() {
     const modal = await this.modalCtrl.create({
@@ -39,4 +47,9 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
+  }
 }

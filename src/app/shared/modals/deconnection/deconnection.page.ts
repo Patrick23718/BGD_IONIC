@@ -11,7 +11,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 })
 export class DeconnectionPage implements OnInit {
   constructor(
-    private userService: UtilisateurService,
+    // private userService: UtilisateurService,
     private router: Router,
     public loadingController: LoadingController,
     private localstorage: LocalStorageService,
@@ -34,13 +34,13 @@ export class DeconnectionPage implements OnInit {
   }
 
   async signout() {
-    const loading = await this.presentLoading();
-    await loading.present();
-    this.userService.signOut().then(() => {
-      this.localstorage.remove('utilisateur');
-      loading.dismiss();
-      this.cancel();
-      this.router.navigate(['/connexion-coiffeuse']);
-    });
+    // const loading = await this.presentLoading();
+    // await loading.present();
+    // this.userService.signOut().then(() => {
+    //   this.localstorage.remove('utilisateur');
+    //   loading.dismiss();
+    //   this.cancel();
+    //   this.router.navigate(['/connexion-coiffeuse']);
+    // });
   }
 }

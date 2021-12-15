@@ -25,7 +25,10 @@ import { CameraResultType } from '@capacitor/camera';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user: any;
+  user: any = {
+    prenom: '',
+    imageURL: '',
+  };
   items: any = [{ title: 'ds', icon: 'sdf', to: 'sdf' }];
   imageURL = '';
   imagePath: string;
@@ -56,24 +59,11 @@ export class HomePage implements OnInit {
     public alertController: AlertController,
     public loadingController: LoadingController,
     private camera: Camera,
-    private afSG: AngularFireStorage,
-    private afSt: AngularFirestore
+    private afSG: AngularFireStorage
   ) {}
   async ionViewWillEnter() {
-    this.fbAuth.authState.subscribe(async (authState) => {
-      const user = {
-        uid: authState.uid,
-        prenom: authState.displayName,
-        email: authState.email,
-        photoURL: authState.photoURL,
-      };
-      this.user = user;
-      // this.localstorage.remove('utilisateur');
-      this.localstorage.set('utilisateur', JSON.stringify(user));
-      console.log(
-        `${authState.displayName}, ${authState.email}, ${authState.uid}, ${authState.photoURL}, `
-      );
-    });
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
   }
 
   goTo(id: string) {

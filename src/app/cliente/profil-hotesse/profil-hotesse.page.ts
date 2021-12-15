@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -10,10 +11,15 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./profil-hotesse.page.scss'],
 })
 export class ProfilHotessePage implements OnInit {
-  test = false;
-  uid = '';
+  test = true;
+  uid;
   galeries = [];
-  users = null;
+  users = {
+    biographie: '',
+    imageURL: '',
+    prenom: '',
+    ville: '',
+  };
   prestations = [];
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -30,7 +36,6 @@ export class ProfilHotessePage implements OnInit {
   constructor(
     public location: Location,
     private route: ActivatedRoute,
-    private afS: AngularFirestore,
     private loadingController: LoadingController
   ) {}
 
@@ -43,53 +48,18 @@ export class ProfilHotessePage implements OnInit {
   }
 
   ngOnInit() {
-    this.presentLoading();
-    this.route.params.subscribe((params) => {
-      this.uid = params.uid;
-      // console.log(this.ville);
-      // console.log(this.plage);
-      console.log(this.uid);
-      // console.log(this.prestation);
+    // this.presentLoading();
+
+    const prestOBX = this.route.snapshot.data['prest'];
+    prestOBX.subscribe((res: any) => {
+      this.prestations = res;
+      console.log(res);
     });
-
-    const user = this.afS.collection('utilisateur').doc(this.uid).get();
-    user.subscribe(
-      (res: any) => {
-        console.log(res.data());
-        this.users = res.data();
-        const galerie = this.afS
-          .collection('galerie', (ref) => ref.where('uid', '==', this.uid))
-          .get();
-
-        galerie.subscribe(
-          (res1: any) => {
-            res1.docs.forEach((element) => {
-              console.log(element.data());
-              this.galeries.push(element.data());
-            });
-            const prestation = this.afS
-              .collection('prestation-coiffeuse', (ref) =>
-                ref.where('uid', '==', this.uid)
-              )
-              .get();
-            prestation.subscribe((res2: any) => {
-              res2.docs.forEach((element) => {
-                console.log(element.data());
-                this.prestations.push(element.data());
-                this.test = true;
-                this.loadingController.dismiss();
-              });
-            });
-          },
-          (err: any) => {
-            this.loadingController.dismiss();
-          }
-        );
-      },
-      (err: any) => {
-        this.loadingController.dismiss();
-      }
-    );
+    const profilOBX = this.route.snapshot.data['coiffeuse'];
+    profilOBX.subscribe((res: any) => {
+      this.users = res;
+      console.log(res);
+    });
   }
 
   myBackButton() {

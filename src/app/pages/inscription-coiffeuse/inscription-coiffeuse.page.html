@@ -81,7 +81,7 @@
           <label [ngClass]="focused ? 'label-focused' : ''">Téléphone</label>
           <input
             type="tel"
-            [(ngModel)]="user.telephone"
+            [(ngModel)]="user.numero"
             [ngModelOptions]="{standalone: true}"
             (focus)="focused = true"
             (blur)="onBlur($event)"

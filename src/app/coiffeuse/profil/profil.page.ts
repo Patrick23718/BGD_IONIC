@@ -27,9 +27,13 @@ export class ProfilPage implements OnInit {
       to: 'contacter-nous',
     },
   ];
-  user: any;
+  user = {
+    prenom: '',
+    imageURL: '',
+    email: '',
+  };
   constructor(
-    private userService: UtilisateurService,
+    // private userService: UtilisateurService,
     private router: Router,
     public loadingController: LoadingController,
     private localstorage: LocalStorageService,
@@ -42,8 +46,8 @@ export class ProfilPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if (this.localstorage.get('utilisateur') !== null) {
-      this.user = JSON.parse(this.localstorage.get('utilisateur'));
+    if (this.localstorage.get('user') !== null) {
+      this.user = JSON.parse(this.localstorage.get('user'));
     }
     console.log(this.user);
   }
@@ -58,13 +62,13 @@ export class ProfilPage implements OnInit {
   }
 
   async signout() {
-    const loading = await this.presentLoading();
-    await loading.present();
-    this.userService.signOut().then(() => {
-      this.localstorage.remove('utilisateur');
-      loading.dismiss();
-      this.router.navigate(['/connexion-coiffeuse']);
-    });
+    // const loading = await this.presentLoading();
+    // await loading.present();
+    // this.userService.signOut().then(() => {
+    //   this.localstorage.remove('utilisateur');
+    //   loading.dismiss();
+    //   this.router.navigate(['/connexion-coiffeuse']);
+    // });
   }
 
   ngOnInit() {}

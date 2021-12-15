@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable curly */
@@ -10,6 +12,9 @@ import { VillePage } from 'src/app/components/ville/ville.page';
 import { ResaPage } from 'src/app/shared/modals/resa/resa.page';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PlanningService } from 'src/app/services/planning.service';
+import { PrestationService } from 'src/app/services/prestation.service';
 
 @Component({
   selector: 'app-home',
@@ -18,19 +23,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   segment = false;
-  prestations = environment.prestations;
-  villes = environment.villes;
-  prestation = '';
-  ville = '';
+  prestations = []; //environment.prestations;
+  plages = [];
+  villes = []; //environment.villes;
+  prestation: any = null;
+  ville: any = null;
   date = '';
-  plage: any;
+  plage: any = null;
   type = environment.type;
+  user: any = null;
   constructor(
     public alert: AlertController,
     private modalController: ModalController,
-    private route: Router
+    private route: Router,
+    private router: ActivatedRoute,
+    private localstorage: LocalStorageService,
+    private searchService: PlanningService,
+    private prestService: PrestationService
   ) {}
-  ngOnInit(): void {}
+  ionViewWillEnter() {
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
+  }
+  ngOnInit(): void {
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
+    const villeOBX = this.router.snapshot.data['ville'];
+    const prestationOBX = this.router.snapshot.data['prestation'];
+    const plageOBX = this.router.snapshot.data['plages'];
+    villeOBX.subscribe((res: any) => {
+      this.villes = res;
+      console.log(this.villes);
+    });
+    prestationOBX.subscribe((res: any) => {
+      this.prestations = res;
+      console.log(this.prestations);
+    });
+    plageOBX.subscribe((res: any) => {
+      this.plages = res;
+      console.log(this.plages);
+    });
+  }
 
   async openPrestationModal() {
     const modal = await this.modalController.create({
@@ -75,6 +108,9 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       component: CalendarPage,
       cssClass: 'calendarModal',
+      componentProps: {
+        plages: this.plages,
+      },
       backdropDismiss: true,
       mode: 'ios',
     });
@@ -83,7 +119,7 @@ export class HomePage implements OnInit {
     modal.onDidDismiss().then((data) => {
       if (data.data !== '') {
         this.plage = data.data;
-        this.date = this.plage.plage.text;
+        this.date = this.plage.plage.plage;
       }
       console.log(data); // Here's your selected user!
     });
@@ -112,12 +148,14 @@ export class HomePage implements OnInit {
   }
 
   search() {
+    const selectedDate = new Date(this.plage.date).toString();
+
     this.route.navigate([
       '/cliente/acceuil/resultat-recherche',
-      this.ville,
-      this.prestation,
-      this.plage.date.toString(),
-      this.plage.plage.plage,
+      this.ville._id,
+      this.prestation._id,
+      selectedDate,
+      this.plage.plage._id,
     ]);
   }
 }

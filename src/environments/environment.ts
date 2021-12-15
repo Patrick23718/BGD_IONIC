@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  serverUrl: 'http://93.90.207.75:8082',
+  serverUrl: 'http://localhost:3000',
+  // serverUrl: 'https://bigoodee.herokuapp.com',
   firebaseConfig: {
     apiKey: 'AIzaSyBuBe3aCZN1caxyokRSUE223auJRYZ6tmA',
     authDomain: 'bigoodee-79097.firebaseapp.com',
@@ -16,368 +17,369 @@ export const environment = {
   },
   prestations: [
     {
-      title: 'braids',
+      prestation: 'braids',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'courtes',
+          prestation: 'courtes',
           img: '',
           checked: false,
         },
         {
-          title: 'mi-longues',
+          prestation: 'mi-longues',
           img: '',
           checked: false,
         },
         {
-          title: 'longues',
+          prestation: 'longues',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'fulani braids',
+      prestation: 'fulani braids',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'vanilles (twists)',
+      prestation: 'vanilles (twists)',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'effet mi-long',
+          prestation: 'effet mi-long',
           img: '',
           checked: false,
         },
         {
-          title: 'effet long',
+          prestation: 'effet long',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'cornrows',
+      prestation: 'cornrows',
       checked: false,
-      sub: [
+      type: [
         {
-          title: '2 tresses',
+          prestation: '2 tresses',
           img: '',
           checked: false,
         },
         {
-          title: '3 tresses',
+          prestation: '3 tresses',
           img: '',
           checked: false,
         },
         {
-          title: '4 tresses',
+          prestation: '4 tresses',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'nattes collées',
+      prestation: 'nattes collées',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'sur cheveux naturelles',
+          prestation: 'sur cheveux naturelles',
           img: '',
           checked: false,
         },
         {
-          title: 'avec mèches',
+          prestation: 'avec mèches',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'bantu knots',
+      prestation: 'bantu knots',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'senegales twist',
+      prestation: 'senegales twist',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'piqués lãchés',
+      prestation: 'piqués lãchés',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'crochets braids',
+      prestation: 'crochets braids',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'tissages',
+      prestation: 'tissages',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'avec closure',
+          prestation: 'avec closure',
           img: '',
           checked: false,
         },
         {
-          title: 'ouvert',
+          prestation: 'ouvert',
           img: '',
           checked: false,
         },
         {
-          title: 'fermé',
+          prestation: 'fermé',
           img: '',
           checked: false,
         },
         {
-          title: 'demi tête',
+          prestation: 'demi tête',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'fausses locks',
+      prestation: 'fausses locks',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'lissages',
+      prestation: 'lissages',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'Brésilien',
+          prestation: 'Brésilien',
           img: '',
           checked: false,
         },
         {
-          title: 'steampod',
+          prestation: 'steampod',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'soins',
+      prestation: 'soins',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'coloration',
+          prestation: 'coloration',
           img: '',
           checked: false,
         },
         {
-          title: 'hydratant',
+          prestation: 'hydratant',
           img: '',
           checked: false,
         },
         {
-          title: 'protéiné',
+          prestation: 'protéiné',
           img: '',
           checked: false,
         },
         {
-          title: '+ shampoing',
+          prestation: '+ shampoing',
           img: '',
           checked: false,
         },
         {
-          title: 'profond silk press',
+          prestation: 'profond silk press',
           img: '',
           checked: false,
         },
         {
-          title: '+ coupes',
+          prestation: '+ coupes',
           img: '',
           checked: false,
         },
         {
-          title: 'défrisage',
+          prestation: 'défrisage',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'lace frontal',
+      prestation: 'lace frontal',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'pose lace frontale',
+          prestation: 'pose lace frontale',
           img: '',
           checked: false,
         },
         {
-          title: 'pose lace wig',
+          prestation: 'pose lace wig',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'brushing',
+      prestation: 'brushing',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'cheveux court',
+          prestation: 'cheveux court',
           img: '',
           checked: false,
         },
         {
-          title: 'cheveux mi-long',
+          prestation: 'cheveux mi-long',
           img: '',
           checked: false,
         },
         {
-          title: '+ shampoing',
+          prestation: '+ shampoing',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'tresses enfants',
+      prestation: 'tresses enfants',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'avec mèches',
+          prestation: 'avec mèches',
           img: '',
           checked: false,
         },
         {
-          title: 'sans mèches',
+          prestation: 'sans mèches',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'coupes',
+      prestation: 'coupes',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'avec shampoing',
+          prestation: 'avec shampoing',
           img: '',
           checked: false,
         },
         {
-          title: 'cheveux courts',
+          prestation: 'cheveux courts',
           img: '',
           checked: false,
         },
         {
-          title: 'cheveux longs',
+          prestation: 'cheveux longs',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'chignon',
+      prestation: 'chignon',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'mariage',
+          prestation: 'mariage',
           img: '',
           checked: false,
         },
         {
-          title: 'sophistiqé',
+          prestation: 'sophistiqé',
           img: '',
           checked: false,
         },
         {
-          title: 'simple',
+          prestation: 'simple',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'coupes enfants',
+      prestation: 'coupes enfants',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'seule',
+          prestation: 'seule',
           img: '',
           checked: false,
         },
         {
-          title: 'avec shampoing',
+          prestation: 'avec shampoing',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'balayage',
+      prestation: 'balayage',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'cheveux courts',
+          prestation: 'cheveux courts',
           img: '',
           checked: false,
         },
         {
-          title: 'cheveux mi-long',
+          prestation: 'cheveux mi-long',
           img: '',
           checked: false,
         },
         {
-          title: 'cheveux long',
+          prestation: 'cheveux long',
           img: '',
           checked: false,
         },
         {
-          title: '+ coupe',
+          prestation: '+ coupe',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'locks',
+      prestation: 'locks',
       checked: false,
-      sub: [
+      type: [
         {
-          title: 'départ locks',
+          prestation: 'départ locks',
           img: '',
           checked: false,
         },
         {
-          title: 'reprise locks',
+          prestation: 'reprise locks',
           img: '',
           checked: false,
         },
         {
-          title: 'entretien locks',
+          prestation: 'entretien locks',
           img: '',
           checked: false,
         },
       ],
     },
     {
-      title: 'pose perruque',
+      prestation: 'pose perruque',
       checked: false,
-      sub: [],
+      type: [],
     },
   ],
   villes: [
     {
-      title: 'nantes',
+      nom: 'Nantes',
       checked: false,
-      sub: [],
+      type: [],
     },
     {
-      title: 'rennes',
+      nom: 'Rennes',
       checked: false,
-      sub: [],
+      type: [],
     },
   ],
+
   type: [
     {
       title: 'BRAIDS',

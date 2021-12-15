@@ -27,7 +27,7 @@
     >
       <img
         class="rounded-xl h-32 w-32"
-        [src]="user?.photoURL === null ? 'assets/default.jpeg':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.photoURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+        [src]="user.imageURL === 'default.png' ? 'assets/default.jpeg':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
         alt=""
         srcset=""
       />
@@ -45,7 +45,7 @@
   >
     <!-- <app-input label="Password"></app-input> -->
     <h1 class="font-bold text-2xl pt-3 pb-6 text-center">
-      Bonjour {{user?.prenom}},
+      Bonjour {{user.prenom}},
     </h1>
     <div class="grid grid-cols-3 gap-2">
       <ion-card

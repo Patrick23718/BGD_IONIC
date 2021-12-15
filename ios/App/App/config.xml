@@ -6,5 +6,9 @@
     <param name="ios-package" value="CDVCamera"/>
   </feature>
 
+  <feature name="FileTransfer">
+    <param name="ios-package" value="CDVFileTransfer"/>
+  </feature>
+
   
 </widget>

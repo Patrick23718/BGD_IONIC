@@ -21,14 +21,15 @@ export class VillePage implements OnInit {
   }
 
   arrayOption(item) {
-    if (item.sub.length === 0) {
+    // console.log(item);
+    if (item.type.length === 0) {
       let i = 0;
       for (i = 0; i < this.prestations.length; i++) {
         this.prestations[i].checked = false;
       }
       item.checked = true;
       this.value = item.title;
-      this.modalController.dismiss(this.value);
+      this.modalController.dismiss(item);
     } else {
       const test = item.checked;
       let i = 0;
@@ -41,14 +42,14 @@ export class VillePage implements OnInit {
     console.log(this.value);
   }
 
-  arrayOption2(arraySub, test) {
+  arrayOption2(arraytype, test) {
     let i = 0;
-    for (i = 0; i < arraySub.sub.length; i++) {
-      arraySub.sub[i].checked = false;
+    for (i = 0; i < arraytype.type.length; i++) {
+      arraytype.type[i].checked = false;
     }
 
     test.checked = true;
-    this.value = arraySub.title + ' ' + test.title;
-    this.modalController.dismiss(this.value);
+    this.value = arraytype.title + ' ' + test.title;
+    this.modalController.dismiss(test);
   }
 }

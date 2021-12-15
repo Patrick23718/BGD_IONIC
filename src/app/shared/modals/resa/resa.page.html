@@ -10,24 +10,30 @@
       <ion-slide
         class="block px-2 w-full mb-5 relative"
         *ngFor="let item of resa"
+        [ngClass]="item.imageURL === ''? 'none': ''"
       >
-        <img [src]="'/assets/'+item.url" class="rounded-lg w-5/6" />
+        <div *ngIf="item.imageURL !== ''">
+          <img
+            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/prestations%2F'+item.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            class="rounded-lg w-5/6"
+          />
 
-        <div
-          class="
-            w-full
-            justify-center
-            slider-text
-            text-white
-            font-bold
-            text-center
-            absolute
-            bottom-20
-          "
-        >
-          <p>{{item.title|titlecase}}</p>
+          <div
+            class="
+              w-full
+              justify-center
+              slider-text
+              text-white
+              font-bold
+              text-center
+              absolute
+              bottom-20
+            "
+          >
+            <p>{{item.prestation}}</p>
+          </div>
+          &nbsp;<br />
         </div>
-        &nbsp;<br />
       </ion-slide>
     </ion-slides>
     <ion-button expand="block" (click)="getPrestation()"

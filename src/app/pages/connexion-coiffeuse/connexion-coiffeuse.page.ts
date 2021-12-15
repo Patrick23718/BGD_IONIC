@@ -2,7 +2,12 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import {
+  LoadingController,
+  NavController,
+  ToastController,
+} from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 // import * as firebase from 'firebase/app';
@@ -20,9 +25,11 @@ export class ConnexionCoiffeusePage implements OnInit {
   focused: boolean;
   constructor(
     private location: Location,
-    private router: Router,
-    private userService: UtilisateurService,
-    private loadingController: LoadingController
+    private toastController: ToastController,
+    private loadingController: LoadingController,
+    private userServices: UtilisateurService,
+    private navCtrl: NavController,
+    private localStorage: LocalStorageService
   ) {}
 
   ngOnInit() {}
@@ -34,6 +41,17 @@ export class ConnexionCoiffeusePage implements OnInit {
       backdropDismiss: false,
       mode: 'ios',
     });
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message,
+      color,
+      duration: 3000,
+      position: 'top',
+      mode: 'ios',
+    });
+    toast.present();
   }
 
   myBackButton() {
@@ -50,24 +68,30 @@ export class ConnexionCoiffeusePage implements OnInit {
   async signIn() {
     const loading = await this.presentLoading();
     await loading.present();
-    this.userService
-      .signIn(this.user.email, this.user.password)
-      .then((res: any) => {
-        console.log(res);
-        this.user = {
-          email: '',
-          password: '',
+    this.userServices.userLogin(this.user.email, this.user.password).subscribe(
+      (log: any) => {
+        this.localStorage.set('x-access-token', log.accessToken);
+        const data = {
+          email: log.email,
+          id: log.id,
+          nom: log.nom,
+          prenom: log.prenom,
+          role: log.role,
         };
+        this.localStorage.set('user', JSON.stringify(data));
         loading.dismiss();
-        // this.router.navigate(['/coiffeuse/home'], { replaceUrl: true });
-        this.router.navigateByUrl('/coiffeuse/home', {
-          replaceUrl: true,
-        });
-      })
-      .catch((error) => {
-        window.alert(JSON.stringify(error));
-        console.log(error);
+        this.presentToast('Bienvenue ' + log.prenom, 'success');
+        if (log.role === 'coiffeuse') {
+          this.navCtrl.navigateForward('/coiffeuse/home');
+        } else if (log.role === 'cliente') {
+          this.navCtrl.navigateForward('/cliente/acceuil');
+        }
+      },
+      (err: any) => {
+        console.log(err);
+        this.presentToast(err.error.message, 'danger');
         loading.dismiss();
-      });
+      }
+    );
   }
 }

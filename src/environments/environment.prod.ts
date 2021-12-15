@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://93.90.207.75:8082',
+  // serverUrl: 'http://93.90.207.75:8082',
+  serverUrl: 'https://bigoodee.herokuapp.com',
   firebaseConfig: {
     apiKey: 'AIzaSyBuBe3aCZN1caxyokRSUE223auJRYZ6tmA',
     authDomain: 'bigoodee-79097.firebaseapp.com',

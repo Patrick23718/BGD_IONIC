@@ -2,7 +2,13 @@
 import { importType } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ClienteGuard } from '../guard/cliente.guard';
+import { PlageResolveService } from '../shared/resolvers/plage-resolve.service';
+import { PrestationResolveService } from '../shared/resolvers/prestation-resolve.service';
+import { SearchProfilResolverService } from '../shared/resolvers/search-profil-resolver.service';
+import { SearchResolverService } from '../shared/resolvers/search-resolver.service';
 import { SearchService } from '../shared/resolvers/search.service';
+import { VilleResolveService } from '../shared/resolvers/ville-resolve.service';
 
 import { ClientePage } from './cliente.page';
 
@@ -21,6 +27,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            resolve: {
+              ville: VilleResolveService,
+              prestation: PrestationResolveService,
+              plages: PlageResolveService,
+            },
             loadChildren: () =>
               import('./home/home.module').then((m) => m.HomePageModule),
           },
@@ -36,6 +47,10 @@ const routes: Routes = [
           },
           {
             path: 'profil-hotesse/:uid',
+            resolve: {
+              prest: SearchResolverService,
+              coiffeuse: SearchProfilResolverService,
+            },
             children: [
               {
                 path: '',
@@ -97,6 +112,7 @@ const routes: Routes = [
       },
       {
         path: 'planning',
+        canActivate: [ClienteGuard],
         children: [
           {
             path: '',
@@ -109,6 +125,7 @@ const routes: Routes = [
       },
       {
         path: 'profil',
+        canActivate: [ClienteGuard],
         children: [
           {
             path: '',
@@ -195,6 +212,7 @@ const routes: Routes = [
       },
       {
         path: 'message',
+        canActivate: [ClienteGuard],
         children: [
           {
             path: '',

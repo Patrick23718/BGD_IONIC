@@ -1,27 +1,26 @@
+/* eslint-disable object-shorthand */
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlanningService {
-  collectionName = 'planning';
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  private SERVER_URL: string = environment.serverUrl;
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private httpClient: HttpClient) {}
 
-  addPlan(record) {
-    return this.firestore.collection(this.collectionName).add(record);
+  search(ville: string, prest: string, plage: string, date: string) {
+    const API_URL =
+      this.SERVER_URL +
+      `/search?date=${date}&plage=${plage}&ville=${ville}&prest=${prest}`;
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      'Content-Type': 'application/json',
+      // 'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
   }
-
-  readPlan() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-
-  updateStudent(recordID, record) {
-    this.firestore.doc(this.collectionName + '/' + recordID).update(record);
-  }
-
-  // delete_student(record_id) {
-  //   this.firestore.doc(this.collectionName + '/' + record_id).delete();
-  // }
 }

@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="uid !== '1'">
+  <div>
     <!-- <div class="px-5 pb-5">
     <ion-segment
       (ionChange)="segmentChanged($event)"
@@ -57,7 +57,7 @@
           <ion-card
             button="true"
             class="rounded-lg"
-            *ngFor="let item of test.plage"
+            *ngFor="let item of plage"
             (click)="item.checked = !item.checked"
           >
             <div
@@ -71,103 +71,52 @@
                 rounded-lg
               "
               [ngClass]="item.checked?'border-primary': ''"
-              *ngIf="item.plage === 1"
             >
               <ion-icon
                 [color]="item.checked? 'primary':''"
                 name="cafe-outline"
                 class="text-7xl"
+                *ngIf="item.index ===1"
               ></ion-icon>
-              <ion-text [color]="item.checked? 'primary':''"
-                ><p>Matin</p></ion-text
-              >
-              <ion-text><p>9h - 12h</p></ion-text>
-              <ion-text
-                ><p class="text-xs text-gray-400 text-center pt-2">
-                  Cette semaine uniquement
-                </p></ion-text
-              >
-            </div>
-            <div
-              class="
-                flex flex-col
-                gap
-                items-center
-                py-3
-                px-1
-                border-2
-                rounded-lg
-              "
-              [ngClass]="item.checked?'border-primary': ''"
-              *ngIf="item.plage === 2"
-            >
               <ion-icon
                 [color]="item.checked? 'primary':''"
                 name="time-outline"
                 class="text-7xl"
+                *ngIf="item.index ===2"
               ></ion-icon>
-              <ion-text [color]="item.checked? 'primary':''"
-                ><p>Midi</p></ion-text
-              >
-              <ion-text><p>12h - 15h</p></ion-text>
-              <ion-text
-                ><p class="text-xs text-gray-400 text-center pt-2">
-                  Cette semaine uniquement
-                </p></ion-text
-              >
-            </div>
-
-            <div
-              class="
-                flex flex-col
-                gap
-                items-center
-                py-3
-                px-1
-                border-2
-                rounded-lg
-              "
-              [ngClass]="item.checked?'border-primary': ''"
-              *ngIf="item.plage === 3"
-            >
               <ion-icon
                 [color]="item.checked? 'primary':''"
                 name="sunny-outline"
                 class="text-7xl"
+                *ngIf="item.index ===3"
               ></ion-icon>
-              <ion-text [color]="item.checked? 'primary':''"
-                ><p>Après-midi</p></ion-text
-              >
-              <ion-text><p>15h - 18h</p></ion-text>
-              <ion-text
-                ><p class="text-xs text-gray-400 text-center pt-2">
-                  Cette semaine uniquement
-                </p></ion-text
-              >
-            </div>
-
-            <div
-              class="
-                flex flex-col
-                gap
-                items-center
-                py-3
-                px-1
-                border-2
-                rounded-lg
-              "
-              [ngClass]="item.checked?'border-primary': ''"
-              *ngIf="item.plage === 4"
-            >
               <ion-icon
                 [color]="item.checked? 'primary':''"
                 name="moon-outline"
                 class="text-7xl"
+                *ngIf="item.index ===4"
               ></ion-icon>
-              <ion-text [color]="item.checked? 'primary':''"
+              <ion-text
+                [color]="item.checked? 'primary':''"
+                *ngIf="item.index ===1"
+                ><p>Matin</p></ion-text
+              >
+              <ion-text
+                [color]="item.checked? 'primary':''"
+                *ngIf="item.index ===2"
+                ><p>Midi</p></ion-text
+              >
+              <ion-text
+                [color]="item.checked? 'primary':''"
+                *ngIf="item.index ===3"
+                ><p>Après-midi</p></ion-text
+              >
+              <ion-text
+                [color]="item.checked? 'primary':''"
+                *ngIf="item.index ===4"
                 ><p>Soirée</p></ion-text
               >
-              <ion-text><p>18h - 21h</p></ion-text>
+              <ion-text><p>{{item.plage}}</p></ion-text>
               <ion-text
                 ><p class="text-xs text-gray-400 text-center pt-2">
                   Cette semaine uniquement

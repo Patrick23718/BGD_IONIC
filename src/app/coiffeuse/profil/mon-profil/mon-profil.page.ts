@@ -147,42 +147,42 @@ export class MonProfilPage implements OnInit {
   }
 
   async updateuser() {
-    const loading = await this.presentLoading();
-    await loading.present();
-    this.fbAuth.authState.subscribe(async (authState) => {
-      authState
-        .updateProfile({ displayName: this.user.prenom })
-        .then((res: any) => {
-          this.utilisateurService
-            .updateUser(this.user.uid, {
-              biographie: this.user.biographie,
-              email: this.user.email,
-              nom: this.user.nom,
-              prenom: this.user.prenom,
-              telephone: this.user.telephone,
-              ville: this.user.ville,
-            })
-            .then(async (resss: any) => {
-              console.log(resss);
-              loading.dismiss();
-              const user = {
-                uid: authState.uid,
-                prenom: this.user.prenom,
-                email: authState.email,
-                photoURL: authState.photoURL,
-              };
-              // this.localstorage.remove('utilisateur');
-              this.localstorage.set('utilisateur', JSON.stringify(user));
-              const alert = await this.alertController.create({
-                header: 'Félicitation',
-                // eslint-disable-next-line @typescript-eslint/quotes
-                message: 'Mise à jour est terminée!',
-                buttons: ['OK'],
-              });
-              await alert.present();
-            });
-        });
-    });
+    // const loading = await this.presentLoading();
+    // await loading.present();
+    // this.fbAuth.authState.subscribe(async (authState) => {
+    //   authState
+    //     .updateProfile({ displayName: this.user.prenom })
+    //     .then((res: any) => {
+    //       this.utilisateurService
+    //         .updateUser(this.user.uid, {
+    //           biographie: this.user.biographie,
+    //           email: this.user.email,
+    //           nom: this.user.nom,
+    //           prenom: this.user.prenom,
+    //           telephone: this.user.telephone,
+    //           ville: this.user.ville,
+    //         })
+    //         .then(async (resss: any) => {
+    //           console.log(resss);
+    //           loading.dismiss();
+    //           const user = {
+    //             uid: authState.uid,
+    //             prenom: this.user.prenom,
+    //             email: authState.email,
+    //             photoURL: authState.photoURL,
+    //           };
+    //           // this.localstorage.remove('utilisateur');
+    //           this.localstorage.set('utilisateur', JSON.stringify(user));
+    //           const alert = await this.alertController.create({
+    //             header: 'Félicitation',
+    //             // eslint-disable-next-line @typescript-eslint/quotes
+    //             message: 'Mise à jour est terminée!',
+    //             buttons: ['OK'],
+    //           });
+    //           await alert.present();
+    //         });
+    //     });
+    // });
   }
 
   async presentLoading(): Promise<any> {
@@ -296,4 +296,15 @@ export class MonProfilPage implements OnInit {
       // this.getGalerie();
     });
   }
+
+  // imageUpdate(){
+  //   this.selectedFile = <File>event.target.files[0];
+
+  //   this.userService
+  //     .imageSet(<File>this.selectedFile, this.selectedFile.name)
+  //     .subscribe((res) => {
+  //       console.log(res);
+  //     });
+  //   this.getUser();
+  // }
 }

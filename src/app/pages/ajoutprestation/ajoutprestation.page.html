@@ -28,17 +28,17 @@
               "
             >
               <div class="text-primary text-lg font-medium pl-5">
-                {{item.data.prestation|uppercase}}
+                {{item.prestation.prestation}}
               </div>
               <div class="flex flex-row text-secondary text-xl font-semibold">
                 <div class="rounded-lg bg-secondary-op pl-5">
-                  {{item.data.tarif}}
+                  {{item.tarif}}
                 </div>
                 €
               </div>
             </div>
           </div>
-          <ion-button fill="clear" (click)="deletePrestation(item.id)">
+          <ion-button fill="clear" (click)="deletePrestation(item._id)">
             <img src="assets/icon/trash.svg" alt="" srcset="" />
           </ion-button>
         </div>

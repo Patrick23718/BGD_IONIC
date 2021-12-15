@@ -10,6 +10,7 @@ import {
 import { PrestationModalPage } from 'src/app/components/prestation-modal/prestation-modal.page';
 import { PrestationPage } from 'src/app/components/prestation/prestation.page';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PrestationService } from 'src/app/services/prestation.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,25 +20,27 @@ import { environment } from 'src/environments/environment';
 })
 export class InitPrestationPage implements OnInit {
   prestation = '';
+  prest: any = null;
   focused: boolean;
   tarif = null;
   uid: any;
   constructor(
     private location: Location,
     private modalController: ModalController,
-    private ngFire: AngularFirestore,
     private loadingController: LoadingController,
     private toastController: ToastController,
     private localstorage: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private prestaservice: PrestationService
   ) {
-    if (this.localstorage.get('uid') !== null) {
-      this.uid = this.localstorage.get('uid');
-    }
+    this.prestaservice.getPrestation().subscribe((res: any) => {
+      this.prestations = res;
+      console.log(this.prestations);
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  prestations = environment.prestations;
+  prestations = [];
 
   ngOnInit() {}
   myBackButton() {
@@ -66,7 +69,7 @@ export class InitPrestationPage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       if (data.data !== '') {
-        this.prestation = data.data;
+        this.prest = data.data;
       }
       console.log(data); // Here's your selected user!
     });
@@ -99,30 +102,45 @@ export class InitPrestationPage implements OnInit {
       this.tarif === '' ||
       this.tarif === 0 ||
       isNaN(parseFloat(this.tarif)) ||
-      this.prestation === ''
+      this.prest === null
     ) {
       console.log('humm');
       loading.dismiss();
       await this.presentToast('Informations non correctes', 'danger');
     } else {
-      this.ngFire
-        .collection('prestation-coiffeuse')
-        .add({
-          uid: this.uid,
-          prestation: this.prestation,
-          tarif: this.tarif,
-        })
-        .then((res: any) => {
+      // eslint-disable-next-line no-underscore-dangle
+      this.prestaservice.addPrestation(this.prest._id, this.tarif).subscribe(
+        (res: any) => {
           console.log(res);
-          this.router.navigateByUrl('/ajoutprestation');
-        })
-        .catch(async (err) => {
-          console.log(err);
-          await this.presentToast(JSON.stringify(err), 'danger');
-        })
-        .finally(() => {
           loading.dismiss();
-        });
+          this.router.navigateByUrl('/ajoutprestation');
+          this.presentToast('Bien', 'success');
+        },
+        (err: any) => {
+          console.log(err);
+          loading.dismiss();
+          this.presentToast(err.error.message, 'danger');
+        }
+      );
+
+      //   this.ngFire
+      //     .collection('prestation-coiffeuse')
+      //     .add({
+      //       uid: this.uid,
+      //       prestation: this.prestation,
+      //       tarif: this.tarif,
+      //     })
+      //     .then((res: any) => {
+      //       console.log(res);
+      //       this.router.navigateByUrl('/ajoutprestation');
+      //     })
+      //     .catch(async (err) => {
+      //       console.log(err);
+      //       await this.presentToast(JSON.stringify(err), 'danger');
+      //     })
+      //     .finally(() => {
+      //       loading.dismiss();
+      //     });
     }
   }
 }

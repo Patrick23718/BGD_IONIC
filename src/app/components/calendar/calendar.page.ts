@@ -10,6 +10,7 @@ import { CalendarMode, Step } from 'ionic2-calendar/calendar';
 })
 export class CalendarPage implements OnInit {
   eventSource = [];
+  plages;
   plage: any;
   items = [
     {
@@ -79,7 +80,7 @@ export class CalendarPage implements OnInit {
   }
 
   checked() {
-    this.items.forEach((elt) => {
+    this.plages.forEach((elt) => {
       elt.checked = false;
     });
   }
@@ -89,6 +90,7 @@ export class CalendarPage implements OnInit {
   }
 
   getPlage(item: any) {
+    console.log(item);
     this.checked();
     item.checked = true;
     this.plage = item;

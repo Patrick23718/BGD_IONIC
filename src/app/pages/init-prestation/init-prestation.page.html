@@ -29,7 +29,7 @@
         <div class="flex flex-row gap-4 items-center">
           <img src="assets/icon/prestations.svg" alt="" />
           <div class="text-lg">
-            {{prestation ==='' ? 'Type de prestation': prestation| uppercase}}
+            {{prest ===null ? 'Type de prestation': prest.prestation}}
           </div>
         </div>
         <div>

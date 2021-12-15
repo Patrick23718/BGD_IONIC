@@ -40,8 +40,8 @@
           <div class="bg-secondary-op rounded-md flex justify-center w-24 h-10">
             <img src="assets/icon/coeur.svg" alt="" class="w-6" />
           </div>
-          <div class="">Se deplacer</div>
-          <div class="">à domicile</div>
+          <div class="" *ngIf="users.deplace">Se deplacer</div>
+          <div class="" *ngIf="users.domicile">à domicile</div>
           <div
             class="
               bg-primary-op
@@ -126,7 +126,7 @@
               "
             >
               <div class="text-primary text-lg font-medium pl-5">
-                {{item.prestation|titlecase}}
+                {{item.prestation.prestation}}
               </div>
               <div class="flex flex-row text-secondary text-xl font-semibold">
                 <div class="rounded-lg bg-secondary-op pl-5 mr-3">

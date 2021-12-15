@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-onboard',
@@ -10,9 +11,11 @@ export class OnboardPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
   index = true;
-  constructor() {}
+  constructor(private local: LocalStorageService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.local.remove('utilisateur');
+  }
   next() {
     this.slides.slideNext().then(() => {
       this.slides.getActiveIndex().then((res: any) => {

@@ -55,7 +55,7 @@ const routes: Routes = [
   },
   {
     path: 'etrecoiffeuse',
-    canActivate: [InitGuard],
+    // canActivate: [InitGuard],
     loadChildren: () =>
       import('./pages/etrecoiffeuse/etrecoiffeuse.module').then(
         (m) => m.EtrecoiffeusePageModule
@@ -192,11 +192,15 @@ const routes: Routes = [
   },
   {
     path: 'resa',
-    loadChildren: () => import('./shared/modals/resa/resa.module').then( m => m.ResaPageModule)
+    loadChildren: () =>
+      import('./shared/modals/resa/resa.module').then((m) => m.ResaPageModule),
   },
   {
     path: 'deconnection',
-    loadChildren: () => import('./shared/modals/deconnection/deconnection.module').then( m => m.DeconnectionPageModule)
+    loadChildren: () =>
+      import('./shared/modals/deconnection/deconnection.module').then(
+        (m) => m.DeconnectionPageModule
+      ),
   },
 ];
 @NgModule({

@@ -5,7 +5,13 @@
       <form action="">
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''">Nom</label>
-          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+            [(ngModel)]="user.nom"
+            [ngModelOptions]="{standalone: true}"
+          />
           <div
             class="
               bg-primary
@@ -23,7 +29,13 @@
         </div>
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''">Prénom</label>
-          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+            [(ngModel)]="user.prenom"
+            [ngModelOptions]="{standalone: true}"
+          />
           <div
             class="
               bg-primary
@@ -45,6 +57,8 @@
             type="email"
             (focus)="focused = true"
             (blur)="onBlur($event)"
+            [(ngModel)]="user.email"
+            [ngModelOptions]="{standalone: true}"
           />
           <div class="bg-primary absolute rounded-full top-3 right-3">
             <img src="assets/icon/email.svg" alt="" />
@@ -52,14 +66,26 @@
         </div>
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''">Ville</label>
-          <input type="text" (focus)="focused = true" (blur)="onBlur($event)" />
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+            [(ngModel)]="user.ville"
+            [ngModelOptions]="{standalone: true}"
+          />
           <div class="absolute top-5 right-3">
             <img src="assets/icon/arrow_down.svg" alt="" />
           </div>
         </div>
         <div class="form-field">
           <label [ngClass]="focused ? 'label-focused' : ''">Téléphone</label>
-          <input type="tel" (focus)="focused = true" (blur)="onBlur($event)" />
+          <input
+            type="tel"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+            [(ngModel)]="user.numero"
+            [ngModelOptions]="{standalone: true}"
+          />
           <div class="absolute top-3 right-3">
             <img src="assets/icon/tel.svg" alt="" />
           </div>
@@ -70,6 +96,8 @@
             type="password"
             (focus)="focused = true"
             (blur)="onBlur($event)"
+            [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}"
           />
           <div class="bg-primary absolute rounded-full top-3 right-3">
             <img src="assets/icon/eye.svg" alt="" />
@@ -108,8 +136,9 @@
           <button
             type="submit"
             class="w-full h-full text-white text-md uppercase"
+            (click)="onSubmit()"
           >
-            se connecter
+            S'inscrire
           </button>
         </div>
       </form>

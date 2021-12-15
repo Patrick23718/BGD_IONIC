@@ -1,6 +1,8 @@
 <ion-content>
   <div class="text-gray-600 flex flex-col gap-10 py-6 items-center px-5">
-    <h1 class="text-2xl font-bold text-center">Bonjour {{prenom}},</h1>
+    <h1 class="text-2xl font-bold text-center">
+      Bonjour {{user?user.prenom:''}},
+    </h1>
     <div><img src="assets/icon/valider.svg" alt="" srcset="" /></div>
     <div class="flex flex-col space-y-5">
       <p class="text-center">

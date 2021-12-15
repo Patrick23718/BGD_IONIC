@@ -9,16 +9,27 @@
     </div>
     <div class="">
       <div class="flex justify-center p-5">
-        <img src="assets/icon/photo_profil.svg" alt="" class=" border-dashed border-2 border-primary rounded-md p-2">
+        <img
+          src="assets/icon/photo_profil.svg"
+          alt=""
+          class="border-dashed border-2 border-primary rounded-md p-2"
+        />
       </div>
-      <ion-button fill="clear" expand="block" class="bg-primary-op text-primary rounded-md">changer ma photo</ion-button>
+      <ion-button
+        fill="clear"
+        expand="block"
+        class="bg-primary-op text-primary rounded-md"
+        >changer ma photo</ion-button
+      >
       <form action="" class="my-10">
         <div class="form-field">
-          <label [ngClass]="focused ? 'label-focused' : ''">Email</label>
+          <label [ngClass]="focused ? 'label-focused' : ''">Nom</label>
           <input
-            type="email"
+            type="text"
             (focus)="focused = true"
             (blur)="onBlur($event)"
+            [(ngModel)]="profile.nom"
+            [ngModelOptions]="{standalone: true}"
           />
         </div>
         <div class="form-field">
@@ -27,6 +38,8 @@
             type="text"
             (focus)="focused = true"
             (blur)="onBlur($event)"
+            [(ngModel)]="profile.prenom"
+            [ngModelOptions]="{standalone: true}"
           />
         </div>
         <div class="form-field">
@@ -35,9 +48,27 @@
             type="tel"
             (focus)="focused = true"
             (blur)="onBlur($event)"
+            [(ngModel)]="profile.numero"
+            [ngModelOptions]="{standalone: true}"
           />
         </div>
-        <ion-button fill="clear" expand="block" class="bg-primary text-white uppercase rounded-md">mis à jour</ion-button>
+        <div class="form-field">
+          <label [ngClass]="focused ? 'label-focused' : ''">Ville</label>
+          <input
+            type="text"
+            (focus)="focused = true"
+            (blur)="onBlur($event)"
+            [(ngModel)]="profile.ville"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+        <ion-button
+          fill="clear"
+          expand="block"
+          class="bg-primary text-white uppercase rounded-md"
+          (click)="onUpdate()"
+          >mis à jour</ion-button
+        >
       </form>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PlageResolveService } from '../shared/resolvers/plage-resolve.service';
 
 import { CoiffeusePage } from './coiffeuse.page';
 
@@ -23,6 +24,9 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            resolve: {
+              plage: PlageResolveService,
+            },
             loadChildren: () =>
               import('./planning/planning/planning.module').then(
                 (m) => m.PlanningPageModule

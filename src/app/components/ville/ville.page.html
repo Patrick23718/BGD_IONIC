@@ -25,7 +25,7 @@
         >
           <div class="flex flex-row gap-2 items-center">
             <img src="assets/icon/ville.svg" alt="" />
-            <div class="text-lg">{{item.title| titlecase}}</div>
+            <div class="text-lg">{{item.nom| titlecase}}</div>
           </div>
           <div>
             <img
@@ -47,7 +47,7 @@
             shadow-sm
             bg-gray-200
           "
-          *ngFor="let test of item.sub"
+          *ngFor="let test of item.type"
           (click)="arrayOption2(item, test)"
         >
           <div
@@ -61,7 +61,7 @@
             "
           >
             <div class="flex flex-row gap-4 items-center">
-              <div class="text-lg">{{test.title | titlecase}}</div>
+              <div class="text-lg">{{test.nom | titlecase}}</div>
             </div>
             <div>
               <img

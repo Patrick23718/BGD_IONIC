@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   LoadingController,
   NavController,
   ToastController,
 } from '@ionic/angular';
 import { Utilisateur } from 'src/app/interfaces/utilisateur';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -18,20 +18,20 @@ export class InscriptionCoiffeusePage implements OnInit {
     nom: '',
     email: '',
     prenom: '',
-    role: '',
-    telephone: '',
+    role: 'coiffeuse',
+    numero: '',
     ville: '',
     biographie: '',
-    photoURL: '',
   };
   password = '';
+  teste = '';
   focused: boolean;
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
     private userServices: UtilisateurService,
     private navCtrl: NavController,
-    private firestore: AngularFirestore
+    private localStorage: LocalStorageService
   ) {}
 
   ngOnInit() {}
@@ -67,36 +67,38 @@ export class InscriptionCoiffeusePage implements OnInit {
   async onSubmit() {
     const loading = await this.presentLoading();
     await loading.present();
-
-    this.userServices
-      .registerUser(this.user.email, this.password)
-      .then(async (res: any) => {
-        res.user.updateProfile({
-          displayName: this.user.prenom,
-          phoneNumber: this.user.telephone,
-        });
-        console.log(res);
-        try {
-          await this.firestore
-            .collection(`utilisateur`)
-            .doc(res.user.uid)
-            .set(this.user);
-          loading.dismiss();
-          await this.presentToast('Opération réussite!!', 'success');
-          this.navCtrl.navigateForward('/coiffeuse/home');
-        } catch (error) {
-          loading.dismiss();
-          await this.presentToast(
-            'Veuillez mettre à jour vos informations !!',
-            'danger'
-          );
-        }
-        // Do something here
-      })
-      .catch(async (error) => {
+    this.userServices.userRegister(this.user, this.password).subscribe(
+      (res: any) => {
+        this.userServices.userLogin(this.user.email, this.password).subscribe(
+          (log: any) => {
+            this.localStorage.set('x-access-token', log.accessToken);
+            const data = {
+              email: log.email,
+              id: log.id,
+              nom: log.nom,
+              prenom: log.prenom,
+              role: log.role,
+            };
+            this.localStorage.set('user', JSON.stringify(data));
+            loading.dismiss();
+            this.presentToast(res.message, 'success');
+            this.navCtrl.navigateForward('/coiffeuse/home');
+          },
+          (err: any) => {
+            console.log(err);
+            this.presentToast('Veuillez-vous connecter', 'success');
+            loading.dismiss();
+            this.navCtrl.navigateForward('/connexion-coiffeuse');
+          }
+        );
+      },
+      (err: any) => {
+        // this.presentToast(err.error.message, 'danger');
+        this.teste = JSON.stringify(err);
+        this.presentToast(err.error.message, 'danger');
+        console.warn(err);
         loading.dismiss();
-        console.log(JSON.stringify(error));
-        await this.presentToast(JSON.stringify(error), 'danger');
-      });
+      }
+    );
   }
 }
