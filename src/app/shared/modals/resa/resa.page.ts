@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, IonThumbnail, ModalController } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resa',
@@ -9,6 +10,7 @@ import { IonSlides, IonThumbnail, ModalController } from '@ionic/angular';
 })
 export class ResaPage implements OnInit {
   resa;
+  presta = [];
   id: number;
 
   constructor(private modalController: ModalController) {
@@ -27,19 +29,40 @@ export class ResaPage implements OnInit {
     // });
   }
 
-  dismiss() {
+  slideOpts = {
+    // initialSlide: 0,
+    // direction: 'horizontal',
+    // speed: 300,
+    // effect: slide,
+    // spaceBetween: 8,
+    slidesPerView: 1,
+    // freeMode: true,
+    loop: true,
+  };
+
+  dismiss(item) {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
-    // console.log(this.resa[this.id]);
-    this.modalController.dismiss(this.resa[this.id].title);
+    console.log(this.resa[this.id]);
+    this.modalController.dismiss(item);
   }
 
   ngOnInit() {
-    console.log(this.resa);
+    if (this.resa.type.length === 0) {
+      this.presta.push(this.resa);
+    } else {
+      for (let i = 0; i < this.resa.type.length; i++) {
+        if (this.resa.type[i].imageURL !== '') {
+          this.presta.push(this.resa.type[i]);
+        }
+      }
+    }
+    console.log(this.resa.type.length);
+    // if(this.resa.type)
   }
-  getPrestation() {
+  getPrestation(item) {
     this.getIndex().then(() => {
-      this.dismiss();
+      this.dismiss(item);
     });
   }
 }

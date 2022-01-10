@@ -1,6 +1,7 @@
 export interface Message {
-  fromId: string;
   toId: string;
-  message: string;
-  createdAt: Date;
+  fromId: string;
+  message?: string;
+  imageURL?: Date;
+  isRead: boolean;
 }

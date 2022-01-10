@@ -12,6 +12,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TouchSequence } from 'selenium-webdriver';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { GalerieService } from 'src/app/services/galerie.service';
 
 @Component({
   selector: 'app-galerie',
@@ -34,7 +35,8 @@ export class GaleriePage implements OnInit {
     private camera: Camera,
     private afSG: AngularFireStorage,
     private afSt: AngularFirestore,
-    private localstorage: LocalStorageService
+    private localstorage: LocalStorageService,
+    private galerieService: GalerieService
   ) {
     if (this.localstorage.get('utilisateur') !== null) {
       this.user = JSON.parse(this.localstorage.get('utilisateur'));
@@ -124,22 +126,24 @@ export class GaleriePage implements OnInit {
       .ref(this.imagePath)
       .putString(this.imageURL, 'data_url');
     this.upload.then(async () => {
-      await loading.dismiss();
       // this.imageURL = '';
-      this.afSt
-        .collection('galerie')
-        .add({
-          uid: this.user.uid,
-          photoURL: this.imagePath,
-          date: new Date(Date.now()),
-        })
-        .then(() => {});
-      const alert = await this.alertController.create({
-        header: 'Félicitation',
-        message: "L'envoi de la photo est terminé!",
-        buttons: ['OK'],
-      });
-      await alert.present();
+      this.galerieService.addImage(this.imagePath).subscribe(
+        async (res: any) => {
+          await loading.dismiss();
+          console.log(res);
+          const alert = await this.alertController.create({
+            header: 'Félicitation',
+            message: "L'envoi de la photo est terminé!",
+            buttons: ['OK'],
+          });
+          await alert.present();
+        },
+        async (err: any) => {
+          console.log(err);
+          await loading.dismiss();
+        }
+      );
+
       this.getGalerie();
     });
   }
@@ -147,24 +151,34 @@ export class GaleriePage implements OnInit {
   async getGalerie() {
     const loading = await this.presentLoading();
     await loading.present();
-    const citiesRef = this.afSt.collection('galerie', (ref) =>
-      ref.where('uid', '==', this.user.uid)
+    this.galerieService.getCoiffeuseImage().subscribe(
+      (res: any) => {
+        this.items = res.data;
+        console.log(res);
+        loading.dismiss();
+      },
+      (err: any) => {
+        console.log(err);
+        loading.dismiss();
+      }
     );
-    const snapshot = await citiesRef.get();
-    this.items = [];
-
-    snapshot.forEach((doc) => {
-      console.log(doc);
-      doc.docs.forEach((d) => {
-        console.log(d.data());
-        this.items.push({
-          id: d.id,
-          data: d.data(),
-        });
-      });
-    });
-    console.log(this.items);
-    loading.dismiss();
+    // const citiesRef = this.afSt.collection('galerie', (ref) =>
+    //   ref.where('uid', '==', this.user.uid)
+    // );
+    // const snapshot = await citiesRef.get();
+    // this.items = [];
+    // snapshot.forEach((doc) => {
+    //   console.log(doc);
+    //   doc.docs.forEach((d) => {
+    //     console.log(d.data());
+    //     this.items.push({
+    //       id: d.id,
+    //       data: d.data(),
+    //     });
+    //   });
+    // });
+    // console.log(this.items);
+    // loading.dismiss();
   }
 
   async presentLoading(): Promise<any> {
@@ -180,13 +194,16 @@ export class GaleriePage implements OnInit {
     const loading = await this.presentLoading();
     await loading.present();
 
-    this.afSt
-      .collection('galerie')
-      .doc(id)
-      .delete()
-      .then((res: any) => {
+    this.galerieService.deleteCoiffeuseImage(id).subscribe(
+      (res: any) => {
+        console.log(res);
         loading.dismiss();
         this.getGalerie();
-      });
+      },
+      (err: any) => {
+        console.log(err);
+        loading.dismiss();
+      }
+    );
   }
 }

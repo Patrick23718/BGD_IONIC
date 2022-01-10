@@ -23,4 +23,15 @@ export class PlanningService {
     });
     return this.httpClient.get(API_URL, { headers: headers });
   }
+
+  research(ville: string, prest: string, plage: string, date: string) {
+    const API_URL =
+      this.SERVER_URL + `/search/${date}/${plage}/${prest}/${ville}`;
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      'Content-Type': 'application/json',
+      // 'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
+  }
 }

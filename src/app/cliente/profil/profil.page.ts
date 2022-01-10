@@ -28,6 +28,7 @@ export class ProfilPage implements OnInit {
   user: any = {
     prenom: '',
     email: '',
+    imageURL: '',
   };
   constructor(
     private modalCtrl: ModalController,

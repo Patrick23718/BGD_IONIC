@@ -84,26 +84,27 @@ export class UtilisateurService {
       'Content-Type': 'application/json',
       'x-access-token': `${token}`,
     });
+    console.log(data);
 
     return this.httpClient.put(API_URL, data, { headers: headers });
   }
 
-  imageSet(file: File, name: string) {
+  imageSet(imageURL: string) {
     const token = this.localStorage.get('x-access-token');
     const API_URL = this.SERVER_URL + '/auth/updateimage';
     const headers = new HttpHeaders({
-      // 'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
       'x-access-token': `${token}`,
     });
-    const fd = new FormData();
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    fd.append('imageURL', <File>file, name);
-    console.log(fd);
-    return this.httpClient.put(API_URL, fd, {
-      headers: headers,
-      reportProgress: true,
-      observe: 'events',
-    });
+    return this.httpClient.put(
+      API_URL,
+      { imageURL: imageURL },
+      {
+        headers: headers,
+        // reportProgress: true,
+        // observe: 'events',
+      }
+    );
   }
 
   // updateUser(
@@ -134,6 +135,16 @@ export class UtilisateurService {
   getUser() {
     const token = this.localStorage.get('x-access-token');
     const API_URL = this.SERVER_URL + '/auth/profile';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
+  }
+
+  getUsers() {
+    const token = this.localStorage.get('x-access-token');
+    const API_URL = this.SERVER_URL + '/auth/users';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-access-token': `${token}`,
@@ -176,6 +187,16 @@ export class UtilisateurService {
   getTypeUsers(type: string) {
     const token = this.localStorage.get('x-access-token');
     const API_URL = this.SERVER_URL + '/users/' + type;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
+  }
+
+  getUserById(uid: string) {
+    const token = this.localStorage.get('x-access-token');
+    const API_URL = this.SERVER_URL + '/auth/user/' + uid;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-access-token': `${token}`,

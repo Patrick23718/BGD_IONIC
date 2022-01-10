@@ -7,24 +7,77 @@
         <ion-icon size="large" name="close-circle-outline"></ion-icon>
       </ion-button>
     </div>
-    <form action="" class="mt-5 space-y-5">
+    <form class="mt-5 space-y-5" [formGroup]="bankForm" (ngSubmit)="onClick()">
       <div class="relative">
-        <input type="text" name="" id="" placeholder="Numéro de carte bancaire" class="w-full rounded-md pl-12 h-14">
-        <img src="assets/icon/carte_bancaire.svg" alt="" class="absolute top-4 left-3">
+        <input
+          (onkeydown)="count($event)"
+          type="text"
+          name=""
+          id=""
+          placeholder="Numéro de carte bancaire"
+          formControlName="numero"
+          class="w-full rounded-md pl-12 h-14"
+        />
+        <img
+          src="assets/icon/carte_bancaire.svg"
+          alt=""
+          class="absolute top-4 left-3"
+        />
       </div>
       <div class="relative">
-        <input type="text" name="" id="" placeholder="Nom du titulaire de la carte" class="w-full rounded-md pl-12 h-14">
-        <img src="assets/icon/calendar2.svg" alt="" class="absolute top-3 left-3">
+        <input
+          type="text"
+          name=""
+          id=""
+          formControlName="nom"
+          placeholder="nom"
+          class="w-full rounded-md pl-12 h-14"
+        />
+        <img
+          src="assets/icon/person.svg"
+          alt=""
+          class="absolute top-4 left-3"
+        />
       </div>
       <div class="relative">
-        <input type="text" name="" id="" placeholder="date expiration" class="w-full rounded-md pl-12 h-14">
-        <img src="assets/icon/calendar2.svg" alt="" class="absolute top-3 left-3">
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="date expiration"
+          formControlName="date"
+          class="w-full rounded-md pl-12 h-14"
+        />
+        <img
+          src="assets/icon/calendar2.svg"
+          alt=""
+          class="absolute top-3 left-3"
+        />
       </div>
       <div class="relative">
-        <input type="text" name="" id="" placeholder="CVv" class="w-full rounded-md pl-12 h-14">
-        <img src="assets/icon/calendar2.svg" alt="" class="absolute top-3 left-3">
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="CVV"
+          class="w-full rounded-md pl-12 h-14"
+          formControlName="cvv"
+        />
+        <img
+          src="assets/icon/calendar2.svg"
+          alt=""
+          class="absolute top-3 left-3"
+        />
       </div>
-      <ion-button fill="clear" expand="block" class="rounded-md bg-primary text-white uppercase">enregistrer</ion-button>
+
+      <ion-button
+        fill="clear"
+        expand="block"
+        class="rounded-md bg-primary text-white uppercase"
+        (click)="onClick()"
+        [disabled]="bankForm.invalid"
+        >enregistrer</ion-button
+      >
     </form>
   </div>
 </ion-content>

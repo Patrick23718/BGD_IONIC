@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { InitGuard } from './guard/init.guard';
@@ -200,6 +201,34 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/modals/deconnection/deconnection.module').then(
         (m) => m.DeconnectionPageModule
+      ),
+  },
+  {
+    path: 'suggestion-ville',
+    loadChildren: () =>
+      import('./shared/modals/suggestion-ville/suggestion-ville.module').then(
+        (m) => m.SuggestionVillePageModule
+      ),
+  },
+  {
+    path: 'validation-prestation',
+    loadChildren: () =>
+      import(
+        './components/validation-prestation/validation-prestation.module'
+      ).then((m) => m.ValidationPrestationPageModule),
+  },
+  {
+    path: 'disponibilite',
+    loadChildren: () =>
+      import('./components/disponibilite/disponibilite.module').then(
+        (m) => m.DisponibilitePageModule
+      ),
+  },
+  {
+    path: 'disponibilities',
+    loadChildren: () =>
+      import('./shared/modals/disponibilities/disponibilities.module').then(
+        (m) => m.DisponibilitiesPageModule
       ),
   },
 ];

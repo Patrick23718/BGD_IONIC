@@ -8,6 +8,7 @@ import {
   ToastController,
 } from '@ionic/angular';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { VilleService } from 'src/app/services/ville.service';
 
 @Component({
   selector: 'app-contacter-nous',
@@ -17,22 +18,22 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class ContacterNousPage implements OnInit {
   focused: boolean;
   objet = '';
-  commentaires = '';
-  uid: string;
+  msg = '';
+  user: any;
   constructor(
-    private location: Location,
-    private firestore: AngularFirestore,
+    public location: Location,
     private localstorage: LocalStorageService,
+    private contactService: VilleService,
     private toastController: ToastController,
     private loadingController: LoadingController,
     private navCtrl: NavController
-  ) {
-    this.uid = JSON.parse(this.localstorage.get('utilisateur')).uid;
-    console.log(this.uid);
+  ) {}
+
+  ngOnInit() {
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
   }
-  myBackButton() {
-    this.location.back();
-  }
+
   onBlur(event: any) {
     const value = event.target.value;
 
@@ -40,7 +41,41 @@ export class ContacterNousPage implements OnInit {
       this.focused = false;
     }
   }
-  ngOnInit(): void {}
+
+  myBackButton() {
+    this.location.back();
+  }
+
+  async sendComment() {
+    const loading = await this.presentLoading();
+    await loading.present();
+
+    if (this.objet !== '' && this.msg !== '') {
+      const data = {
+        objet: this.objet,
+        message: this.msg,
+        prenom: this.user.prenom,
+        email: this.user.email,
+      };
+      this.contactService.contact(data).subscribe(
+        async (res: any) => {
+          console.log(res);
+          await this.presentToast(res.message, 'success');
+          this.loadingController.dismiss();
+          this.navCtrl.navigateForward('/coiffeuse/home');
+        },
+        async (err: any) => {
+          await this.presentToast(
+            "Erreur lors de l'envoi du message",
+            'danger'
+          );
+          this.loadingController.dismiss();
+          console.warn(err);
+        }
+      );
+    }
+  }
+
   async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message,
@@ -59,30 +94,5 @@ export class ContacterNousPage implements OnInit {
       backdropDismiss: false,
       mode: 'ios',
     });
-  }
-  async sendMessage() {
-    const loading = await this.presentLoading();
-    await loading.present();
-
-    this.firestore
-      .collection('contact')
-      .add({
-        uid: this.uid,
-        objet: this.objet,
-        commentaires: this.commentaires,
-      })
-      .then(async () => {
-        await this.presentToast('Message envoyé!!', 'success');
-        this.navCtrl.navigateForward('/coiffeuse/home');
-      })
-      .catch(async () => {
-        await this.presentToast(
-          "Une erreur est survenue lors de l'envoie !!",
-          'danger'
-        );
-      })
-      .finally(() => {
-        this.loadingController.dismiss();
-      });
   }
 }

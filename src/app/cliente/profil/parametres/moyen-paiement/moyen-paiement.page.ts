@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { DonneesBancairesPage } from 'src/app/shared/modals/donnees-bancaires/donnees-bancaires.page';
 
 @Component({
@@ -9,9 +10,16 @@ import { DonneesBancairesPage } from 'src/app/shared/modals/donnees-bancaires/do
   styleUrls: ['./moyen-paiement.page.scss'],
 })
 export class MoyenPaiementPage implements OnInit {
-  constructor(public location: Location, private modalCtrl: ModalController) {}
+  carte;
+  constructor(
+    public location: Location,
+    private modalCtrl: ModalController,
+    private localstorage: LocalStorageService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCart();
+  }
 
   myBackButton() {
     this.location.back();
@@ -27,5 +35,10 @@ export class MoyenPaiementPage implements OnInit {
 
     await modal.present();
     modal.onDidDismiss();
+  }
+
+  getCart() {
+    this.carte = JSON.stringify(this.localstorage.get('carte'));
+    console.log(this.carte);
   }
 }

@@ -77,6 +77,7 @@ export class ConnexionCoiffeusePage implements OnInit {
           nom: log.nom,
           prenom: log.prenom,
           role: log.role,
+          imageURL: log.imageURL,
         };
         this.localStorage.set('user', JSON.stringify(data));
         loading.dismiss();

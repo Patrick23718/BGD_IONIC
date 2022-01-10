@@ -1,5 +1,5 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {
   AlertController,
   ModalController,
@@ -9,15 +9,14 @@ import {
 } from '@ionic/angular';
 import { NotificationsPage } from '../modals/notifications/notifications.page';
 import { Notification } from '../../interfaces/notification';
-import { ReservationModalComponent } from 'src/app/coiffeuse/modals/reservation-modal/reservation-modal.component';
 import { ReservationPage } from 'src/app/components/reservation/reservation.page';
 import { PorteMonnaiePage } from '../profil/porte-monnaie/porte-monnaie.page';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { CameraResultType } from '@capacitor/camera';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { PaiementService } from 'src/app/services/paiement.service';
 
 @Component({
   selector: 'app-home',
@@ -26,9 +25,11 @@ import { CameraResultType } from '@capacitor/camera';
 })
 export class HomePage implements OnInit {
   user: any = {
+    _id: '',
     prenom: '',
     imageURL: '',
   };
+  reservations = [];
   items: any = [{ title: 'ds', icon: 'sdf', to: 'sdf' }];
   imageURL = '';
   imagePath: string;
@@ -50,18 +51,19 @@ export class HomePage implements OnInit {
   };
 
   constructor(
-    private fbAuth: AngularFireAuth,
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public navCtrl: NavController,
-    private afDB: AngularFireDatabase,
     private localstorage: LocalStorageService,
     public alertController: AlertController,
     public loadingController: LoadingController,
     private camera: Camera,
-    private afSG: AngularFireStorage
+    private afSG: AngularFireStorage,
+    private utilisateurService: UtilisateurService,
+    private reservationService: PaiementService
   ) {}
   async ionViewWillEnter() {
+    this.getAwaitReservation();
     this.user = JSON.parse(this.localstorage.get('user'));
     console.log(this.user);
   }
@@ -70,19 +72,20 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('coiffeuse/profil/porte-monnaie');
   }
 
-  async openReservationModal() {
+  async openReservationModal(item: any) {
     const modal = await this.modalController.create({
       component: ReservationPage,
       componentProps: {
-        notification: this.notif,
+        notification: item,
       },
       cssClass: 'modal-component',
       backdropDismiss: true,
       mode: 'ios',
     });
     await modal.present();
-
-    modal.onDidDismiss();
+    modal.onDidDismiss().then((data) => {
+      this.getAwaitReservation();
+    });
   }
 
   async presentActionSheet() {
@@ -165,35 +168,38 @@ export class HomePage implements OnInit {
     this.upload = this.afSG
       .ref(this.imagePath)
       .putString(this.imageURL, 'data_url');
-    this.upload.then(async () => {
-      // this.imageURL = '';
-
-      this.fbAuth.authState.subscribe(async (authState) => {
-        authState
-          .updateProfile({
-            photoURL: this.imagePath,
-          })
-          .then(async () => {
-            const user = {
-              uid: authState.uid,
-              prenom: authState.displayName,
-              email: authState.email,
-              photoURL: this.imagePath,
+    this.upload
+      .then(async () => {
+        this.utilisateurService.imageSet(this.imagePath).subscribe(
+          (res: any) => {
+            console.log(res);
+            const data = {
+              email: this.user.email,
+              id: this.user._id,
+              prenom: this.user.prenom,
+              imageURL: this.imagePath,
+              role: this.user.role,
             };
-            this.user = user;
-            // this.localstorage.remove('utilisateur');
-            this.localstorage.set('utilisateur', JSON.stringify(user));
-            await loading.dismiss();
-            const alert = await this.alertController.create({
-              header: 'Félicitation',
-              // eslint-disable-next-line @typescript-eslint/quotes
-              message: "L'envoi de la photo est terminé!",
-              buttons: ['OK'],
-            });
-            await alert.present();
-          });
+            this.user.imageURL = data.imageURL;
+            this.localstorage.set('user', JSON.stringify(data));
+            loading.dismiss();
+          },
+          (err: any) => {
+            loading.dismiss();
+          }
+        );
+      })
+      .catch((err: any) => {
+        loading.dismiss();
       });
-      // this.getGalerie();
-    });
+  }
+
+  getAwaitReservation() {
+    this.reservationService
+      .reservationByStatus('AWAIT')
+      .subscribe((res: any) => {
+        this.reservations = res;
+        console.log(res);
+      });
   }
 }

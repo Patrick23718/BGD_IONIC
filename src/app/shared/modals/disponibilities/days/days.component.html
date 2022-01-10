@@ -1,0 +1,84 @@
+<div
+  class="relative flex flex-row justify-center items-center m-auto w-72 md:w-96"
+>
+  <button
+    mat-icon-button
+    class="
+      transition
+      text-pink-500
+      z-10
+      hover:bg-pink-50
+      w-8
+      h-8
+      rounded-full
+      flex
+      justify-center
+      items-center
+    "
+    (click)="previous()"
+  >
+    <!-- <mat-icon class="mat-18">keyboard_arrow_left</mat-icon> -->
+    <!-- <ion-icon name="caret-back-circle"></ion-icon> -->
+  </button>
+  <div
+    #container
+    class="w-full flex justify-center items-center overflow-hidden"
+    [id]="id"
+  >
+    <div
+      class="flex justify-center items-center"
+      *ngFor="let item of daysOfMonths; let i = index"
+    >
+      <button
+        class="flex justify-center items-center rounded-full w-6 h-6 text-xs md:w-8 md:h-8 p-2 md:text-base {{
+          item === 0 ? 'text-white' : 'text-gray-500 border'
+        }}"
+      >
+        {{ item }}
+      </button>
+    </div>
+  </div>
+  <div
+    class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+  >
+    <button
+      class="
+        flex
+        justify-center
+        items-center
+        rounded-full
+        w-6
+        h-6
+        text-xs
+        md:w-8 md:h-8
+        p-2
+        md:text-base
+        text-white
+        bg-pink-500
+      "
+    >
+      {{ currentDay }}
+    </button>
+  </div>
+  <button
+    mat-icon-button
+    class="
+      transition
+      text-pink-500
+      hover:bg-pink-50
+      w-8
+      h-8
+      rounded-full
+      flex
+      justify-center
+      items-center
+    "
+    (click)="next()"
+  >
+    <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+    <!-- <ion-icon name="caret-forward-circle"></ion-icon> -->
+  </button>
+</div>
+<div
+  class="w-full flex flex-row space-x-3 justify-center items-center pt-3"
+></div>

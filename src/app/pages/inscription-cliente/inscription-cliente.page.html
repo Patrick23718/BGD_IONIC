@@ -13,16 +13,7 @@
             [ngModelOptions]="{standalone: true}"
           />
           <div
-            class="
-              bg-primary
-              absolute
-              rounded-full
-              top-3
-              right-3
-              flex
-              justify-center
-              p-1
-            "
+            class="bg-primary absolute rounded-full top-3 right-3 flex justify-center p-1"
           >
             <img src="assets/icon/contact.svg" alt="" />
           </div>
@@ -37,16 +28,7 @@
             [ngModelOptions]="{standalone: true}"
           />
           <div
-            class="
-              bg-primary
-              absolute
-              rounded-full
-              top-3
-              right-3
-              flex
-              justify-center
-              p-1
-            "
+            class="bg-primary absolute rounded-full top-3 right-3 flex justify-center p-1"
           >
             <img src="assets/icon/contact.svg" alt="" />
           </div>
@@ -117,20 +99,6 @@
           </div>
         </div>
         <div
-          class="
-            flex
-            justify-end
-            text-primary
-            underline
-            text-sm
-            cursor-pointer
-            mb-5
-          "
-          routerLink="/reinitialisation-mot-de-passe"
-        >
-          Mot de passe oublié ?
-        </div>
-        <div
           class="flex justify-center bg-primary rounded-md h-12 cursor-pointer"
         >
           <button
@@ -148,9 +116,14 @@
         <legend class="px-5 text-center">ou</legend>
       </fieldset>
     </div>
-    <div class="text-center">Se conecter avec</div>
+    <div class="text-center">S'inscrire avec</div>
     <div class="relative cursor-pointer">
-      <ion-button class="uppercase w-full text-center">Facebook</ion-button>
+      <ion-button
+        fill="clear"
+        class="uppercase w-full text-center"
+        style="background-color: #2d88ff"
+        ><span class="text-white">Facebook</span></ion-button
+      >
       <img
         src="assets/icon/facebook-blanc.svg"
         alt=""

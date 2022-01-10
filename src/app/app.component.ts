@@ -22,7 +22,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashscreen.hide();
-      // this.router.navigateByUrl('/splash');
+      this.router.navigateByUrl('/splash');
 
       // let status bar overlay webview
       // this.statusBar.overlaysWebView(true);
@@ -31,4 +31,18 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#FF3E79');
     });
   }
+
+  // getUserRole(){
+  //   const user = JSON.parse(this.localstorage.get('user'));
+  //   const init = this.localstorage.get("init");
+  //   if(init === null){
+
+  //   } else{
+  //     if(user === null || user.role === "cliente"){
+
+  //     }else if(user.role === "coiffeuse"){
+
+  //     }
+  //   }
+  // }
 }

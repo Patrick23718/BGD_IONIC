@@ -32,6 +32,8 @@ import { Camera } from '@ionic-native/camera/ngx';
 // import { FileTransfer } from '@ionic-native/file-transfer';
 import { ImagesProvider } from '../providers/images/images';
 
+import { Stripe } from '@ionic-native/stripe/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -53,6 +55,7 @@ import { ImagesProvider } from '../providers/images/images';
     StatusBar,
     Camera,
     ImagesProvider,
+    Stripe,
     // FileTransfer,
     {
       provide: RouteReuseStrategy,

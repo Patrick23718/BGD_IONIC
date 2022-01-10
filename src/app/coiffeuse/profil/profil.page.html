@@ -12,7 +12,7 @@
   >
     <div class="flex flex-row">
       <img
-        [src]="user?.imageURL === null ? 'assets/default.jpeg':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+        [src]="user?.imageURL === 'default.png' ? 'assets/default.png':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
         class="w-16 h-16 rounded-lg border-2 border-white"
         alt=""
         srcset=""

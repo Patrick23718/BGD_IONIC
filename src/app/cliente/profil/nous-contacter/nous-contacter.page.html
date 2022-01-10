@@ -1,8 +1,6 @@
 <ion-content>
   <div class="">
-    <div
-      class="flex flex-row items-center mb-10 text-gray-600"
-    >
+    <div class="flex flex-row items-center mb-10 text-gray-600">
       <ion-button (click)="myBackButton()" fill="clear">
         <img src="assets/icon/back.svg" alt="" srcset="" />
       </ion-button>
@@ -15,14 +13,30 @@
           type="text"
           (focus)="focused = true"
           (blur)="onBlur($event)"
+          [(ngModel)]="objet"
+          [ngModelOptions]="{standalone: true}"
         />
       </div>
       <div class="form-fields h-32">
         <label [ngClass]="focused ? 'label-focused' : ''">commentaire</label>
-        <textarea name="" id="" cols="30" rows="50" (focus)="focused = true" (blur)="onBlur($event)"></textarea>
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="50"
+          (focus)="focused = true"
+          (blur)="onBlur($event)"
+          [(ngModel)]="msg"
+          [ngModelOptions]="{standalone: true}"
+        ></textarea>
       </div>
-      <div class="bg-primary rounded-md flex justify-center mt-10">
-        <ion-button fill="clear" class="uppercase text-white">envoyer</ion-button>
+      <div
+        class="bg-primary rounded-md flex justify-center mt-10"
+        (click)="sendComment()"
+      >
+        <ion-button fill="clear" class="uppercase text-white"
+          >envoyer</ion-button
+        >
       </div>
     </form>
   </div>

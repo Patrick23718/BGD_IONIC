@@ -32,7 +32,7 @@
           cols="8"
           (focus)="focused = true"
           (blur)="onBlur($event)"
-          [(ngModel)]="commentaire"
+          [(ngModel)]="msg"
           [ngModelOptions]="{standalone: true}"
         ></textarea>
       </div>
@@ -49,7 +49,7 @@
           text-md
           uppercase
         "
-        (click)="sendMessage()"
+        (click)="sendComment()"
       >
         envoyer
       </button>

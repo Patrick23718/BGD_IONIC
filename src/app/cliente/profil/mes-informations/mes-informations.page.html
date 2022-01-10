@@ -10,7 +10,7 @@
     <div class="">
       <div class="flex justify-center p-5">
         <img
-          src="assets/icon/photo_profil.svg"
+          [src]="profile.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+profile.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
           alt=""
           class="border-dashed border-2 border-primary rounded-md p-2"
         />
@@ -19,6 +19,7 @@
         fill="clear"
         expand="block"
         class="bg-primary-op text-primary rounded-md"
+        (click)="presentActionSheet()"
         >changer ma photo</ion-button
       >
       <form action="" class="my-10">

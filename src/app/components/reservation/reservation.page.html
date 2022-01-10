@@ -1,77 +1,85 @@
-<div class="div px-5 py-3 flex flex-col space-y-5 text-gray-600">
-  <div class="flex flex-row justify-between items-center">
-    <div><img src="" alt="" srcset="" /></div>
-    <div class="text-lg font-semibold">notification</div>
-    <div class="m-0 p-0" fill="clear" (click)="dismiss()">
-      <img src="assets/icon/close.svg" alt="" srcset="" />
-    </div>
-  </div>
-
-  <div class="border border-gray-200 rounded-lg py-2 px-4 text-gray-600">
-    <div class="grid grid-cols-3 gap-2 pb-3">
-      <div class="">
-        <img
-          class="w-16 h-16 rounded-lg"
-          [src]="notification.imageURL"
-          alt=""
-          srcset=""
-        />
+<ion-content>
+  <div class="div px-5 py-3 flex flex-col space-y-5 text-gray-600">
+    <div class="flex flex-row justify-between items-center">
+      <div><img src="" alt="" srcset="" /></div>
+      <div class="text-lg font-semibold">notification</div>
+      <div class="m-0 p-0" fill="clear" (click)="dismiss()">
+        <img src="assets/icon/close.svg" alt="" srcset="" />
       </div>
-      <div class="col-span-2">
-        <div class="flex justify-end">
-          <div class="px-2 bg-gray-200 rounded text-gray-500 text-sm">
-            en attente
+    </div>
+
+    <div class="border border-gray-200 rounded-lg py-2 px-4 text-gray-600">
+      <div class="grid grid-cols-3 gap-2 pb-3">
+        <div class="">
+          <img
+            class="w-16 h-16 rounded-lg"
+            [src]="notification.cliente?.imageURL === 'default.png' ? 'assets/default.png':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+notification.cliente?.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="col-span-2">
+          <div class="flex justify-end">
+            <div class="px-2 bg-gray-200 rounded text-gray-500 text-sm">
+              en attente
+            </div>
+          </div>
+          <div class="font-semibold">
+            {{notification.cliente.prenom| titlecase}}
+          </div>
+          <div class="text-gray-400 text-sm">
+            {{notification.prestation.prestation.prestation}}
           </div>
         </div>
-        <div class="font-semibold">{{notification.prenom}}</div>
-        <div class="text-gray-400 text-sm">{{notification.prestation}}</div>
+      </div>
+      <hr />
+      <div class="pt-3 grid grid-cols-6">
+        <div class="col-span-4 flex flex-col gap-2">
+          <div class="flex flex-row gap-8 items-center">
+            <img src="assets/icon/time.svg" alt="" srcset="" />
+            <div>{{notification.disponibilite.plage}}</div>
+          </div>
+          <div class="flex flex-row gap-8 items-center">
+            <img class="" src="assets/icon/map.svg" alt="" srcset="" />
+            <div>{{notification.cliente.ville}}</div>
+          </div>
+        </div>
+        <div
+          class="
+            ion-activatable
+            col-span-2
+            opacity-75
+            flex
+            items-center
+            justify-center
+            rounded-lg
+            bg-primary-op
+          "
+          (click)="goToChat(notification.cliente._id)"
+        >
+          <ion-ripple-effect></ion-ripple-effect>
+          <img src="assets/icon/chat.svg" alt="" srcset="" />
+        </div>
       </div>
     </div>
-    <hr />
-    <div class="pt-3 grid grid-cols-6">
-      <div class="col-span-4 flex flex-col gap-2">
-        <div class="flex flex-row gap-8 items-center">
-          <img src="assets/icon/time.svg" alt="" srcset="" />
-          <div>{{notification.plageHoraire}}</div>
-        </div>
-        <div class="flex flex-row gap-8 items-center">
-          <img class="" src="assets/icon/map.svg" alt="" srcset="" />
-          <div>{{notification.ville}}</div>
-        </div>
-      </div>
-      <div
-        class="
-          ion-activatable
-          col-span-2
-          opacity-75
-          flex
-          items-center
-          justify-center
-          rounded-lg
-          bg-primary-op
-        "
-        (click)="goToChat(notification.clientId)"
+    <div class="grid grid-cols-2 gap-4">
+      <button
+        button="true"
+        style="background-color: #fe4335"
+        class="rounded-lg py-3 text-white"
+        (click)="refuseMethode(notification._id)"
       >
-        <ion-ripple-effect></ion-ripple-effect>
-        <img src="assets/icon/chat.svg" alt="" srcset="" />
-      </div>
+        <ion-spinner *ngIf="loading1"></ion-spinner>
+        <span *ngIf="!loading1">REFUSER</span>
+      </button>
+      <button
+        style="background-color: #21a621"
+        class="rounded-lg py-3 text-white"
+        (click)="accepteMethode(notification._id)"
+      >
+        <ion-spinner *ngIf="loading"></ion-spinner>
+        <span *ngIf="!loading">ACCEPTER</span>
+      </button>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-4">
-    <button
-      button="true"
-      style="background-color: #fe4335"
-      class="rounded-lg py-3 text-white"
-      (click)="notification.refuseMethode()"
-    >
-      REFUSER
-    </button>
-    <button
-      style="background-color: #21a621"
-      class="rounded-lg py-3 text-white"
-      (click)="notification.accepteMethode()"
-    >
-      ACCEPTER
-    </button>
-  </div>
-</div>
+</ion-content>

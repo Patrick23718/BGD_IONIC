@@ -1,6 +1,22 @@
 ion-content {
   --background: transparent;
 }
-.none {
-  display: none !important;
+.swiper-pagination {
+  position: fixed;
+  bottom: 0px;
+  padding-bottom: 3px;
+}
+
+.my-custom-slider {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.my-custom-slider .swiper-pagination {
+  bottom: 0px;
+}
+
+.my-custom-slider .md {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

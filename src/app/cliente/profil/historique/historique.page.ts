@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { PaiementService } from 'src/app/services/paiement.service';
 
 @Component({
   selector: 'app-historique',
@@ -7,14 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historique.page.scss'],
 })
 export class HistoriquePage implements OnInit {
-
-  constructor(public location : Location) { }
-
-  ngOnInit() {
+  items = [];
+  constructor(
+    public location: Location,
+    private reservationService: PaiementService
+  ) {
+    this.getReservation();
   }
 
-  myBackButton(){
-    this.location.back()
+  ngOnInit() {}
+
+  myBackButton() {
+    this.location.back();
   }
 
+  getReservation() {
+    this.reservationService.getReservation().subscribe((res: any) => {
+      this.items = res;
+      console.log(res);
+    });
+  }
 }

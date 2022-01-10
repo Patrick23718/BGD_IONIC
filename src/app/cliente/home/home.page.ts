@@ -40,14 +40,16 @@ export class HomePage implements OnInit {
     private localstorage: LocalStorageService,
     private searchService: PlanningService,
     private prestService: PrestationService
-  ) {}
+  ) {
+    this.user = JSON.parse(this.localstorage.get('user'));
+    console.log(this.user);
+  }
+
   ionViewWillEnter() {
     this.user = JSON.parse(this.localstorage.get('user'));
     console.log(this.user);
   }
   ngOnInit(): void {
-    this.user = JSON.parse(this.localstorage.get('user'));
-    console.log(this.user);
     const villeOBX = this.router.snapshot.data['ville'];
     const prestationOBX = this.router.snapshot.data['prestation'];
     const plageOBX = this.router.snapshot.data['plages'];
@@ -125,7 +127,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  async openImageModal(resa: any[]) {
+  async openImageModal(resa: any) {
     console.log(resa);
     const modal = await this.modalController.create({
       component: ResaPage,
@@ -149,6 +151,16 @@ export class HomePage implements OnInit {
 
   search() {
     const selectedDate = new Date(this.plage.date).toString();
+
+    this.localstorage.set(
+      'search',
+      JSON.stringify({
+        ville: this.ville,
+        date: selectedDate,
+        prest: this.prestation,
+        plage: this.plage.plage,
+      })
+    );
 
     this.route.navigate([
       '/cliente/acceuil/resultat-recherche',

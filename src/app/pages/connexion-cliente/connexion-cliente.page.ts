@@ -69,6 +69,7 @@ export class ConnexionClientePage implements OnInit {
           nom: log.nom,
           prenom: log.prenom,
           role: log.role,
+          imageURL: log.imageURL,
         };
         console.log(data);
         this.localStorage.set('user', JSON.stringify(data));

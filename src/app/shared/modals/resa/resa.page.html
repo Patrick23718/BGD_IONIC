@@ -2,42 +2,49 @@
   <div class="flex h-full flex-col justify-center items-center w-full">
     <ion-slides
       pager="true"
-      class="w-full"
+      class="w-full my-custom-slider"
       #testSlider
       (ionSlideTap)="getIndex()"
       (ionSlideDidChange)="getIndex()"
+      [options]="slideOpts"
     >
       <ion-slide
         class="block px-2 w-full mb-5 relative"
-        *ngFor="let item of resa"
+        style="height: 375px"
+        *ngFor="let item of presta"
         [ngClass]="item.imageURL === ''? 'none': ''"
       >
-        <div *ngIf="item.imageURL !== ''">
-          <img
-            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/prestations%2F'+item.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
-            class="rounded-lg w-5/6"
-          />
+        <!-- <div *ngIf="item.imageURL !== ''"> -->
+        <img
+          [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/prestations%2F'+item.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+          class="rounded-lg w-4/6"
+        />
 
-          <div
-            class="
-              w-full
-              justify-center
-              slider-text
-              text-white
-              font-bold
-              text-center
-              absolute
-              bottom-20
-            "
-          >
-            <p>{{item.prestation}}</p>
-          </div>
-          &nbsp;<br />
+        <div
+          class="
+            w-full
+            justify-center
+            slider-text
+            text-white
+            font-bold
+            text-center
+            absolute
+            bottom-20
+          "
+        >
+          <p>{{item.prestation}}</p>
         </div>
+        &nbsp;<br />
+        <!-- </div> -->
+        <ion-button
+          expand="block"
+          (click)="getPrestation(item)"
+          class="absolute -bottom-5 left-0 right-0 z-50"
+          ><span class="font-semibold"
+            >Trouvez votre coiffeuse</span
+          ></ion-button
+        >
       </ion-slide>
     </ion-slides>
-    <ion-button expand="block" (click)="getPrestation()"
-      ><span class="font-semibold">Trouvez votre coiffeuse</span></ion-button
-    >
   </div>
 </ion-content>

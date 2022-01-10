@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:3000',
-  // serverUrl: 'https://bigoodee.herokuapp.com',
+  // serverUrl: 'http://localhost:3000',
+  serverUrl: 'https://bigoodee.herokuapp.com',
+  STRIPE_PUBLIC_KEY:
+    'pk_test_51JsMcWDHkYs3mdNXlWZtYj8prGZmJy1fY7kvdAwPmFUSx2qg482owyxizyf2nnxKK0U8kSLL9k0N5g8ngGNNSVEJ00xSGNL6Sm',
   firebaseConfig: {
     apiKey: 'AIzaSyBuBe3aCZN1caxyokRSUE223auJRYZ6tmA',
     authDomain: 'bigoodee-79097.firebaseapp.com',

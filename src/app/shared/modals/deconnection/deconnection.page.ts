@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ModalController } from '@ionic/angular';
+import {
+  LoadingController,
+  ModalController,
+  NavController,
+} from '@ionic/angular';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
@@ -15,7 +19,8 @@ export class DeconnectionPage implements OnInit {
     private router: Router,
     public loadingController: LoadingController,
     private localstorage: LocalStorageService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {}
@@ -34,13 +39,9 @@ export class DeconnectionPage implements OnInit {
   }
 
   async signout() {
-    // const loading = await this.presentLoading();
-    // await loading.present();
-    // this.userService.signOut().then(() => {
-    //   this.localstorage.remove('utilisateur');
-    //   loading.dismiss();
-    //   this.cancel();
-    //   this.router.navigate(['/connexion-coiffeuse']);
-    // });
+    this.localstorage.remove('x-access-token');
+    this.localstorage.remove('user');
+    this.navCtrl.navigateForward('/connexion-coiffeuse');
+    this.modalController.dismiss();
   }
 }

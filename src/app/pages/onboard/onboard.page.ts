@@ -11,7 +11,9 @@ export class OnboardPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
   index = true;
-  constructor(private local: LocalStorageService) {}
+  constructor(private local: LocalStorageService) {
+    this.local.set('init', '1');
+  }
 
   ngOnInit() {
     this.local.remove('utilisateur');

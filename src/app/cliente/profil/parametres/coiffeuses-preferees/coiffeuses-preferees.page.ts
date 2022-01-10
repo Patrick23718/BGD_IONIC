@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { PreferedService } from 'src/app/services/prefered.service';
 
 @Component({
   selector: 'app-coiffeuses-preferees',
@@ -7,32 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coiffeuses-preferees.page.scss'],
 })
 export class CoiffeusesPrefereesPage implements OnInit {
-  segment = 'prestations';
-  items = [
-    { title: 'Braids', checked: false },
-    { title: 'nattes collées', checked: false },
-    { title: 'tissages', checked: false },
-    { title: 'Braids', checked: false },
-    { title: 'pose perruque', checked: false },
-    { title: 'crochet braids', checked: false },
-  ];
-  constructor(public location: Location) {}
-
-  segmentChanged(event: any) {
-    this.segment = event.detail.value;
-    console.log(this.segment);
-  }
-
-  check() {
-    let i = 0;
-    for (i = 0; i < 6; i++) {
-      this.items[i].checked = false;
-    }
-  }
+  items: any[] = [];
+  constructor(public location: Location, private like: PreferedService) {}
 
   myBackButton() {
     this.location.back();
   }
 
   ngOnInit() {}
+  getCoiffeuses() {
+    this.like.getAllPrefered().subscribe((res: any) => {
+      this.items = res;
+      console.log(res);
+    });
+  }
+
+  ionViewWillEnter() {
+    this.getCoiffeuses();
+  }
+
+  remove(id: string) {
+    this.like.removePrefered(id).subscribe((res: any) => {
+      this.getCoiffeuses();
+      console.log(res);
+    });
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { SuggestionVillePage } from 'src/app/shared/modals/suggestion-ville/suggestion-ville.page';
 
 @Component({
   selector: 'app-ville',
@@ -51,5 +52,17 @@ export class VillePage implements OnInit {
     test.checked = true;
     this.value = arraytype.title + ' ' + test.title;
     this.modalController.dismiss(test);
+  }
+
+  async openVilleModal() {
+    const modal = await this.modalController.create({
+      component: SuggestionVillePage,
+      cssClass: 'prestationModal',
+      backdropDismiss: true,
+      mode: 'ios',
+    });
+    await modal.present();
+
+    modal.onDidDismiss();
   }
 }

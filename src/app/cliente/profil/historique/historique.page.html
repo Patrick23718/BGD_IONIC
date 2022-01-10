@@ -1,33 +1,51 @@
 <ion-content>
-    <div
-      class="flex flex-row items-center mb-10 text-gray-600"
+  <div class="flex flex-row items-center mb-10 text-gray-600">
+    <ion-button (click)="myBackButton()" fill="clear">
+      <img src="assets/icon/back.svg" alt="" srcset="" />
+    </ion-button>
+    <h1 class="text-2xl font-bold flex text-center">Mon Historique</h1>
+  </div>
+  <div class="">
+    <ion-card
+      *ngFor="let item of items"
+      class="shadow-none border-2 rounded-md"
     >
-      <ion-button (click)="myBackButton()" fill="clear">
-        <img src="assets/icon/back.svg" alt="" srcset="" />
-      </ion-button>
-      <h1 class="text-2xl font-bold flex text-center">Mon Historique</h1>
-    </div>
-    <div class="">
-        <ion-card class="shadow-none border-2 rounded-md">
-            <ion-card-content class="flex items-center justify-between">
-                <div class="flex flex-row space-x-5">
-                    <div class="w-10 h-10">
-                        <img src="assets/icon/tof.svg" alt="" class="rounded-full w-full h-full">
-                    </div>
-                    <div class="flex flex-row items-start">
-                        <div class="flex flex-col">
-                            <div class="">Ladouce</div>
-                            <div class="">vanilles (twists) effet</div>
-                        </div>
-                        <div class="text-secondary">40€</div>
-                    </div>
-                </div>
-                <ion-button slot="end" fill="clear" class="bg-primary-op rounded-md">
-                    <img src="assets/icon/sms_pink.svg" alt="">
-                </ion-button>
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="shadow-none border-2 rounded-md">
+      <ion-card-content class="flex items-center justify-between">
+        <div class="flex flex-row space-x-5">
+          <div class="w-10 h-10">
+            <img
+              [src]="item.coiffeuse.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+item.coiffeuse.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+              alt=""
+              class="rounded-full w-full h-full"
+            />
+          </div>
+          <div class="flex flex-row items-start">
+            <div class="flex flex-col">
+              <div class="">{{item.coiffeuse.prenom}}</div>
+              <div class="">{{item.prestation.prestation.prestation}}</div>
+            </div>
+            <div class="text-secondary">
+              <span *ngIf="item.reduction === null"
+                >{{item.prestation.tarif| currency:'EUR'}}</span
+              >
+              <span *ngIf="item.reduction !== null"
+                >{{(item.prestation.tarif-(item.prestation.tarif*
+                item.reduction.amount/100))|currency:'EUR'}}</span
+              >
+            </div>
+          </div>
+        </div>
+        <ion-button
+          slot="end"
+          fill="clear"
+          class="bg-primary-op rounded-md"
+          [routerLink]="'/cliente/message/'+item.coiffeuse._id"
+        >
+          <img src="assets/icon/sms_pink.svg" alt="" />
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <!-- <ion-card class="shadow-none border-2 rounded-md">
             <ion-card-content class="flex items-center justify-between">
                 <div class="flex flex-row space-x-5">
                     <div class="w-10 h-10">
@@ -64,6 +82,6 @@
                     <img src="assets/icon/sms_pink.svg" alt="">
                 </ion-button>
             </ion-card-content>
-        </ion-card>
-    </div>
+        </ion-card> -->
+  </div>
 </ion-content>

@@ -53,7 +53,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'message-details',
+            path: 'message-details/:uid',
             loadChildren: () =>
               import('./message/message-details/message-details.module').then(
                 (m) => m.MessageDetailsPageModule

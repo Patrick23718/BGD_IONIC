@@ -11,12 +11,12 @@
     <ion-button fill="clear"> </ion-button>
   </div>
   <div class="text-gray-500">
-    <div class="flex justify-between items-start px-5">
+    <!-- <div class="flex justify-between items-start px-5">
       <div class="">
         <img src="assets/icon/sarah.svg" alt="" />
       </div>
       <div class="flex flex-col space-y-8">
-        <div class="">Sarah</div>
+        <div class="font-bold text-lg">Sarah</div>
         <div class="flex flex-row space-x-2">
           <img src="assets/icon/localisation.svg" alt="" />
           <div class="">Nantes</div>
@@ -38,6 +38,41 @@
       >
         40 €
       </div>
+    </div> -->
+
+    <div class="grid grid-cols-3 gap-4 px-5">
+      <div class="">
+        <img
+          class="rounded-lg"
+          [src]="users.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+users.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+          alt=""
+        />
+      </div>
+      <div class="col-span-2 flex flex-col space-y-2">
+        <div class="flex flex-row justify-between items-center">
+          <div class="font-bold text-lg">{{users.prenom}}</div>
+          <div
+            class="
+              bg-secondary-op
+              whitespace-nowrap
+              text-center text-secondary text-2xl
+              px-4
+              py-1
+              font-bold
+              rounded-md
+            "
+          >
+            {{prestation.tarif|currency:'EUR'}}
+          </div>
+        </div>
+        <div class="flex flex-row items-center">
+          <div class="">
+            <img class="w-5 pr-1" src="assets/icon/localisation.svg" alt="" />
+          </div>
+          <div class="">{{users.ville}}</div>
+        </div>
+        <div class="">3 avis (4.3/5)</div>
+      </div>
     </div>
     <div class="px-5 my-5 space-y-5">
       <div class="flex flex-row justify-between items-center">
@@ -46,8 +81,8 @@
             <img src="assets/icon/calendar2.svg" alt="" />
           </div>
           <div class="flex flex-col">
-            <div class="">Le mardi 11 mars 2021</div>
-            <div class="">entre 10h:00 - 12h:00</div>
+            <div class="">Le {{date|date:'EEE d MMM y'}}</div>
+            <div class="">entre {{plage.plage}}</div>
           </div>
         </div>
         <ion-button
@@ -63,13 +98,15 @@
             <img src="assets/icon/outil.svg" alt="" />
           </div>
           <div class="flex flex-col">
-            <div class="">Le mardi 11 mars 2021</div>
-            <div class="">entre 10h:00 - 12h:00</div>
+            <!-- <div class="">Le mardi 11 mars 2021</div>
+            <div class="">entre 10h:00 - 12h:00</div> -->
+            <div>{{prestation.prestation.prestation}}</div>
           </div>
         </div>
         <ion-button
           fill="clear"
           class="bg-primary-op text-primary rounded-md uppercase"
+          (click)="openPrestationModal()"
           >modifier</ion-button
         >
       </div>
@@ -85,8 +122,11 @@
         <input
           class="pl-10"
           type="text"
+          [(ngModel)]="code"
+          [ngModelOptions]="{standalone: true}"
           (focus)="focused = true"
           (blur)="onBlur($event)"
+          (keyup.enter)="getCouponCode()"
         />
         <div
           class="
@@ -102,7 +142,9 @@
             w-8
             h-8
             p-1
+            z-50
           "
+          (click)="getCouponCode()"
         >
           <ion-icon size="large" name="paper-plane-outline"></ion-icon>
         </div>
@@ -110,7 +152,7 @@
       <div class="justify-start my-3 font-bold">
         Choisis ton moyen de paiement
       </div>
-      <ion-card class="shadow-none">
+      <!-- <ion-card class="shadow-none m-0 p-0" (click)="openCarteModal()">
         <div
           class="
             flex flex-row
@@ -119,8 +161,8 @@
             border-2
             rounded-lg
             w-full
-            h-16
-            p-4
+            px-4
+            py-2
           "
           (click)="bancaire = true; espece = false"
         >
@@ -137,8 +179,47 @@
             />
           </div>
         </div>
+      </ion-card> -->
+      <ion-card class="shadow-none p-0 m-0">
+        <div
+          class="flex flex-row items-start border-2 rounded-lg p-4 space-x-3"
+        >
+          <div class="">
+            <img src="assets/icon/carte_bancaire.svg" alt="" />
+          </div>
+          <div class="w-full space-y-2">
+            <div class="flex flex-row justify-between">
+              <div class="">Carte bancaire : xxxx 4242</div>
+              <div class="" (click)="openCarteModal()">
+                <img src="assets/icon/modif.svg" alt="" />
+              </div>
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="">prix initial :</div>
+              <div class="">{{prestation.tarif | currency:'EUR'}}</div>
+            </div>
+            <div class="flex flex-row justify-between items-center">
+              <div class="">réduction :</div>
+              <div class="flex items-center">
+                <ion-spinner *ngIf="loading" class="w-3 p-0 m-0"></ion-spinner>
+                <span *ngIf="!loading">{{reduction | currency:'EUR'}}</span>
+              </div>
+            </div>
+            <div
+              class="flex flex-row justify-between font-semibold items-center"
+            >
+              <div class="">net à payer :</div>
+              <div class="flex items-center">
+                <ion-spinner *ngIf="loading" class="w-3 p-0 m-0"></ion-spinner>
+                <span *ngIf="!loading"
+                  >{{prestation.tarif-reduction | currency:'EUR'}}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
       </ion-card>
-      <ion-card class="shadow-none">
+      <!-- <ion-card class="shadow-none">
         <div
           class="
             flex flex-row
@@ -165,12 +246,12 @@
             />
           </div>
         </div>
-      </ion-card>
+      </ion-card> -->
       <ion-button
         fill="clear"
         expand="block"
-        class="uppercase rounded-md text-white bg-primary"
-        (click)="goTo()"
+        class="uppercase rounded-md text-white bg-primary mt-5"
+        (click)="payWithStripe()"
         >valider</ion-button
       >
     </form>

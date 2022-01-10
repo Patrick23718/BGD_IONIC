@@ -6,8 +6,15 @@ import { CoiffeusesPrefereesPage } from './coiffeuses-preferees.page';
 const routes: Routes = [
   {
     path: '',
-    component: CoiffeusesPrefereesPage
-  }
+    component: CoiffeusesPrefereesPage,
+  },
+  {
+    path: 'coiffeuses-preferees-details/:uid',
+    loadChildren: () =>
+      import(
+        './coiffeuses-preferees-details/coiffeuses-preferees-details.module'
+      ).then((m) => m.CoiffeusesPrefereesDetailsPageModule),
+  },
 ];
 
 @NgModule({

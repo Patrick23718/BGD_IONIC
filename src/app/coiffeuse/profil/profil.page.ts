@@ -38,12 +38,7 @@ export class ProfilPage implements OnInit {
     public loadingController: LoadingController,
     private localstorage: LocalStorageService,
     private modalController: ModalController
-  ) {
-    if (this.localstorage.get('utilisateur') !== null) {
-      this.user = JSON.parse(this.localstorage.get('utilisateur'));
-    }
-    console.log(this.user);
-  }
+  ) {}
 
   ionViewWillEnter() {
     if (this.localstorage.get('user') !== null) {

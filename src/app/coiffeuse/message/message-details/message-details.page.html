@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<!-- <ion-header class="ion-no-border">
   <div
     class="flex flex-row justify-between items-center px- py-2 text-gray-600"
   >
@@ -19,7 +19,6 @@
     <ion-button fill="clear">
       <img src="assets/icon/Bell.svg" alt="" srcset="" />
     </ion-button>
-    <!-- <ion-button color="primary">Primary</ion-button> -->
   </div>
   <hr class="border-primary" />
 </ion-header>
@@ -73,6 +72,91 @@
     ></ion-textarea>
     <div class="col-span-1 flex flex-row justify-end gap-2 mr-2">
       <img src="assets/icon/sendImg.svg" alt="" srcset="" />
+      <img (click)="onClick()" src="assets/icon/send.svg" alt="" srcset="" />
+    </div>
+  </div>
+</ion-footer> -->
+
+<ion-header class="ion-no-border">
+  <div
+    class="flex flex-row justify-between items-center px- py-2 text-gray-600"
+  >
+    <div (click)="myBackButton()" class="flex flex-row gap-2 items-center pl-5">
+      <div>
+        <img src="assets/icon/back.svg" alt="" srcset="" />
+      </div>
+      <div>
+        <img
+          class="w-10 h-10 rounded-full"
+          [src]="user.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="text-lg font-medium">{{user.prenom}}</div>
+    </div>
+    <ion-button fill="clear">
+      <img src="assets/icon/Bell.svg" alt="" srcset="" />
+    </ion-button>
+    <!-- <ion-button color="primary">Primary</ion-button> -->
+  </div>
+  <hr class="border-primary" />
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="text-gray-600">
+    <div
+      class="flex flex-col gap-5 py-1 px-3"
+      *ngFor="let msg of messages; let last = last"
+    >
+      <div class="flex justify-start" *ngIf="msg.fromId._id === uid">
+        <div class="min-w-min py-2 px-3 rounded-lg recieve whitespace-pre-wrap">
+          <img
+            class="w-full rounded-lg"
+            *ngIf="msg.imageURL !== ''"
+            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/messages%2F'+msg.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            alt=""
+            srcset=""
+          />
+          {{msg.message}}
+        </div>
+      </div>
+
+      <div class="flex justify-end" *ngIf="msg.toId._id === uid">
+        <div class="min-w-min py-2 px-3 rounded-lg send whitespace-pre-wrap">
+          <img
+            class="w-full rounded-lg"
+            *ngIf="msg.imageURL !== ''"
+            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/messages%2F'+msg.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            alt=""
+            srcset=""
+          />
+          {{msg.message}}
+        </div>
+      </div>
+      {{last ? ScrollToBottom() : ''}}
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="px-2 ion-no-border">
+  <div
+    class="border border-primary rounded-lg overflow-hidden grid grid-cols-4 gap-2 items-center justify-between"
+  >
+    <ion-textarea
+      autoGrow="true"
+      rows="1"
+      maxLength="500"
+      class="col-span-3 bg-gray-100 rounded-lg m-0 shadow-none outline-none"
+      [(ngModel)]="msg"
+    ></ion-textarea>
+    <div class="col-span-1 flex flex-row justify-end gap-2 mr-2">
+      <img
+        (click)="presentActionSheet()"
+        src="assets/icon/sendImg.svg"
+        alt=""
+        srcset=""
+      />
       <img (click)="onClick()" src="assets/icon/send.svg" alt="" srcset="" />
     </div>
   </div>

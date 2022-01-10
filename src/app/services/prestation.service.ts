@@ -72,6 +72,16 @@ export class PrestationService {
     return this.httpClient.get(API_URL, { headers: headers });
   }
 
+  searchPrestCoif(uid: string, prest: string) {
+    const token = this.localStorage.get('x-access-token');
+    const API_URL = this.SERVER_URL + `/search/prest?uid=${uid}&prest=${prest}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
+  }
+
   removePrestation(id: string) {
     const token = this.localStorage.get('x-access-token');
     const API_URL = this.SERVER_URL + '/coiffeuse/prestation/' + id;
@@ -80,5 +90,15 @@ export class PrestationService {
       'x-access-token': `${token}`,
     });
     return this.httpClient.delete(API_URL, { headers: headers });
+  }
+
+  getCoiffeusePrestationById(id: string) {
+    const token = this.localStorage.get('x-access-token');
+    const API_URL = this.SERVER_URL + '/coiffeuse/prestation';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
   }
 }

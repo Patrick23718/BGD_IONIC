@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClienteGuard } from '../guard/cliente.guard';
 import { PlageResolveService } from '../shared/resolvers/plage-resolve.service';
 import { PrestationResolveService } from '../shared/resolvers/prestation-resolve.service';
+import { SearchGalerieResolverService } from '../shared/resolvers/search-galerie-resolver.service';
 import { SearchProfilResolverService } from '../shared/resolvers/search-profil-resolver.service';
 import { SearchResolverService } from '../shared/resolvers/search-resolver.service';
 import { SearchService } from '../shared/resolvers/search.service';
@@ -39,6 +40,7 @@ const routes: Routes = [
             path: 'resultat-recherche/:ville/:prestation/:date/:plage',
             resolve: {
               search: SearchService,
+              villes: VilleResolveService,
             },
             loadChildren: () =>
               import('./resultat-recherche/resultat-recherche.module').then(
@@ -46,10 +48,18 @@ const routes: Routes = [
               ),
           },
           {
+            path: 'avis-cliente/:uid',
+            loadChildren: () =>
+              import('./avis-hotesse/avis-hotesse.module').then(
+                (m) => m.AvisHotessePageModule
+              ),
+          },
+          {
             path: 'profil-hotesse/:uid',
             resolve: {
               prest: SearchResolverService,
               coiffeuse: SearchProfilResolverService,
+              galeries: SearchGalerieResolverService,
             },
             children: [
               {
@@ -60,7 +70,13 @@ const routes: Routes = [
                   ),
               },
               {
-                path: 'validation-reservation',
+                path: 'validation-reservation/:uid',
+                canActivate: [ClienteGuard],
+                resolve: {
+                  prest: SearchResolverService,
+                  coiffeuse: SearchProfilResolverService,
+                  galeries: SearchGalerieResolverService,
+                },
                 children: [
                   {
                     path: '',
@@ -70,7 +86,7 @@ const routes: Routes = [
                       ).then((m) => m.ValidationReservationPageModule),
                   },
                   {
-                    path: 'reservation-confirme',
+                    path: 'reservation-confirme/:plage/:prest/:coif/:date',
                     loadChildren: () =>
                       import(
                         './validation-reservation/reservation-confirme/reservation-confirme.module'
@@ -100,13 +116,6 @@ const routes: Routes = [
                 ],
               },
             ],
-          },
-          {
-            path: 'avis-cliente',
-            loadChildren: () =>
-              import('./avis-hotesse/avis-hotesse.module').then(
-                (m) => m.AvisHotessePageModule
-              ),
           },
         ],
       },
@@ -222,7 +231,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: 'message-details',
+            path: ':uid',
             loadChildren: () =>
               import('./message/message-details/message-details.module').then(
                 (m) => m.MessageDetailsPageModule

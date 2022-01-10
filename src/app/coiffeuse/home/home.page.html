@@ -27,7 +27,7 @@
     >
       <img
         class="rounded-xl h-32 w-32"
-        [src]="user.imageURL === 'default.png' ? 'assets/default.jpeg':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+        [src]="user?.imageURL === 'default.png' ? 'assets/default.png':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+user.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
         alt=""
         srcset=""
       />
@@ -220,7 +220,15 @@
       <div>
         <img src="assets/icon/cloche.svg" alt="" srcset="" />
       </div>
-      <div class="pl-2 font-semibold text-xl">tu as une une réservation</div>
+      <div class="pl-2 font-semibold text-xl" *ngIf="reservations.length>1">
+        Tu as {{reservations.length}} réservations
+      </div>
+      <div class="pl-2 font-semibold text-xl" *ngIf="reservations.length===1">
+        tu as une réservation
+      </div>
+      <div class="pl-2 font-semibold text-xl" *ngIf="reservations.length<1">
+        Tu n'as aucune réservation
+      </div>
     </div>
     <div class="flex flex-col gap-4">
       <div
@@ -233,96 +241,35 @@
           justify-between
           shadow-md
         "
+        *ngFor="let item of reservations"
       >
         <ion-card
           button="true"
           class="p-0 m-0 shadow-none flex flex-row"
-          (click)="openReservationModal()"
+          (click)="openReservationModal(item)"
         >
           <div class="p-0 m-0 flex flex-row">
             <img
-              src="assets/unsplash.png"
+              [src]="item.cliente?.imageURL === 'default.png' ? 'assets/default.png':'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+item.cliente?.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
               class="w-14 rounded-full"
               alt=""
               srcset=""
             />
             <div class="flex flex-col pl-2">
               <div class="flex flex-row justify-between">
-                <div class="font-semibold text-md">clarisse</div>
-                <div class="font-medium text-xl text-secondary">40€</div>
+                <div class="font-semibold text-md">
+                  {{item.cliente.prenom| titlecase}}&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="font-medium text-xl text-secondary">
+                  {{item.prestation.tarif|currency:'EUR'}}
+                </div>
               </div>
-              <div class="text-sm">Vanilles (twists) effet</div>
+              <div class="text-sm">
+                {{item.prestation.prestation.prestation}}
+              </div>
             </div>
           </div>
         </ion-card>
-        <div
-          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
-        >
-          <img src="assets/icon/chat.svg" alt="" srcset="" />
-        </div>
-      </div>
-      <div
-        class="
-          w-full
-          border border-gray-200
-          rounded-lg
-          p-2
-          flex flex-row
-          justify-between
-        "
-      >
-        <ion-card
-          button="true"
-          class="p-0 m-0 shadow-none flex flex-row"
-          (click)="openReservationModal()"
-        >
-          <div class="flex flex-row">
-            <img
-              src="assets/unsplash.png"
-              class="w-14 rounded-full"
-              alt=""
-              srcset=""
-            />
-            <div class="flex flex-col pl-2">
-              <div class="flex flex-row justify-between">
-                <div class="font-semibold text-md">clarisse</div>
-                <div class="font-medium text-xl text-secondary">40€</div>
-              </div>
-              <div class="text-sm">Vanilles (twists) effet</div>
-            </div>
-          </div>
-        </ion-card>
-        <div
-          class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
-        >
-          <img src="assets/icon/chat.svg" alt="" srcset="" />
-        </div>
-      </div>
-      <div
-        class="
-          w-full
-          border border-gray-200
-          rounded-lg
-          p-2
-          flex flex-row
-          justify-between
-        "
-      >
-        <div class="flex flex-row">
-          <img
-            src="assets/unsplash.png"
-            class="w-14 rounded-full"
-            alt=""
-            srcset=""
-          />
-          <div class="flex flex-col pl-2">
-            <div class="flex flex-row justify-between">
-              <div class="font-semibold text-md">clarisse</div>
-              <div class="font-medium text-xl text-secondary">40€</div>
-            </div>
-            <div class="text-sm">Vanilles (twists) effet</div>
-          </div>
-        </div>
         <div
           class="px-3 flex items-center justify-center rounded-lg bg-primary-op"
         >

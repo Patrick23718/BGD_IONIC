@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {
@@ -10,12 +11,10 @@ import {
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ReservationModalComponent } from 'src/app/coiffeuse/modals/reservation-modal/reservation-modal.component';
 import { ReservationPage } from 'src/app/components/reservation/reservation.page';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Notification } from 'src/app/interfaces/notification';
 import { NotificationsPage } from '../../modals/notifications/notifications.page';
 import { Location } from '@angular/common';
 import { Utilisateur } from 'src/app/interfaces/utilisateur';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -40,7 +39,7 @@ export class MonProfilPage implements OnInit {
     telephone: '',
     biographie: '',
     ville: '',
-    photoURL: '',
+    imageURL: '',
     uid: '',
   };
 
@@ -62,41 +61,27 @@ export class MonProfilPage implements OnInit {
   prenom = '';
 
   constructor(
-    private fbAuth: AngularFireAuth,
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public navCtrl: NavController,
     private camera: Camera,
-    private afDB: AngularFireDatabase,
     private location: Location,
-    private firestore: AngularFirestore,
     private utilisateurService: UtilisateurService,
     private loadingController: LoadingController,
     private afSG: AngularFireStorage,
     private localstorage: LocalStorageService,
     private alertController: AlertController
   ) {
-    this.fbAuth.authState.subscribe(async (authState) => {
-      this.user.uid = authState.uid;
-      this.user.prenom = authState.displayName;
-      this.user.email = authState.email;
-      this.user.photoURL = authState.photoURL;
+    this.utilisateurService.getUser().subscribe((res: Utilisateur) => {
+      this.user = res;
       console.log(this.user);
-      let test: any;
-      const utilisateurCollection = await this.firestore
-        .collection('utilisateur')
-        .doc(authState.uid);
-      const utilisateur = await utilisateurCollection.snapshotChanges();
-      utilisateur.subscribe((res: any) => {
-        console.log(res);
-        // console.log(res.payload.data());
-        test = res.payload.data();
-        console.log(test);
-        this.user.biographie = test.biographie;
-        this.user.nom = test.nom;
-        this.user.telephone = test.telephone;
-        this.user.ville = test.ville;
-      });
+    });
+  }
+
+  ionViewWillEnter() {
+    this.utilisateurService.getUser().subscribe((res: Utilisateur) => {
+      this.user = res;
+      console.log(this.user);
     });
   }
 
@@ -115,21 +100,6 @@ export class MonProfilPage implements OnInit {
     }
   }
 
-  async openReservationModal() {
-    const modal = await this.modalController.create({
-      component: ReservationPage,
-      componentProps: {
-        notification: this.notif,
-      },
-      cssClass: 'modal-component',
-      backdropDismiss: true,
-      mode: 'ios',
-    });
-    await modal.present();
-
-    modal.onDidDismiss();
-  }
-
   ngOnInit() {}
   async presentModal() {
     const modal = await this.modalController.create({
@@ -139,50 +109,21 @@ export class MonProfilPage implements OnInit {
     return await modal.present();
   }
 
-  add() {
-    this.afDB.list('User/').push({
-      pseudo: 'drissas',
-    });
-    console.log('Ok');
-  }
-
   async updateuser() {
-    // const loading = await this.presentLoading();
-    // await loading.present();
-    // this.fbAuth.authState.subscribe(async (authState) => {
-    //   authState
-    //     .updateProfile({ displayName: this.user.prenom })
-    //     .then((res: any) => {
-    //       this.utilisateurService
-    //         .updateUser(this.user.uid, {
-    //           biographie: this.user.biographie,
-    //           email: this.user.email,
-    //           nom: this.user.nom,
-    //           prenom: this.user.prenom,
-    //           telephone: this.user.telephone,
-    //           ville: this.user.ville,
-    //         })
-    //         .then(async (resss: any) => {
-    //           console.log(resss);
-    //           loading.dismiss();
-    //           const user = {
-    //             uid: authState.uid,
-    //             prenom: this.user.prenom,
-    //             email: authState.email,
-    //             photoURL: authState.photoURL,
-    //           };
-    //           // this.localstorage.remove('utilisateur');
-    //           this.localstorage.set('utilisateur', JSON.stringify(user));
-    //           const alert = await this.alertController.create({
-    //             header: 'Félicitation',
-    //             // eslint-disable-next-line @typescript-eslint/quotes
-    //             message: 'Mise à jour est terminée!',
-    //             buttons: ['OK'],
-    //           });
-    //           await alert.present();
-    //         });
-    //     });
-    // });
+    const loading = await this.presentLoading();
+    await loading.present();
+    this.utilisateurService.updateUser(this.user).subscribe((res: any) => {
+      const data = {
+        email: this.user.email,
+        id: this.user._id,
+        prenom: this.user.prenom,
+        role: this.user.role,
+        imageURL: this.user.imageURL,
+      };
+      this.localstorage.set('user', JSON.stringify(data));
+      console.log(res);
+      loading.dismiss();
+    });
   }
 
   async presentLoading(): Promise<any> {
@@ -265,46 +206,29 @@ export class MonProfilPage implements OnInit {
     this.upload = this.afSG
       .ref(this.imagePath)
       .putString(this.imageURL, 'data_url');
-    this.upload.then(async () => {
-      // this.imageURL = '';
-
-      this.fbAuth.authState.subscribe(async (authState) => {
-        authState
-          .updateProfile({
-            photoURL: this.imagePath,
-          })
-          .then(async () => {
-            const user = {
-              uid: authState.uid,
-              prenom: authState.displayName,
-              email: authState.email,
-              photoURL: this.imagePath,
+    this.upload
+      .then(async () => {
+        this.utilisateurService.imageSet(this.imagePath).subscribe(
+          (res: any) => {
+            console.log(res);
+            const data = {
+              email: this.user.email,
+              id: this.user._id,
+              prenom: this.user.prenom,
+              imageURL: this.imagePath,
+              role: this.user.role,
             };
-            this.user.photoURL = this.imagePath;
-            // this.localstorage.remove('utilisateur');
-            this.localstorage.set('utilisateur', JSON.stringify(user));
-            await loading.dismiss();
-            const alert = await this.alertController.create({
-              header: 'Félicitation',
-              // eslint-disable-next-line @typescript-eslint/quotes
-              message: "L'envoi de la photo est terminé!",
-              buttons: ['OK'],
-            });
-            await alert.present();
-          });
+            this.user.imageURL = data.imageURL;
+            this.localstorage.set('user', JSON.stringify(data));
+            loading.dismiss();
+          },
+          (err: any) => {
+            loading.dismiss();
+          }
+        );
+      })
+      .catch((err: any) => {
+        loading.dismiss();
       });
-      // this.getGalerie();
-    });
   }
-
-  // imageUpdate(){
-  //   this.selectedFile = <File>event.target.files[0];
-
-  //   this.userService
-  //     .imageSet(<File>this.selectedFile, this.selectedFile.name)
-  //     .subscribe((res) => {
-  //       console.log(res);
-  //     });
-  //   this.getUser();
-  // }
 }

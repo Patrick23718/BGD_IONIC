@@ -1,7 +1,5 @@
 <ion-content>
-  <div
-    class=" px- py-5 text-gray-600"
-  >
+  <div class="px- py-5 text-gray-600">
     <ion-button (click)="myBackButton()" fill="clear">
       <img src="assets/icon/back.svg" alt="" srcset="" />
     </ion-button>
@@ -12,11 +10,12 @@
   <div class="px-5 my-10 space-y-12">
     <div class="flex flex-col items-center space-y-5">
       <div class="my-5">
-        <img src="assets/icon/echec.svg" alt="">
+        <img src="assets/icon/echec.svg" alt="" />
       </div>
       <div class="font-bold">Résevation confirmé</div>
       <div class="text-center">
-        louise, nous avons rencontrer un problème lors du paiement merci de vérifier vos informations.
+        {{user.prenom}}, nous avons rencontrer un problème lors du paiement
+        merci de vérifier vos informations.
       </div>
     </div>
   </div>

@@ -35,7 +35,7 @@ export class SearchService implements Resolve<any> {
 
     // this.getMonth() + 1 + '/' + this.getDate() + '/' + this.getFullYear();
 
-    return this.searchService.search(ville, prestation, plage, finalDate);
+    return this.searchService.research(ville, prestation, plage, finalDate);
     return;
   }
 

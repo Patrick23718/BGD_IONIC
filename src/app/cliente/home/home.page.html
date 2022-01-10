@@ -186,11 +186,14 @@
 
         <div class="pt-4 space-y-4" *ngIf="segment">
           <div class="grid grid-cols-2 gap-2">
-            <div *ngFor="let item of prestations">
+            <div
+              *ngFor="let item of prestations"
+              [ngClass]="item.imageURL === ''?'none':''"
+            >
               <div
                 *ngIf="item.imageURL !== ''"
                 class="rounded-lg flex flex-col"
-                (click)="openImageModal(item.type)"
+                (click)="openImageModal(item)"
               >
                 <img
                   class="rounded-lg"

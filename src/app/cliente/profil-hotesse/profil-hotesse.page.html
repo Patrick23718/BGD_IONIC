@@ -15,13 +15,14 @@
             space-y-2
             absolute
             -top-20
-            left-1/3
+            left-0
+            right-0
           "
         >
           <img
-            src="assets/icon/sarah.svg"
+            [src]="users.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+users.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
             alt=""
-            class="border-4 border-white rounded-md"
+            class="border-4 border-white rounded-md w-2/5"
           />
           <div class="mt-4 mb-2 font-bold text-gray-500 text-xl">
             {{users.prenom|titlecase}}
@@ -34,14 +35,95 @@
               {{users.ville|titlecase}}
             </div>
           </div>
-          <div class="">
-            <img src="assets/icon/star.svg" alt="" />
+          <div>
+            <ion-icon
+              *ngIf="star>=1"
+              [name]="'star-sharp'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star>=2"
+              [name]="'star-sharp'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star>=3"
+              [name]="'star-sharp'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star>=4"
+              [name]="'star-sharp'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star>=5"
+              [name]="'star-sharp'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+
+            <ion-icon
+              *ngIf="star<5"
+              [name]="'star-outline'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star<4"
+              [name]="'star-outline'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star<3"
+              [name]="'star-outline'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star<2"
+              [name]="'star-outline'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="star<1"
+              [name]="'star-outline'"
+              color=""
+              class="text-secondary"
+            ></ion-icon>
           </div>
-          <div class="bg-secondary-op rounded-md flex justify-center w-24 h-10">
-            <img src="assets/icon/coeur.svg" alt="" class="w-6" />
+          <ion-button
+            class="bg-secondary-op rounded-md flex justify-center w-24 h-10"
+            (click)="managePrefered()"
+            color="secondary"
+            fill="clear"
+          >
+            <ion-spinner class="text-secondary" *ngIf="loading"></ion-spinner>
+            <img
+              *ngIf="!loading"
+              [src]="shared? 'assets/icon/favorite-default.svg':'assets/icon/coeur.svg'"
+              alt=""
+              class="w-6"
+            />
+          </ion-button>
+          <div
+            class="text-gray-500"
+            *ngIf="users.deplace === null? false: users.deplace"
+          >
+            Se déplace
           </div>
-          <div class="" *ngIf="users.deplace">Se deplacer</div>
-          <div class="" *ngIf="users.domicile">à domicile</div>
+          <div
+            class="text-gray-500"
+            *ngIf="users.domicile === null? false: users.domicile"
+          >
+            À domicile
+          </div>
           <div
             class="
               bg-primary-op
@@ -51,9 +133,9 @@
               px-8
               cursor-pointer
             "
-            routerLink="../avis-cliente"
+            [routerLink]="'../../avis-cliente/' + uid"
           >
-            avis
+            Avis
           </div>
         </div>
         <hr class="border-primary my-5" />
@@ -68,7 +150,7 @@
               py-2
               px-2
             "
-            routerLink="../../message"
+            [routerLink]="'/cliente/message/'+uid"
           >
             <img src="assets/icon/sms_pink.svg" alt="" />
           </div>
@@ -76,7 +158,7 @@
             <ion-button
               fill="clear"
               class="text-white uppercase"
-              routerLink="../profil-hotesse/validation-reservation"
+              [routerLink]="'../profil-hotesse/validation-reservation/'+uid"
               >réserver la prestation</ion-button
             >
           </div>
@@ -98,15 +180,26 @@
           <img src="assets/icon/img3.svg" alt="" />
         </div>
       </div> -->
-      <ion-slides pager="false" [options]="slideOpts">
+      <ion-slides
+        pager="false"
+        [options]="slideOpts"
+        *ngIf="galeries.length !== 0"
+      >
         <ion-slide *ngFor="let item of galeries">
           <img
             class="rounded-md"
-            [src]="'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/galerie%2F'+item.photoURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
+            [src]="item.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/galerie%2F'+item.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
             alt=""
           />
         </ion-slide>
       </ion-slides>
+      <ion-slides pager="false" *ngIf="galeries.length === 0">
+        <ion-slide>
+          <div class="italic text-gray-400 text">
+            Aucune image dans la galerie
+          </div>
+        </ion-slide></ion-slides
+      >
       <div class="mt-4 mb-2 font-bold text-gray-500 text-lg">
         Autres prestations
       </div>

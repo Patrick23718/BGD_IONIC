@@ -16,14 +16,14 @@ export class DisponibiliteService {
     private localStorage: LocalStorageService
   ) {}
 
-  getDisponibilite() {
-    const API_URL = this.SERVER_URL + '/prestation';
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // 'x-access-token': `${token}`,
-    });
-    return this.httpClient.get(API_URL, { headers: headers });
-  }
+  // getDisponibilite() {
+  //   const API_URL = this.SERVER_URL + '/prestation';
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     // 'x-access-token': `${token}`,
+  //   });
+  //   return this.httpClient.get(API_URL, { headers: headers });
+  // }
 
   getCoiffeuseDisponibilite(date: string) {
     const token = this.localStorage.get('x-access-token');
@@ -60,5 +60,23 @@ export class DisponibiliteService {
       },
       { headers: headers }
     );
+  }
+
+  getDate(id: string) {
+    const API_URL = this.SERVER_URL + `/planning/${id}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
+  }
+
+  getDatePlage(id: string, date: string) {
+    const API_URL = this.SERVER_URL + `/planning/${id}/${date}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': `${token}`,
+    });
+    return this.httpClient.get(API_URL, { headers: headers });
   }
 }

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { PreferedService } from 'src/app/services/prefered.service';
 
 @Component({
   selector: 'app-profil-hotesse',
@@ -19,8 +20,13 @@ export class ProfilHotessePage implements OnInit {
     imageURL: '',
     prenom: '',
     ville: '',
+    deplace: false,
+    domicile: false,
   };
+  shared = false;
   prestations = [];
+  star = 3;
+  loading = true;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   slideOpts = {
@@ -36,7 +42,8 @@ export class ProfilHotessePage implements OnInit {
   constructor(
     public location: Location,
     private route: ActivatedRoute,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private like: PreferedService
   ) {}
 
   async presentLoading() {
@@ -49,6 +56,10 @@ export class ProfilHotessePage implements OnInit {
 
   ngOnInit() {
     // this.presentLoading();
+    this.route.params.subscribe((params) => {
+      this.uid = params.uid;
+      console.log(this.uid);
+    });
 
     const prestOBX = this.route.snapshot.data['prest'];
     prestOBX.subscribe((res: any) => {
@@ -60,9 +71,45 @@ export class ProfilHotessePage implements OnInit {
       this.users = res;
       console.log(res);
     });
+
+    const galerieOBX = this.route.snapshot.data['galeries'];
+    galerieOBX.subscribe((res: any) => {
+      this.galeries = res.data;
+      console.log(res);
+    });
+    this.getPrefered();
   }
 
   myBackButton() {
     this.location.back();
+  }
+
+  managePrefered() {
+    this.loading = true;
+    if (this.shared) {
+      this.like.removePrefered(this.uid).subscribe((res: any) => {
+        console.log(res);
+        this.shared = false;
+        this.loading = false;
+      });
+    } else {
+      this.like.addPrefered(this.uid).subscribe((res: any) => {
+        console.log(res);
+        this.shared = true;
+        this.loading = false;
+      });
+    }
+  }
+
+  getPrefered() {
+    this.like.getPrefered(this.uid).subscribe((res: any[]) => {
+      if (res.length === 0) {
+        this.shared = false;
+        this.loading = false;
+      } else {
+        this.shared = true;
+        this.loading = false;
+      }
+    });
   }
 }

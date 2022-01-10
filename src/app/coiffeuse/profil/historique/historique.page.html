@@ -18,39 +18,40 @@
     [value]="value"
     display-timezone="utc"
   ></ion-datetime> -->
-  <p class="px-5">Vendredi, 19 Novembre 2021</p>
   <div class="flex flex-col gap-4 px-3 pt-5 pb-10">
-    <div
-      class="
-        flex flex-col
-        w-full
-        border border-gray-200
-        rounded-lg
-        p-4
-        gap-4
-        shadow-md
-      "
-      *ngFor="item of items"
+    <ion-card
+      *ngFor="let item of items"
+      class="shadow-none border-2 rounded-md"
+      button="true"
     >
-      <div class="flex flex-row justify-between">
-        <ion-card class="p-0 m-0 shadow-none flex flex-row">
-          <div class="p-0 m-0 flex flex-row">
+      <ion-card-content class="flex items-center justify-between">
+        <div class="flex flex-row space-x-5">
+          <div class="w-10 h-10">
             <img
-              src="assets/unsplash.png"
-              class="w-14 rounded-full"
+              [src]="item.cliente.imageURL === 'default.png'? 'assets/default.png': 'https://firebasestorage.googleapis.com/v0/b/bigoodee-79097.appspot.com/o/profile%2F'+item.cliente.imageURL.split('/')[1]+'?alt=media&token=4f39ff84-15a9-4f1d-8e9a-fcc5541147bd'"
               alt=""
-              srcset=""
+              class="rounded-full w-full h-full"
             />
-            <div class="flex flex-col pl-2">
-              <div class="flex flex-row justify-between">
-                <div class="font-semibold text-md">clarisse</div>
-                <div class="font-medium text-xl text-secondary">40€</div>
-              </div>
-              <div class="text-sm">Vanilles (twists) effet</div>
+          </div>
+          <div class="flex flex-row items-start">
+            <div class="flex flex-col">
+              <div class="">{{item.cliente.prenom}}</div>
+              <div class="">{{item.prestation.prestation.prestation}}</div>
+            </div>
+            <div class="text-secondary">
+              <span>{{item.prestation.tarif| currency:'EUR'}}</span>
             </div>
           </div>
-        </ion-card>
-      </div>
-    </div>
+        </div>
+        <!-- <ion-button
+          slot="end"
+          fill="clear"
+          class="bg-primary-op rounded-md"
+          [routerLink]="'/cliente/message/'+item.cliente._id"
+        >
+          <img src="assets/icon/sms_pink.svg" alt="" />
+        </ion-button> -->
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

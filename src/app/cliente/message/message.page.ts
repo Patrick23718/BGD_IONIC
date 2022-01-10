@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-message',
@@ -7,20 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message.page.scss'],
 })
 export class MessagePage implements OnInit {
+  items = [];
+  utilisateurs = [];
 
-  items = [
-    {},
-    {},
-    {},
-    {},
-  ]
-  constructor(private location : Location) {}
+  constructor(
+    private location: Location,
+    private utilisateurService: UtilisateurService
+  ) {
+    this.utilisateurService.getUsers().subscribe((res: any) => {
+      console.log(res);
+      this.utilisateurs = res;
+    });
+  }
 
-  myBackButton(){
+  myBackButton() {
     this.location.back();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
